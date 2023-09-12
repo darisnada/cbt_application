@@ -97,7 +97,14 @@ class TugasGuruController extends Controller
         $validateTugas = $request->validate([
             'nama_tugas' => 'required',
             'teks' => 'required',
+            'file_tugas' => 'max:40000',
         ]);
+        // if ($request->file('file_tugas')) {
+        //     $files = [];
+        //     foreach ($request->file('file_tugas') as $file) {
+
+        //     }
+        // }
         $validateTugas['kode'] = Str::random(20);
         $validateTugas['guru_id'] = session()->get('id');
         $validateTugas['kelas_id'] = $request->kelas;
