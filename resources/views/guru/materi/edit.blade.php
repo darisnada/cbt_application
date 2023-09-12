@@ -142,10 +142,10 @@
                                 <div class="col-lg-12">
                                     <div class="custom-file-container" data-upload-id="fileMateri">
                                         <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-                                        <small>Upload file berukuran dibawah 10mb</small>
+                                        <small>Upload file berukuran dibawah 500mb</small>
                                         <label class="custom-file-container__custom-file file_materi">
                                             <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_materi[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
                                             <span class="custom-file-container__custom-file__custom-file-control"></span>
                                         </label>
                                         <div class="custom-file-container__image-preview"></div>

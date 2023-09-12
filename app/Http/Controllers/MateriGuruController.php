@@ -96,6 +96,7 @@ class MateriGuruController extends Controller
         $validateMateri = $request->validate([
             'nama_materi' => 'required',
             'teks' => 'required',
+            'file_materi' => 'max:500000',
         ]);
         $validateMateri['kode'] = Str::random(20);
         $validateMateri['guru_id'] = session()->get('id');
@@ -218,6 +219,7 @@ class MateriGuruController extends Controller
         $validateMateri = $request->validate([
             'nama_materi' => 'required',
             'teks' => 'required',
+            'file_materi' => 'max:500000',
         ]);
         $validateMateri['kelas_id'] = $request->kelas;
         $validateMateri['mapel_id'] = $request->mapel;

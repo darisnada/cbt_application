@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
+    @include('template.navbar.siswa')
 
     <style>
         .custom-file-label::after{
@@ -18,52 +18,19 @@
                 <div class="col-lg-8 layout-spacing">
                     <div class="widget shadow p-3">
                         <div class="widget-heading">
-                            <h5 class="">Tambah Materi</h5>
-                            <a href="{{ url("/guru/materi") }}" class="btn btn-danger btn-sm mt-3"><span data-feather="arrow-left-circle"></span> Kembali</a>
+                            <h5 class="">Tambah kegiatan</h5>
+                            <a href="{{ url("/siswa/kegiatan") }}" class="btn btn-danger btn-sm mt-3"><span data-feather="arrow-left-circle"></span> Kembali</a>
                         </div>
-                        <form action="{{ url('guru/materi') }}" method="POST" enctype="multipart/form-data" class="mt-3">
+                        <form action="{{ url('siswa/kegiatan') }}" method="POST" enctype="multipart/form-data" class="mt-3">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="">Materi Pembelajaran</label>
-                                        <input type="text" name="nama_materi" class="form-control" required>
-                                        @error('nama_materi')
+                                        <label for="">Judul Kegiatan</label>
+                                        <input type="text" name="judul" class="form-control" required>
+                                        @error('judul')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="">Kompetensi</label>
-                                        <select class="form-control" name="mapel" id="mapel_materi" required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($guru_mapel as $gm)
-                                                <option value="{{ $gm->mapel->id }}">{{ $gm->mapel->nama_mapel }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="">Sub Kompetensi</label>
-                                        <select class="form-control" name="subkategori_id " id="subskategories" required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($subskategories as $s)
-                                                <option value="{{ $s->id }}">{{ $s->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="">Kelas</label>
-                                        <select class="form-control" name="kelas" id="kelas_materi" required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($guru_kelas as $gk)
-                                                <option value="{{ $gk->kelas->id }}">{{ $gk->kelas->nama_kelas }}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                             </div>

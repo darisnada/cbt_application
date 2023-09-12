@@ -77,6 +77,7 @@ class TugasGuruController extends Controller
      */
     public function store(Request $request)
     {
+        set_time_limit(0);
         $email_settings = EmailSettings::first();
 
         // CEK APAKAH SUDAH ADA SISWA DI KELAS YG MAU DI ISI TUGAS
@@ -97,14 +98,9 @@ class TugasGuruController extends Controller
         $validateTugas = $request->validate([
             'nama_tugas' => 'required',
             'teks' => 'required',
-            'file_tugas' => 'max:40000',
+            'file_tugas' => 'max:500000',
         ]);
-        // if ($request->file('file_tugas')) {
-        //     $files = [];
-        //     foreach ($request->file('file_tugas') as $file) {
 
-        //     }
-        // }
         $validateTugas['kode'] = Str::random(20);
         $validateTugas['guru_id'] = session()->get('id');
         $validateTugas['kelas_id'] = $request->kelas;
@@ -224,9 +220,11 @@ class TugasGuruController extends Controller
      */
     public function update(Request $request, Tugas $tuga)
     {
+        set_time_limit(0);
         $validateTugas = $request->validate([
             'nama_tugas' => 'required',
             'teks' => 'required',
+            'file_tugas' => 'max:500000',
         ]);
         $validateTugas['kelas_id'] = $request->kelas;
         $validateTugas['mapel_id'] = $request->mapel;
