@@ -224,13 +224,15 @@ class TugasGuruController extends Controller
         $validateTugas = $request->validate([
             'nama_tugas' => 'required',
             'teks' => 'required',
-            'file_tugas' => 'max:500000',
         ]);
         $validateTugas['kelas_id'] = $request->kelas;
         $validateTugas['mapel_id'] = $request->mapel;
         $validateTugas['due_date'] = $request->tgl . ' ' . $request->jam;
 
         if ($request->file('file_tugas')) {
+            $request->validate([
+                'file_tugas' => 'max:500000',
+            ]);
             $files = [];
             foreach ($request->file('file_tugas') as $file) {
                 array_push($files, [

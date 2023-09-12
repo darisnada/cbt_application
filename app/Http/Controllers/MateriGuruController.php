@@ -219,13 +219,15 @@ class MateriGuruController extends Controller
         $validateMateri = $request->validate([
             'nama_materi' => 'required',
             'teks' => 'required',
-            'file_materi' => 'max:500000',
         ]);
         $validateMateri['kelas_id'] = $request->kelas;
         $validateMateri['mapel_id'] = $request->mapel;
         $validateMateri['subkategori_id'] = $request->subkategori_id_;
 
         if ($request->file('file_materi')) {
+            $request->validate([
+                'file_materi' => 'max:500000',
+            ]);
             $files = [];
             foreach ($request->file('file_materi') as $file) {
                 array_push($files, [

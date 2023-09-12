@@ -20,9 +20,10 @@
                                     <table id="datatable-table" class="table text-center text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th>Materi Pembelajaran</th>
                                                 <th>Kompetensi</th>
                                                 <th>Sub Kompetensi</th>
+                                                <th>Materi</th>
+                                                <th>Mapel</th>
                                                 <th>Kelas</th>
                                                 <th>Opsi</th>
                                             </tr>
@@ -30,9 +31,10 @@
                                         <tbody>
                                             @foreach ($materi as $m)
                                                 <tr>
+                                                    <td>{{ $m->subkategori->kategori->nama }}</td>
+                                                    <td>{{ $m->subkategori->nama }}</td>
                                                     <td>{{ $m->nama_materi }}</td>
                                                     <td>{{ $m->mapel->nama_mapel }}</td>
-                                                    <td>{{ $m->subkategori->nama }}</td>
                                                     <td>{{ $m->kelas->nama_kelas }}</td>
                                                     <td>
                                                         <a href="{{ url('/guru/materi/' . $m->kode) }}"

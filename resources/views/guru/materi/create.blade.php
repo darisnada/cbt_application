@@ -26,7 +26,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Materi Pembelajaran</label>
+                                        <label for="">Materi</label>
                                         <input type="text" name="nama_materi" class="form-control" required>
                                         @error('nama_materi')
                                             <div class="text-danger">{{ $message }}</div>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Kompetensi</label>
+                                        <label for="">Mapel</label>
                                         <select class="form-control" name="mapel" id="mapel_materi" required>
                                             <option value="">Pilih</option>
                                             @foreach ($guru_mapel as $gm)
@@ -50,7 +50,7 @@
                                         <select class="form-control" name="subkategori_id " id="subskategories" required>
                                             <option value="">Pilih</option>
                                             @foreach ($subskategories as $s)
-                                                <option value="{{ $s->id }}">{{ $s->nama }}</option>
+                                                <option value="{{ $s->id }}">{{ $s->nama }} - {{ $s->kategori->nama }}</option>
                                             @endforeach
                                         </select>
                                     </div>

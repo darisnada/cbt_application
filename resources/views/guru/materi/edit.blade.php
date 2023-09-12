@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Materi Pembelajaran</label>
+                                        <label for="">Materi</label>
                                         <input type="text" name="nama_materi" class="form-control" value="{{ old('nama_materi', $materi->nama_materi) }}" required>
                                         @error('nama_materi')
                                             <div class="text-danger">{{ $message }}</div>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Kompetensi</label>
+                                        <label for="">Mapel</label>
                                         <select class="form-control" name="mapel" id="mapel_materi" required>
                                             <option value="">Pilih</option>
                                             @foreach ($guru_mapel as $gm)
@@ -56,7 +56,7 @@
                                         <select class="form-control" name="subkategori_id " id="subskategories" required>
                                             <option value="">Pilih</option>
                                             @foreach ($subskategories as $s)
-                                                <option value="{{ $s->id }}" <?=  $s->id == $materi->subkategori_id ? 'selected' : ''?> >{{ $s->nama }}</option>
+                                                <option value="{{ $s->id }}" <?=  $s->id == $materi->subkategori_id ? 'selected' : ''?> >{{ $s->nama }} - {{ $s->kategori->nama }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -127,7 +127,7 @@
 
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="tx-inverse">File {{ $ekstensi }}</h6>
+                                                        <h6 class="tx-inverse">{{ $materi->nama_materi.'.'.$ekstensi }}</h6>
                                                         <p class="mg-b-0">klik untuk menghapus file</p>
                                                     </div>
                                                 </div>
