@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Nama Materi</label>
+                                        <label for="">Materi Pembelajaran</label>
                                         <input type="text" name="nama_materi" class="form-control" value="{{ old('nama_materi', $materi->nama_materi) }}" required>
                                         @error('nama_materi')
                                             <div class="text-danger">{{ $message }}</div>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Mapel</label>
+                                        <label for="">Kompetensi</label>
                                         <select class="form-control" name="mapel" id="mapel_materi" required>
                                             <option value="">Pilih</option>
                                             @foreach ($guru_mapel as $gm)
@@ -52,7 +52,7 @@
 
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="">Kategori Materi</label>
+                                        <label for="">Sub Kompetensi</label>
                                         <select class="form-control" name="subkategori_id " id="subskategories" required>
                                             <option value="">Pilih</option>
                                             @foreach ($subskategories as $s)
@@ -142,10 +142,10 @@
                                 <div class="col-lg-12">
                                     <div class="custom-file-container" data-upload-id="fileMateri">
                                         <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-                                        <small>Upload file berukuran dibawah 10mb</small>
+                                        <small>Upload file berukuran dibawah 500mb</small>
                                         <label class="custom-file-container__custom-file file_materi">
                                             <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_materi[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
                                             <span class="custom-file-container__custom-file__custom-file-control"></span>
                                         </label>
                                         <div class="custom-file-container__image-preview"></div>

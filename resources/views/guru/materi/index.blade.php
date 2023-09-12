@@ -20,9 +20,9 @@
                                     <table id="datatable-table" class="table text-center text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th>Nama Materi</th>
-                                                <th>Mapel</th>
-                                                <th>Kategori Materi</th>
+                                                <th>Materi Pembelajaran</th>
+                                                <th>Kompetensi</th>
+                                                <th>Sub Kompetensi</th>
                                                 <th>Kelas</th>
                                                 <th>Opsi</th>
                                             </tr>

@@ -50,6 +50,14 @@
                     </div>
                 </a>
             </li>
+            <li class="menu {{ ($menu['menu'] == 'kegiatan') ? 'active' : ''; }}">
+                <a href="{{ url("/siswa/kegiatan") }}" aria-expanded="{{ ($menu['expanded'] == 'kegiatan') ? 'true' : 'false'; }}" class="dropdown-toggle">
+                    <div class="">
+                        <span data-feather="cast"></span>
+                        <span>Kegiatan</span>
+                    </div>
+                </a>
+            </li>
             <li class="menu menu-heading">
                 <div class="heading">
                     <span data-feather="minus"></span>

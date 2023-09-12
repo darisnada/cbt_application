@@ -26,11 +26,11 @@
                                 <th> : {{  $materi->kelas->nama_kelas  }}</th>
                             </tr>
                             <tr>
-                                <th>mapel</th>
+                                <th>Kompetensi</th>
                                 <th> : {{  $materi->mapel->nama_mapel  }}</th>
                             </tr>
                             <tr>
-                                <th>Kategori Materi</th>
+                                <th>Sub Kompetensi</th>
                                 <th> : {{  $materi->subkategori->nama  }}</th>
                             </tr>
                             <tr>
@@ -84,7 +84,7 @@
 
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="tx-inverse">File {{ $ekstensi }}</h6>
+                                                        <h6 class="tx-inverse">{{ $materi->nama_materi.'.'.$ekstensi }}</h6>
                                                         <p class="mg-b-0">klik untuk lihat/download</p>
                                                     </div>
                                                 </div>
