@@ -1,0 +1,11 @@
+SISWA
+- EMAIL : putra@gmail.com
+- PASSWORD : 30303030303
+
+MENTOR
+- EMAIL : ekasaputra@gmail.com
+- PASSWORD : 123
+
+ADMIN
+- EMAIL : admin@gmail.com
+- PASSWORD : password
