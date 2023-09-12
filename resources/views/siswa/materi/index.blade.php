@@ -18,34 +18,39 @@
                                         <thead>
                                             <tr>
                                                 <th>KOMPETENSI</th>
+                                                <th>SUB KOMPETENSI</th>
                                                 <th>MATERI PEMBELAJARAN</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($kategories as $k)
-                                                <tr style="background-color: yellow">
-                                                    <td  colspan="2"><strong> {{ $k->nama }} </strong></td>
-                                                </tr>
-                                                @php
-                                                    $subkategories = App\Models\subkategori::where('kategori_id', $k->id)->get()
-                                                @endphp
-                                                @foreach ($subkategories as $item)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}.{{ $item->nama }}</td>
                                                     @php
-                                                    $materies = App\Models\Materi::where('subkategori_id', $item->id)->get()
-                                                      @endphp
-                                                      @foreach ($materies as $materie)
-                                                      @if ($materie)
-
-                                                      <td><a href="{{ url('siswa/materi/'.$materie->kode) }}">{{ $loop->iteration }} .{{ $materie->nama_materi }}</a></td>
-                                                      @else
-
-                                                      <td>-</td>
-                                                      @endif
-                                                      @endforeach
+                                                        $subkategories = App\Models\subkategori::where('kategori_id', $k->id)->get()
+                                                    @endphp
+                                                <tr>
+                                                    <td class="bg-primary" style="color:white"><strong> {{ $k->nama }} </strong></td>
+                                                    <td>
+                                                        <ol>
+                                                            @foreach ($subkategories as $item)
+                                                            <li style="margin-left:-20px; padding-bottom:15px">{{ $item->nama }}</li>
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
+                                                    <td>
+                                                        <ol>
+                                                        @foreach ($subkategories as $item)
+                                                            @php
+                                                                $materies = App\Models\Materi::where('subkategori_id', $item->id)->get()
+                                                                @endphp
+                                                                  @foreach ($materies as $materie)
+                                                                    @if ($materie)
+                                                                    <li style="margin-left:-20px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}">{{ $materie->nama_materi }}</a></li>
+                                                                    @endif
+                                                                  @endforeach
+                                                            @endforeach
+                                                        </ol>
+                                                    </td>
                                                 </tr>
-                                                @endforeach
                                             @endforeach
                                         </tbody>
                                     </table>
