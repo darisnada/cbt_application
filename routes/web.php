@@ -14,6 +14,7 @@ use App\Http\Controllers\MateriGuruController;
 use App\Http\Controllers\SummernoteController;
 use App\Http\Controllers\TugasSiswaController;
 use App\Http\Controllers\MateriSiswaController;
+use App\Http\Controllers\NarasiController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubsKategoriController;
 use App\Http\Controllers\UjianSiswaController;
@@ -120,6 +121,11 @@ Route::prefix('admin')->group(function () {
             Route::post('edit-subskategori', [SubsKategoriController::class, 'update'])->middleware('is_admin');
             Route::get('/{id}', [SubsKategoriController::class, 'getById'])->middleware('is_admin');
         });
+    });
+
+    Route::prefix('narasi')->group(function(){
+        Route::get('', [NarasiController::class, 'index'])->middleware('is_admin');
+        Route::post('save', [NarasiController::class, 'store'])->middleware('is_admin');
     });
 
     Route::prefix('slider')->group(function(){

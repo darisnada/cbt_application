@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\Gurukelas;
 use App\Models\Gurumapel;
+use App\Models\Kegiatan;
+use App\Models\Narasi;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +31,9 @@ class GuruController extends Controller
             'guru' => Guru::firstWhere('id', session()->get('id')),
             'guru_kelas' => Gurukelas::where('guru_id', session()->get('id'))->get(),
             'guru_mapel' => Gurumapel::where('guru_id', session()->get('id'))->get(),
-            'sliders' => Slider::all()
+            'sliders' => Slider::all(),
+            'narasi' => Narasi::where('id', 1)->first(),
+            'kegiatan' => Kegiatan::limit(6)->get(),
         ]);
     }
     public function profile()

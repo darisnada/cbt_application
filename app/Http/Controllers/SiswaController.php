@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kegiatan;
 use App\Models\Siswa;
 use App\Models\Tugas;
 use App\Models\Materi;
+use App\Models\Narasi;
 use App\Models\Notifikasi;
+use App\Models\Slider;
 use App\Models\TugasSiswa;
 use App\Models\WaktuUjian;
 use Illuminate\Http\Request;
@@ -41,6 +44,9 @@ class SiswaController extends Controller
             'notif_tugas' => $notif_tugas,
             'notif_materi' => Notifikasi::where('siswa_id', session()->get('id'))->get(),
             'notif_ujian' => $notif_ujian,
+            'sliders' => Slider::all(),
+            'narasi' => Narasi::where('id', 1)->first(),
+            'kegiatan' => Kegiatan::all(),
         ]);
     }
     public function profile()

@@ -40,7 +40,7 @@
                                                         <ol>
                                                         @foreach ($subkategories as $item)
                                                             @php
-                                                                $materies = App\Models\Materi::where('subkategori_id', $item->id)->get()
+                                                                $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
                                                                 @endphp
                                                                   @foreach ($materies as $materie)
                                                                     @if ($materie)

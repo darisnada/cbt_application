@@ -21,7 +21,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Titile</th>
+                                                <th>Title</th>
                                                 <th>Subtitle</th>
                                                 <th>Opsi</th>
                                             </tr>

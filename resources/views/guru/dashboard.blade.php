@@ -30,6 +30,36 @@
                     </a>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-md-6 col-sm-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <center><h4>{{$narasi->judul}}</h4></center>
+                            <hr>
+                            <p>{{$narasi->isi}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <center><h4>Kegiatan</h4></center>
+                            <hr>
+                            @foreach ($kegiatan as $i)
+                                @php
+                                    $file = \App\Models\FileModel::where('kode', $i->kode)->first();
+                                @endphp
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="{{ asset('assets/files/' . ($file->nama??'')) }}" alt="" width="150px">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row layout-top-spacing">
                 <div class="container-fluid">
                     <div class="col-lg-6">
