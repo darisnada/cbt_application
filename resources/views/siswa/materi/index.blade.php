@@ -32,23 +32,38 @@
                                                     <td>
                                                         <ol>
                                                             @foreach ($subkategories as $item)
+                                                            @php
+                                                                $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
+                                                            @endphp
                                                             <li style="margin-left:-20px; padding-bottom:15px">{{ $item->nama }}</li>
+                                                                @foreach ($materies as $materie)
+                                                                    @if ($materie)
+                                                                    <p style="margin-left:-20px; padding-top:-10px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}"></a> </p>
+                                                                    @else
+                                                                    <br>
+                                                                    <br>
+                                                                    @endif
+                                                                  @endforeach
                                                             @endforeach
                                                         </ol>
                                                     </td>
                                                     <td>
-                                                        <ol>
                                                         @foreach ($subkategories as $item)
+                                                        <p class="{{$item->id}}"></p>
+                                                        <ol>
                                                             @php
                                                                 $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
                                                                 @endphp
                                                                   @foreach ($materies as $materie)
                                                                     @if ($materie)
-                                                                    <li style="margin-left:-20px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}">{{ $materie->nama_materi }}</a></li>
+                                                                    <li style="margin-left:-20px; padding-top:-10px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}">{{ $materie->nama_materi }}</a></li>
+                                                                    @else
+                                                                    <br>
+                                                                    <br>
                                                                     @endif
                                                                   @endforeach
-                                                            @endforeach
                                                         </ol>
+                                                        @endforeach
                                                     </td>
                                                 </tr>
                                             @endforeach
