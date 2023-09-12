@@ -10,6 +10,7 @@ use App\Models\Siswa;
 use App\Models\TugasSiswa;
 use App\Models\WaktuUjian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KegiatanSiswaController extends Controller
 {
@@ -102,27 +103,32 @@ class KegiatanSiswaController extends Controller
             'teks' => 'required',
             'file_materi' => 'max:500000',
         ]);
-        $validateMateri['kode'] = Str::random(20);
+        $kode = Str::random(20);
         $validateMateri['id_siswa'] = session()->get('id');
 
         if ($request->file('file_materi')) {
             $files = [];
             foreach ($request->file('file_materi') as $file) {
                 array_push($files, [
-                    'kode' => $validateMateri['kode'],
+                    'kode' => $kode,
                     'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
                 ]);
             }
             FileModel::insert($files);
         }
 
-        Materi::create($validateMateri);
+        Kegiatan::create([
+            'kode' => $kode,
+            'judul' => $request->judul,
+            'keterangan' => $request->teks,
+            'id_siswa' => session()->get('id'),
+        ]);
 
-        return redirect('/guru/materi')->with('pesan', "
+        return redirect('/siswa/kegiatan')->with('pesan', "
             <script>
                 swal({
                     title: 'Success!',
-                    text: 'materi sudah di posting!',
+                    text: 'Kegiatan sudah di posting!',
                     type: 'success',
                     padding: '2em'
                 })
@@ -136,9 +142,36 @@ class KegiatanSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($kode)
     {
-        //
+        $kegiatan = Kegiatan::where('kode', $kode)->first();
+        $notif_tugas = TugasSiswa::where('siswa_id', session()->get('id'))
+            ->where('date_send', null)
+            ->get();
+
+        $notif_ujian = WaktuUjian::where('siswa_id', session()->get('id'))
+            ->where('selesai', null)
+            ->get();
+
+        return view('siswa.kegiatan.show', [
+            'title' => 'Lihat Kegiatan',
+            'plugin' => '
+                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+            ',
+            'menu' => [
+                'menu' => 'kegiatan',
+                'expanded' => 'kegiatan'
+            ],
+            'siswa' => Siswa::firstWhere('id', session()->get('id')),
+            'files' => FileModel::where('kode', $kegiatan->kode)->get(),
+            'notif_tugas' => $notif_tugas,
+            'notif_materi' => Notifikasi::where('siswa_id', session()->get('id'))->get(),
+            'notif_ujian' => $notif_ujian,
+            'kegiatan' => $kegiatan
+        ]);
     }
 
     /**
@@ -147,31 +180,112 @@ class KegiatanSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        //
+        $kegiatan = Kegiatan::where('kode', $kode)->first();
+        $notif_tugas = TugasSiswa::where('siswa_id', session()->get('id'))
+            ->where('date_send', null)
+            ->get();
+
+        $notif_ujian = WaktuUjian::where('siswa_id', session()->get('id'))
+            ->where('selesai', null)
+            ->get();
+        return view('siswa.kegiatan.edit', [
+            'title' => 'Ubah Kegiatan',
+            'plugin' => '
+                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+                <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+            ',
+            'menu' => [
+                'menu' => 'kegiatan',
+                'expanded' => 'kegiatan'
+            ],
+            'siswa' => Siswa::firstWhere('id', session()->get('id')),
+            'files' => FileModel::where('kode', $kegiatan->kode)->get(),
+            'notif_tugas' => $notif_tugas,
+            'notif_materi' => Notifikasi::where('siswa_id', session()->get('id'))->get(),
+            'notif_ujian' => $notif_ujian,
+            'kegiatan' => $kegiatan
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Kegiatan 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $kegiatan = Kegiatan::where('kode', $request->kode_kegiatan)->first();
+        $validateMateri = $request->validate([
+            'judul' => 'required',
+            'teks' => 'required',
+            'file_materi' => 'max:500000',
+        ]);
+        $kode = $kegiatan->kode;
+        $validateMateri['id_siswa'] = session()->get('id');
+
+        if ($request->file('file_materi')) {
+            $files = [];
+            foreach ($request->file('file_materi') as $file) {
+                array_push($files, [
+                    'kode' => $kode,
+                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                ]);
+            }
+            FileModel::insert($files);
+        }
+
+        Kegiatan::where('id', $kegiatan->id)
+            ->update([
+                'kode' => $kode,
+                'judul' => $request->judul,
+                'keterangan' => $request->teks,
+                'id_siswa' => session()->get('id'),
+            ]);
+
+            return redirect('/siswa/kegiatan')->with('pesan', "
+                <script>
+                    swal({
+                        title: 'Success!',
+                        text: 'Kegiatan sudah di update!',
+                        type: 'success',
+                        padding: '2em'
+                    })
+                </script>
+            ");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($kegiatan)
     {
-        //
+        $kegiatan = Kegiatan::where('kode', $kegiatan)->first();
+        // dd($kegiatan);
+        $files = FileModel::where('kode', $kegiatan->kode)->get();
+        if ($files) {
+            foreach ($files as $file) {
+                Storage::delete('assets/files/' . $file->nama);
+            }
+
+            FileModel::where('kode', $kegiatan->kode)
+                ->delete();
+        }
+
+
+        Kegiatan::where('id', $kegiatan->id)->delete();
+        return redirect('/siswa/kegiatan')->with('pesan', "
+            <script>
+                swal({
+                    title: 'Success!',
+                    text: 'Kegiatan di hapus!',
+                    type: 'success',
+                    padding: '2em'
+                })
+            </script>
+        ");
     }
 }

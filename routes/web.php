@@ -186,6 +186,10 @@ Route::post('/siswa/edit_password/{siswa:id}', [SiswaController::class, 'edit_pa
 // ==>Kegiatan
 Route::resource('/siswa/kegiatan', KegiatanSiswaController::class)->middleware('is_siswa');
 Route::get('/siswa/kegiatan/create', [KegiatanSiswaController::class, 'create'])->middleware('is_siswa');
+Route::get('/siswa/kegiatan/delete/{kode}', [KegiatanSiswaController::class, 'destroy'])->middleware('is_siswa');
+Route::get('/siswa/kegiatan/show/{kode}', [KegiatanSiswaController::class, 'show'])->middleware('is_siswa');
+Route::get('/siswa/kegiatan/edit/{kode}', [KegiatanSiswaController::class, 'edit'])->middleware('is_siswa');
+Route::post('/siswa/kegiatan/update', [KegiatanSiswaController::class, 'update'])->middleware('is_siswa');
 
 // ==>Materi
 Route::resource('/siswa/materi', MateriSiswaController::class)->middleware('is_siswa');

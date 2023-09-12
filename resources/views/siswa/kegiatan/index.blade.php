@@ -28,9 +28,13 @@
                                             @foreach ($kegiatan as $t)
                                                 <tr>
                                                     <td>{{ $t->judul }}</td>
-                                                    <td>{{ $t->keterangan }}</td>
+                                                    <td>{{ substr($t->keterangan,0,100) }}</td>
                                                     <td>
-                                                        <a href="{{ url("/siswa/tugas/" . $t->kode) }}" class="btn btn-primary"><span data-feather="eye"></span> Lihat</a>
+                                                        <a href="{{ url("/siswa/kegiatan/" . $t->kode) }}" class="btn btn-primary"><span data-feather="eye"></span></a>
+                                                        <a href="{{ url("/siswa/kegiatan/edit/" . $t->kode) }}" class="btn btn-warning"><span data-feather="edit"></span></a>
+                                                        <a class="btn btn-danger btn-sm btn-hapus"
+                                                            href="{{ url('/siswa/kegiatan/delete/' . $t->kode) }}"><span
+                                                            data-feather="trash"></span></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
