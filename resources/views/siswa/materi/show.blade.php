@@ -25,12 +25,12 @@
                                 <th>Kelas</th>
                                 <th> : {{  $materi->kelas->nama_kelas  }}</th>
                             </tr>
-                            {{-- <tr>
-                                <th>mapel</th>
-                                <th> : {{  $materi->mapel->nama_mapel  }}</th>
-                            </tr> --}}
                             <tr>
-                                <th>Kategori Materi</th>
+                                <th>Kompetensi</th>
+                                <th> : {{  $materi->subkategori->kategori->nama  }}</th>
+                            </tr>
+                            <tr>
+                                <th>Sub Kompetensi</th>
                                 <th> : {{  $materi->subkategori->nama  }}</th>
                             </tr>
                             <tr>
