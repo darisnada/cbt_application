@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <th>Kompetensi</th>
-                                <th> : {{  $materi->mapel->nama_mapel  }}</th>
+                                <th> : {{  $materi->subkategori->kategori->nama  }}</th>
                             </tr>
                             <tr>
                                 <th>Sub Kompetensi</th>

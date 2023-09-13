@@ -161,6 +161,7 @@ class MateriGuruController extends Controller
      */
     public function show(Materi $materi)
     {
+        // return dd($materi->subkategori->kategori);
         return view('guru.materi.show', [
             'title' => 'Lihat Materi',
             'plugin' => '
