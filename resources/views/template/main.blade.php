@@ -52,6 +52,13 @@
         }
     </style>
 
+    {{-- Untuk preview --}}
+    <script src="{{ url('/assets/preview-image') }}/js/lc_lightbox.lite.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ url('/assets/preview-image') }}/css/lc_lightbox.css" />
+    <link rel="stylesheet" href="{{ url('/assets/preview-image') }}/skins/minimal.css" />
+    <script src="{{ url('/assets/preview-image') }}/lib/AlloyFinger/alloy_finger.min.js" type="text/javascript"></script>
+    {{-- Untuk preview --}}
+
 </head>
 
 <body class="sidebar-noneoverflow">

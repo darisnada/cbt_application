@@ -11,6 +11,7 @@ use App\Models\FileModel;
 use App\Models\Gurukelas;
 use App\Models\Gurumapel;
 use App\Models\kategori;
+use App\Models\Kelas;
 use App\Models\Notifikasi;
 use App\Models\subkategori;
 use App\Models\Userchat;
@@ -66,6 +67,7 @@ class MateriGuruController extends Controller
                 'expanded' => 'materi'
             ],
             'guru' => Guru::firstWhere('id', session()->get('id')),
+            'kelas' => Kelas::get(),
             'guru_kelas' => Gurukelas::where('guru_id', session()->get('id'))->get(),
             'guru_mapel' => Gurumapel::where('guru_id', session()->get('id'))->get(),
             'subskategories' => subkategori::all(),
@@ -239,6 +241,7 @@ class MateriGuruController extends Controller
             'nama_materi' => 'required',
             'teks' => 'required',
         ]);
+        $validateMateri['kode'] = $materi->kode;
         $validateMateri['kelas_id'] = $request->kelas;
         $validateMateri['mapel_id'] = $request->mapel;
         $validateMateri['subkategori_id'] = $request->subkategori_id_;
@@ -262,7 +265,7 @@ class MateriGuruController extends Controller
                 $file->storeAs('assets/files', $namaFileBaru);
         
                 array_push($files, [
-                    'kode' => $validateMateri['kode'],
+                    'kode' => $materi->kode,
                     'nama' => $namaFileBaru
                 ]);
         

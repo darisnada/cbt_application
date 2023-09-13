@@ -48,16 +48,19 @@
                         <div class="card-body">
                             <center><h4>Kegiatan</h4></center>
                             <hr>
+                            <div class="row">
                             @foreach ($kegiatan as $i)
                                 @php
                                     $file = \App\Models\FileModel::where('kode', $i->kode)->first();
+                                    $siswa = \App\Models\Siswa::where('id', $i->id_siswa)->first();
                                 @endphp
-                                <div class="row">
-                                    <div class="col-6">
-                                        <img src="{{ asset('assets/files/' . ($file->nama??'')) }}" alt="" width="150px">
+                                    <div class="col-lg-4">
+                                        <a href="{{ asset('assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa}}" data-lcl-thumb="{{ asset('assets/files/' . ($file->nama)) }}">
+                                            <img src="{{ asset('assets/files/' . ($file->nama??'')) }}" alt="" width="150px">
+                                        </a>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,10 +79,44 @@
         </div>
     </div>
     <!--  END CONTENT AREA  -->
-
-
+    <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="fileModalLabel">File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <div class="file-content"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
     {!! session('pesan') !!}
     <script>
         $(".btn-kerjakan").click(function(e){e.preventDefault();var t=$(this).attr("href");swal({title:"yakin mulai ujian?",text:"waktu ujian akan dimulai & tidak bisa berhenti!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, mulai",padding:"2em"}).then(function(e){e.value&&(document.location.href=t)})})
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+           
+            // live handler
+            lc_lightbox('.elem', {
+                wrap_class: 'lcl_fade_oc',
+                gallery : true,	
+                thumb_attr: 'data-lcl-thumb', 
+                
+                skin: 'minimal',
+                radius: 0,
+                padding	: 0,
+                border_w: 0,
+            });	
+        
+        });
+        </script>
 @endsection
