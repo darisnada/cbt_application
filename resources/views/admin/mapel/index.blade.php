@@ -10,7 +10,7 @@
             <div class="col-lg-12 layout-spacing">
                 <div class="widget shadow p-3" style="min-height: 450px;">
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-lg-12">
                             <div class="widget-heading">
                                 <h5 class="">Mata Pelajaran</h5>
                                 <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_mapel"><span data-feather="book-open"></span> Tambah</a>
@@ -43,7 +43,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-lg-5 d-flex">
+                        <div class="col-lg-12 d-flex">
                             <img src="{{ url('assets/img') }}/mapel.svg" class="align-middle" alt="" style="width: 100%;">
                         </div>
                     </div>

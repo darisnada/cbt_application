@@ -34,7 +34,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                {{-- <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Mapel</label>
                                         <select class="form-control" name="mapel" id="mapel_materi" required>
@@ -48,8 +48,18 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div> --}}
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="">Kompetensi</label>
+                                        <select class="form-control" name="kategori_id" onchange="getSubKategori()" id="kategories" required>
+                                            <option value="">Pilih</option>
+                                            @foreach ($kategories as $s)
+                                                <option value="{{ $s->id }}" <?=  $s->id == $materi->subkategori->kategori_id ? 'selected' : ''?>>{{ $s->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Sub Kompetensi</label>
@@ -127,7 +137,7 @@
 
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="tx-inverse">{{ $materi->nama_materi.'.'.$ekstensi }}</h6>
+                                                        <h6 class="tx-inverse">{{ $file->nama }}</h6>
                                                         <p class="mg-b-0">klik untuk menghapus file</p>
                                                     </div>
                                                 </div>
@@ -163,6 +173,25 @@
 
     <script>
         $(document).ready(function(){$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,t=this){var a;e=e[0],a=t,(t=new FormData).append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:t,type:"post",success:function(e){$(a).summernote("insertImage",e)},error:function(e){console.log(e)}})},onMediaDelete:function(e){e=e[0].src,$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}}});new FileUploadWithPreview("fileMateri");$(".hapus-file").on("click",function(){const t=$(this);var a=$(this).data("src");swal({title:"yakin di hapus?",text:"file tidak bisa dikembalikan!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, hapus",padding:"2em"}).then(function(e){e.value&&$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:a},type:"post",url:"{{ url('/summernote/delete_file') }}",cache:!1,success:function(e){t.remove(),swal({title:"Berhasil!",text:"file berhasil di hapus!",type:"success",padding:"2em"})}})})})});
+    </script>
+    <script>
+        function getSubKategori() {
+            var l = $('#kategories').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('get_subskategori/${l}') }}`,
+                dataType: "json",
+                success: function (data) {
+                    // $("#table-container").html(data); 
+                    console.log(data);
+                    $('#subskategories').empty(); // Kosongkan elemen sebelum menambahkan pilihan baru
+                    data.forEach(element => {
+                        var option = `<option value="${element.id}">${element.nama}</option>`;
+                        $('#subskategories').append(option); // Menggunakan append untuk menambahkan pilihan ke dalam elemen
+                    });
+                }
+            });
+        }
     </script>
 
     {!! session('pesan') !!}

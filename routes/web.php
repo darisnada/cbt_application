@@ -49,6 +49,7 @@ Route::post('/register', [AuthController::class, 'register_']);
 Route::post('/recovery', [AuthController::class, 'recovery_']);
 Route::get('/aktivasi/{token:token}', [AuthController::class, 'aktivasi']);
 Route::post('/change_password/{token:token}', [AuthController::class, 'change_password_']);
+Route::get('/get_subskategori/{id}', [KategoriController::class, 'getSubskategori']);
 
 
 // START::ROUTE ADMIN

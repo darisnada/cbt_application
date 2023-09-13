@@ -121,23 +121,37 @@ class TugasGuruController extends Controller
         $email_siswa = Str::replaceLast(',', '', $email_siswa);
         $email_siswa = explode(',', $email_siswa);
 
-        if ($email_settings->notif_tugas == '1') {
-            $details = [
-                'nama_guru' => session()->get('nama_guru'),
-                'nama_tugas' => $request->nama_tugas,
-                'due_date' => $validateTugas['due_date']
-            ];
-            Mail::to($email_siswa)->send(new NotifTugas($details));
-        }
+        // if ($email_settings->notif_tugas == '1') {
+        //     $details = [
+        //         'nama_guru' => session()->get('nama_guru'),
+        //         'nama_tugas' => $request->nama_tugas,
+        //         'due_date' => $validateTugas['due_date']
+        //     ];
+        //     Mail::to($email_siswa)->send(new NotifTugas($details));
+        // }
 
         if ($request->file('file_tugas')) {
             $files = [];
+            $nomorUrut = 1; // Mulai dengan nomor urut 1
+        
             foreach ($request->file('file_tugas') as $file) {
+                $ext = $file->getClientOriginalExtension(); // Dapatkan ekstensi file asli
+                $namaMateri = $request->nama_tugas;
+                $no = rand(10,100);
+                // Bentuk nama file yang sesuai dengan nomor urut
+                $namaFileBaru = "$namaMateri-{$no}.{$ext}";
+        
+                // Simpan file dengan nama baru
+                $file->storeAs('assets/files', $namaFileBaru);
+        
                 array_push($files, [
                     'kode' => $validateTugas['kode'],
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'nama' => $namaFileBaru
                 ]);
+        
+                $nomorUrut++; // Tingkatkan nomor urut untuk file berikutnya
             }
+        
             FileModel::insert($files);
         }
 
@@ -230,16 +244,27 @@ class TugasGuruController extends Controller
         $validateTugas['due_date'] = $request->tgl . ' ' . $request->jam;
 
         if ($request->file('file_tugas')) {
-            $request->validate([
-                'file_tugas' => 'max:500000',
-            ]);
             $files = [];
+            $nomorUrut = 1; // Mulai dengan nomor urut 1
+        
             foreach ($request->file('file_tugas') as $file) {
+                $ext = $file->getClientOriginalExtension(); // Dapatkan ekstensi file asli
+                $namaMateri = $request->nama_tugas;
+                $no = rand(10,100);
+                // Bentuk nama file yang sesuai dengan nomor urut
+                $namaFileBaru = "$namaMateri-{$no}.{$ext}";
+        
+                // Simpan file dengan nama baru
+                $file->storeAs('assets/files', $namaFileBaru);
+        
                 array_push($files, [
                     'kode' => $tuga->kode,
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'nama' => $namaFileBaru
                 ]);
+        
+                $nomorUrut++; // Tingkatkan nomor urut untuk file berikutnya
             }
+        
             FileModel::insert($files);
         }
 

@@ -10,6 +10,7 @@ use App\Models\EmailSettings;
 use App\Models\FileModel;
 use App\Models\Gurukelas;
 use App\Models\Gurumapel;
+use App\Models\kategori;
 use App\Models\Notifikasi;
 use App\Models\subkategori;
 use App\Models\Userchat;
@@ -68,6 +69,7 @@ class MateriGuruController extends Controller
             'guru_kelas' => Gurukelas::where('guru_id', session()->get('id'))->get(),
             'guru_mapel' => Gurumapel::where('guru_id', session()->get('id'))->get(),
             'subskategories' => subkategori::all(),
+            'kategories' => kategori::all(),
         ]);
     }
 
@@ -129,14 +131,29 @@ class MateriGuruController extends Controller
 
         if ($request->file('file_materi')) {
             $files = [];
+            $nomorUrut = 1; // Mulai dengan nomor urut 1
+        
             foreach ($request->file('file_materi') as $file) {
+                $ext = $file->getClientOriginalExtension(); // Dapatkan ekstensi file asli
+                $namaMateri = $request->nama_materi;
+                $no = rand(10,100);
+                // Bentuk nama file yang sesuai dengan nomor urut
+                $namaFileBaru = "$namaMateri-{$no}.{$ext}";
+        
+                // Simpan file dengan nama baru
+                $file->storeAs('assets/files', $namaFileBaru);
+        
                 array_push($files, [
                     'kode' => $validateMateri['kode'],
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'nama' => $namaFileBaru
                 ]);
+        
+                $nomorUrut++; // Tingkatkan nomor urut untuk file berikutnya
             }
+        
             FileModel::insert($files);
         }
+        
 
         Materi::create($validateMateri);
         Notifikasi::insert($notifikasi);
@@ -205,6 +222,7 @@ class MateriGuruController extends Controller
             'files' => FileModel::where('kode', $materi->kode)->get(),
             'guru_kelas' => Gurukelas::where('guru_id', $materi->guru_id)->get(),
             'guru_mapel' => Gurumapel::where('guru_id', $materi->guru_id)->get(),
+            'kategories' => kategori::all(),
         ]);
     }
 
@@ -230,11 +248,25 @@ class MateriGuruController extends Controller
                 'file_materi' => 'max:500000',
             ]);
             $files = [];
+            $nomorUrut = 010; // Mulai dengan nomor urut 1
+        
             foreach ($request->file('file_materi') as $file) {
+                $ext = $file->getClientOriginalExtension(); // Dapatkan ekstensi file asli
+                $namaMateri = $request->nama_materi;
+                $no = rand(10,100);
+                
+                // Bentuk nama file yang sesuai dengan nomor urut
+                $namaFileBaru = "$namaMateri-{$no}.{$ext}";
+        
+                // Simpan file dengan nama baru
+                $file->storeAs('assets/files', $namaFileBaru);
+        
                 array_push($files, [
-                    'kode' => $materi->kode,
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'kode' => $validateMateri['kode'],
+                    'nama' => $namaFileBaru
                 ]);
+        
+                $nomorUrut++; // Tingkatkan nomor urut untuk file berikutnya
             }
             FileModel::insert($files);
         }

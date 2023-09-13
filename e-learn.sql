@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2023 at 11:59 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Sep 12, 2023 at 07:34 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `e_learning`
+-- Database: `e-learn`
 --
 
 -- --------------------------------------------------------
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama_admin` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
+  `nama_admin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -54,8 +54,8 @@ INSERT INTO `admins` (`id`, `nama_admin`, `email`, `password`, `avatar`, `role`,
 
 CREATE TABLE `detail_essay` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
-  `soal` longtext NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soal` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -68,14 +68,14 @@ CREATE TABLE `detail_essay` (
 
 CREATE TABLE `detail_ujian` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
-  `soal` longtext NOT NULL,
-  `pg_1` varchar(255) NOT NULL,
-  `pg_2` varchar(255) NOT NULL,
-  `pg_3` varchar(255) NOT NULL,
-  `pg_4` varchar(255) NOT NULL,
-  `pg_5` varchar(255) NOT NULL,
-  `jawaban` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soal` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pg_1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pg_2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pg_3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pg_4` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pg_5` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jawaban` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -105,9 +105,9 @@ CREATE TABLE `email_settings` (
 CREATE TABLE `essay_siswa` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `detail_ujian_id` int(11) NOT NULL,
-  `kode` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `siswa_id` int(11) NOT NULL,
-  `jawaban` longtext DEFAULT NULL,
+  `jawaban` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ragu` tinyint(1) DEFAULT NULL,
   `nilai` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,11 +120,11 @@ CREATE TABLE `essay_siswa` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -136,8 +136,8 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `files` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -147,13 +147,19 @@ CREATE TABLE `files` (
 INSERT INTO `files` (`id`, `kode`, `nama`) VALUES
 (1, 'cep28v6LD2xErojpYHv2', 'NGu84XKQyaOW9gZMha7T5thz4ehjpLOKEtGjEu6R.jpg'),
 (2, 'P4QJxTPxVeR9WozSsLi4', 'h5eUH7AWqhU9Y6yCkpA0y1BbqGiFkr0n4cVYYbuy.jpg'),
-(3, '14byWaHmXCCKaXygLiYn', '6PTCDSWNPyvO4HdhcFH2kOOQLtnmXNqkO4njEFSo.jpg'),
 (4, 'QURACbFJcGg4HxEQQr0d', 'MLIGkbSVbnpcDROLtSuHPu4SD65CRJnyF5IiZw0N.jpg'),
 (5, 'tU5JWe2opw3cBMwnK9gz', 'ZnhLhKiEz4bKKfDzNY1l0ZuByCI892fKU8QJfolH.jpg'),
 (6, 'nD4M86D7pVEMP92kdHyT', 'wva9ICKpULKwrHMPAOLZ8WipCFfZxx3UvqpRdFAD.jpg'),
 (7, '6U3rnlCGJrzANT8N0RxS', 'Et1ThHmM75Jk82DCaOrp2qkCmeDMYJ3fbUeygYoJ.jpg'),
 (8, 'yKsbBE2wymTVqJ8g1ztg', 'KdTu8Tj3cHGaM6aiMrieqiweMYYtJuWGj7lDvG8w.jpg'),
-(9, 'bKEcovWbnSlMYudZrshH', 'MAU53b52GBvRGgHBuD5eZg1vuecePbqRnsQ7g5pZ.jpg');
+(9, 'bKEcovWbnSlMYudZrshH', 'MAU53b52GBvRGgHBuD5eZg1vuecePbqRnsQ7g5pZ.jpg'),
+(10, '14byWaHmXCCKaXygLiYn', 'knP0hvLxDJtWMspEHWJCBeOhhGdfUkdeaNHmX7iU.html'),
+(14, 'EUleLaMYqS6LQt2EjIq7', 'lmAUZG8eVFL3kmR9qnM2qRuIL8disYoAAZfYQGqs.jpg'),
+(15, 'yvWuEn3XcwvUurYXE4hw', '8mb9MpyHU8dHW9J0eK4z9eJuwdmdL2chQutnxUro.mp4'),
+(17, '14byWaHmXCCKaXygLiYn', 'zt27MDDdAYc1JS9SdVDpD59XKdkDi3EpmkCpoSFK.mp4'),
+(20, 'CZKDLa1sircWaldfYd5Z', 'izxIePYl4FFipuZO3bA66UykVIvL1gG3WbBFpLwm.mp4'),
+(21, 'CZKDLa1sircWaldfYd5Z', '6qz2qWGgclOTab7XwzOZscFR5FrSsd86kOvsBmQQ.pdf'),
+(22, 'vx54ILXqrebLIYefFT9R', 'lVWr6CRqJAtdSfArDNq9wGlwvjRqCtkjLddfIxmg.mp4');
 
 -- --------------------------------------------------------
 
@@ -163,11 +169,11 @@ INSERT INTO `files` (`id`, `kode`, `nama`) VALUES
 
 CREATE TABLE `guru` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama_guru` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
+  `nama_guru` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -231,8 +237,8 @@ INSERT INTO `gurumapel` (`id`, `guru_id`, `mapel_id`, `created_at`, `updated_at`
 
 CREATE TABLE `jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint(3) UNSIGNED NOT NULL,
   `reserved_at` int(10) UNSIGNED DEFAULT NULL,
   `available_at` int(10) UNSIGNED NOT NULL,
@@ -247,7 +253,7 @@ CREATE TABLE `jobs` (
 
 CREATE TABLE `kategoris` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -264,12 +270,36 @@ INSERT INTO `kategoris` (`id`, `nama`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kegiatans`
+--
+
+CREATE TABLE `kegiatans` (
+  `id` bigint(20) NOT NULL,
+  `kode` varchar(255) DEFAULT NULL,
+  `judul` varchar(255) DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `image` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `id_siswa` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kegiatans`
+--
+
+INSERT INTO `kegiatans` (`id`, `kode`, `judul`, `keterangan`, `image`, `created_at`, `updated_at`, `id_siswa`) VALUES
+(3, 'EUleLaMYqS6LQt2EjIq7', 'akjdsj99', 'kzsjdfv99', NULL, '2023-09-12 13:41:28', '2023-09-12 13:57:37', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama_kelas` varchar(255) NOT NULL,
+  `nama_kelas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -289,7 +319,7 @@ INSERT INTO `kelas` (`id`, `nama_kelas`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `mapel` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama_mapel` varchar(255) NOT NULL,
+  `nama_mapel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -309,13 +339,13 @@ INSERT INTO `mapel` (`id`, `nama_mapel`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `materi` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guru_id` int(11) NOT NULL,
   `kelas_id` int(11) NOT NULL,
   `mapel_id` int(11) NOT NULL,
   `subkategori_id` bigint(20) UNSIGNED NOT NULL,
-  `nama_materi` varchar(255) NOT NULL,
-  `teks` longtext NOT NULL,
+  `nama_materi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `teks` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -325,7 +355,9 @@ CREATE TABLE `materi` (
 --
 
 INSERT INTO `materi` (`id`, `kode`, `guru_id`, `kelas_id`, `mapel_id`, `subkategori_id`, `nama_materi`, `teks`, `created_at`, `updated_at`) VALUES
-(1, '14byWaHmXCCKaXygLiYn', 1, 1, 1, 5, 'Modul 2-1', 'sdadsa', '2023-09-11 17:48:21', '2023-09-11 18:58:47');
+(1, '14byWaHmXCCKaXygLiYn', 1, 1, 1, 5, 'Modul 2-1', 'sdadsa', '2023-09-11 17:48:21', '2023-09-12 14:14:02'),
+(2, 'yvWuEn3XcwvUurYXE4hw', 1, 1, 1, 4, 'Web Lanjutan', '1234567', '2023-09-12 14:10:14', '2023-09-12 14:10:14'),
+(3, 'vx54ILXqrebLIYefFT9R', 1, 1, 1, 5, 'test', 'km', '2023-09-12 16:42:26', '2023-09-12 16:42:26');
 
 -- --------------------------------------------------------
 
@@ -335,7 +367,7 @@ INSERT INTO `materi` (`id`, `kode`, `guru_id`, `kelas_id`, `mapel_id`, `subkateg
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -374,16 +406,44 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `narasis`
+--
+
+CREATE TABLE `narasis` (
+  `id` bigint(20) NOT NULL,
+  `judul` varchar(200) DEFAULT NULL,
+  `isi` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `narasis`
+--
+
+INSERT INTO `narasis` (`id`, `judul`, `isi`, `created_at`, `updated_at`) VALUES
+(1, 'Narasi', 'aiuweucifqewadfvads iajfaoijf oia inaidhha adjshnvkjad aiudhviaudh auidhviuadhv aiduhvaidjvh iuahdvijdah adivhiaudh auidhvi', NULL, '2023-09-12 15:47:54');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `siswa_id` int(11) NOT NULL,
-  `key` varchar(255) NOT NULL,
-  `kode` varchar(255) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `nama`, `siswa_id`, `key`, `kode`) VALUES
+(3, 'test', 1, 'materi', 'vx54ILXqrebLIYefFT9R');
 
 -- --------------------------------------------------------
 
@@ -394,9 +454,9 @@ CREATE TABLE `notifications` (
 CREATE TABLE `pg_siswa` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `detail_ujian_id` int(11) NOT NULL,
-  `kode` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `siswa_id` int(11) NOT NULL,
-  `jawaban` varchar(255) DEFAULT NULL,
+  `jawaban` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `benar` tinyint(1) DEFAULT NULL,
   `ragu` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -409,13 +469,13 @@ CREATE TABLE `pg_siswa` (
 
 CREATE TABLE `siswa` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nis` varchar(255) NOT NULL,
-  `nama_siswa` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL,
+  `nis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_siswa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kelas_id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -437,9 +497,9 @@ INSERT INTO `siswa` (`id`, `nis`, `nama_siswa`, `gender`, `kelas_id`, `email`, `
 
 CREATE TABLE `sliders` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `img` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `subtitle` varchar(255) NOT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -449,8 +509,7 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `img`, `title`, `subtitle`, `created_at`, `updated_at`) VALUES
-(3, 'assets/files/i5SXPhZBhgh36S2ulz53wV8ELOcjjde9M9Q8pj1H.jpg', 'title2', 'title2', '2023-09-11 21:07:45', '2023-09-11 21:07:45'),
-(4, 'assets/files/cUA3VVvx5O97tYA4guBNN4ovjI1sZnAUhPcMP3Hb.png', '\';lkl;k', '\';lkl;k', '2023-09-11 21:16:51', '2023-09-11 21:16:51');
+(6, 'assets/files/QpyQw8E6UKWE1lKBjTRsenBCU9SnMAZeKNrUbbZL.png', 'jkacs', 'kajds', '2023-09-12 16:03:10', '2023-09-12 16:03:10');
 
 -- --------------------------------------------------------
 
@@ -461,7 +520,7 @@ INSERT INTO `sliders` (`id`, `img`, `title`, `subtitle`, `created_at`, `updated_
 CREATE TABLE `subkategoris` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kategori_id` bigint(20) UNSIGNED NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -483,9 +542,9 @@ INSERT INTO `subkategoris` (`id`, `kategori_id`, `nama`, `created_at`, `updated_
 
 CREATE TABLE `tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `key` varchar(255) NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -499,16 +558,23 @@ CREATE TABLE `tokens` (
 
 CREATE TABLE `tugas` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guru_id` int(11) NOT NULL,
   `kelas_id` int(11) NOT NULL,
   `mapel_id` int(11) NOT NULL,
-  `nama_tugas` varchar(255) NOT NULL,
-  `teks` longtext NOT NULL,
-  `due_date` varchar(255) NOT NULL,
+  `nama_tugas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `teks` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `due_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tugas`
+--
+
+INSERT INTO `tugas` (`id`, `kode`, `guru_id`, `kelas_id`, `mapel_id`, `nama_tugas`, `teks`, `due_date`, `created_at`, `updated_at`) VALUES
+(1, 'CZKDLa1sircWaldfYd5Z', 1, 1, 1, 'contoh', 'lakdmf', '2023-09-12 18:28', '2023-09-12 11:32:35', '2023-09-12 14:37:05');
 
 -- --------------------------------------------------------
 
@@ -518,17 +584,24 @@ CREATE TABLE `tugas` (
 
 CREATE TABLE `tugas_siswa` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `siswa_id` int(11) NOT NULL,
-  `teks` longtext DEFAULT NULL,
-  `file` varchar(255) DEFAULT NULL,
-  `date_send` varchar(255) DEFAULT NULL,
+  `teks` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_send` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_telat` tinyint(1) DEFAULT NULL,
   `nilai` int(11) DEFAULT NULL,
-  `catatan_guru` longtext DEFAULT NULL,
+  `catatan_guru` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tugas_siswa`
+--
+
+INSERT INTO `tugas_siswa` (`id`, `kode`, `siswa_id`, `teks`, `file`, `date_send`, `is_telat`, `nilai`, `catatan_guru`, `created_at`, `updated_at`) VALUES
+(1, 'CZKDLa1sircWaldfYd5Z', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -538,8 +611,8 @@ CREATE TABLE `tugas_siswa` (
 
 CREATE TABLE `ujian` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jenis` int(11) NOT NULL,
   `guru_id` int(11) NOT NULL,
   `kelas_id` int(11) NOT NULL,
@@ -559,9 +632,9 @@ CREATE TABLE `ujian` (
 
 CREATE TABLE `userchat` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `key` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `chat` varchar(255) NOT NULL,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -574,9 +647,9 @@ CREATE TABLE `userchat` (
 
 CREATE TABLE `waktu_ujian` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kode` varchar(255) NOT NULL,
+  `kode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `siswa_id` int(11) NOT NULL,
-  `waktu_berakhir` varchar(255) DEFAULT NULL,
+  `waktu_berakhir` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `selesai` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -661,6 +734,12 @@ ALTER TABLE `kategoris`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kegiatans`
+--
+ALTER TABLE `kegiatans`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
@@ -683,6 +762,12 @@ ALTER TABLE `materi`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `narasis`
+--
+ALTER TABLE `narasis`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -798,7 +883,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `guru`
@@ -831,6 +916,12 @@ ALTER TABLE `kategoris`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `kegiatans`
+--
+ALTER TABLE `kegiatans`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
@@ -846,7 +937,7 @@ ALTER TABLE `mapel`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -855,10 +946,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
+-- AUTO_INCREMENT for table `narasis`
+--
+ALTER TABLE `narasis`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pg_siswa`
@@ -876,7 +973,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subkategoris`
@@ -894,13 +991,13 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tugas_siswa`
 --
 ALTER TABLE `tugas_siswa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ujian`

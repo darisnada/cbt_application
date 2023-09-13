@@ -120,7 +120,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="tx-inverse">{{ $tugas->nama_tugas.'.'.$ekstensi }}</h6>
+                                                        <h6 class="tx-inverse">{{ $file->nama }}</h6>
                                                         <p class="mg-b-0">klik untuk menghapus file</p>
                                                     </div>
                                                 </div>

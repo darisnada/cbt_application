@@ -10,7 +10,7 @@
             <div class="col-lg-12 layout-spacing">
                 <div class="widget shadow p-3">
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-lg-12">
                             <div class="widget-heading">
                                 <h5 class="">Kelas</h5>
                                 <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_kelas"><span data-feather="home"></span> Tambah</a>
@@ -43,7 +43,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-lg-5 d-flex">
+                        <div class="col-lg-12 d-flex">
                             <img src="{{ url('assets/img') }}/kelas.svg" class="align-middle" alt="" style="width: 100%;">
                         </div>
                     </div>

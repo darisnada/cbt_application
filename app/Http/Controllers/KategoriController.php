@@ -90,4 +90,10 @@ class KategoriController extends Controller
     ");
     }
 
+    public function getSubskategori($id){
+        $data = subkategori::where('kategori_id', $id)->get();
+
+        return json_encode($data);
+    }
+
 }

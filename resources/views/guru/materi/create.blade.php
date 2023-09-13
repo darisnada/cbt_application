@@ -33,7 +33,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                {{-- <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Mapel</label>
                                         <select class="form-control" name="mapel" id="mapel_materi" required>
@@ -43,15 +43,26 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div> --}}
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="">Kompetensi</label>
+                                        <select class="form-control" name="kategori_id" onchange="getSubKategori()" id="kategories" required>
+                                            <option value="">Pilih</option>
+                                            @foreach ($kategories as $s)
+                                                <option value="{{ $s->id }}">{{ $s->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Sub Kompetensi</label>
                                         <select class="form-control" name="subkategori_id " id="subskategories" required>
-                                            <option value="">Pilih</option>
-                                            @foreach ($subskategories as $s)
+                                            <option value="" id="optionsub">Pilih</option>
+                                            {{-- @foreach ($subskategories as $s)
                                                 <option value="{{ $s->id }}">{{ $s->nama }} - {{ $s->kategori->nama }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                     </div>
                                 </div>
@@ -102,6 +113,26 @@
     <script>
         $(document).ready(function(){$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,o=this){var t;e=e[0],t=o,(o=new FormData).append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:o,type:"post",success:function(e){$(t).summernote("insertImage",e)},error:function(e){console.log(e)}})},onMediaDelete:function(e){e=e[0].src,$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}}});new FileUploadWithPreview("fileMateri")});
     </script>
+    <script>
+        function getSubKategori() {
+            var l = $('#kategories').val();
+            $.ajax({
+                type: "GET",
+                url: `{{ url('get_subskategori/${l}') }}`,
+                dataType: "json",
+                success: function (data) {
+                    // $("#table-container").html(data); 
+                    console.log(data);
+                    $('#subskategories').empty(); // Kosongkan elemen sebelum menambahkan pilihan baru
+                    data.forEach(element => {
+                        var option = `<option value="${element.id}">${element.nama}</option>`;
+                        $('#subskategories').append(option); // Menggunakan append untuk menambahkan pilihan ke dalam elemen
+                    });
+                }
+            });
+        }
+    </script>
 
     {!! session('pesan') !!}
+    
 @endsection

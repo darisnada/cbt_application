@@ -84,7 +84,7 @@
 
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="tx-inverse">{{ $materi->nama_materi.'.'.$ekstensi }}</h6>
+                                                        <h6 class="tx-inverse">{{ $file->nama }}</h6>
                                                         <p class="mg-b-0">klik untuk lihat/download</p>
                                                     </div>
                                                 </div>

@@ -117,7 +117,7 @@
                                                     <div class="media-body">
                                                         <div class="data-info">
                                                             <h6 class="">{{ $nm->materi->nama_materi }}</h6>
-                                                            <p class="">{{ $nm->materi->mapel->nama_mapel }}</p>
+                                                            {{-- <p class="">{{ $nm->materi->mapel->nama_mapel }}</p> --}}
                                                         </div>
                                                     </div>
                                                 </div>
