@@ -1,122 +1,44 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.siswa')
 
-
-    <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="container-fluid" style="margin-top:20px !important">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            @foreach ($sliders as $item)
-                                <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }} ">
-                                    <img class="d-block w-100" src="{{ asset($item->img) }}" alt="" style="border-radius: 30px">
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <center><h4>{{$narasi->judul}}</h4></center>
+                        <hr>
+                        <p>{{$narasi->isi}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Kegiatan</h4>
+                        <hr>
+                        <div class="row">
+                            @foreach ($kegiatan as $i)
+                            @php
+                                $file = \App\Models\FileModel::where('kode', $i->kode)->first();
+                                $siswa = \App\Models\Siswa::where('id', $i->id_siswa)->first();
+                            @endphp
+                                <div class="col-lg-4">
+                                    <a href="{{ asset('_assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa}}" data-lcl-thumb="{{ asset('_assets/files/' . ($file->nama)) }}">
+                                        <img src="{{ asset('_assets/files/' . ($file->nama??'')) }}" alt="" width="150px">
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6 col-sm-12 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><h4>{{$narasi->judul}}</h4></center>
-                            <hr>
-                            <p>{{$narasi->isi}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-sm-12 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><h4>Kegiatan</h4></center>
-                            <hr>
-                            <div class="row">
-                            @foreach ($kegiatan as $i)
-                                @php
-                                    $file = \App\Models\FileModel::where('kode', $i->kode)->first();
-                                    $siswa = \App\Models\Siswa::where('id', $i->id_siswa)->first();
-                                @endphp
-                                    <div class="col-lg-4">
-                                        <a href="{{ asset('assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa}}" data-lcl-thumb="{{ asset('assets/files/' . ($file->nama)) }}">
-                                            <img src="{{ asset('assets/files/' . ($file->nama??'')) }}" alt="" width="150px">
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
-        </div>
-        <div class="footer-wrapper">
-            <div class="footer-section f-section-1">
-                <p class="">Copyright © 2021 <a target="_blank" href="http://bit.ly/demo-abdul"
-                        class="text-primary">Abduloh Malela</a></p>
-            </div>
-            <div class="footer-section f-section-2">
-                <p class="">CBT-MALELA v2</p>
             </div>
         </div>
     </div>
-    <!--  END CONTENT AREA  -->
-    <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="fileModalLabel">File</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body text-center">
-              <div class="file-content"></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    {!! session('pesan') !!}
-    <script>
-        $(".btn-kerjakan").click(function(e){e.preventDefault();var t=$(this).attr("href");swal({title:"yakin mulai ujian?",text:"waktu ujian akan dimulai & tidak bisa berhenti!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, mulai",padding:"2em"}).then(function(e){e.value&&(document.location.href=t)})})
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-           
-            // live handler
-            lc_lightbox('.elem', {
-                wrap_class: 'lcl_fade_oc',
-                gallery : true,	
-                thumb_attr: 'data-lcl-thumb', 
-                
-                skin: 'minimal',
-                radius: 0,
-                padding	: 0,
-                border_w: 0,
-            });	
-        
-        });
-        </script>
+</div>
+
+
 @endsection

@@ -2,257 +2,146 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>CBT MALELA | {{ $title }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ url('/assets/img') }}/cbt-malela.png" />
-    <link href="{{ url('/assets/cbt-malela') }}/assets/css/loader.css" rel="stylesheet" type="text/css" />
-    <script src="{{ url('/assets/cbt-malela') }}/assets/js/loader.js"></script>
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap" rel="stylesheet">
-    <link href="{{ url('/assets/cbt-malela') }}/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ url('/assets/cbt-malela') }}/assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT - {{$title}}</title>
 
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    {{-- PLUGIN --}}
-    <link href="{{ url('/assets/cbt-malela') }}/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
-    <link href="{{ url('/assets/cbt-malela') }}/assets/css/components/custom-sweetalert.css" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ url('/assets/cbt-malela') }}/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
-    <script src="{{ url('/assets/cbt-malela') }}/assets/js/libs/jquery-3.1.1.min.js"></script>
-    {!! $plugin !!}
-    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!--Font awesome icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!--Google web fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet"> 
 
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{ url('/assets/cbt-malela') }}/plugins/sweetalerts/sweetalert2.min.js"></script>
-    <script src="{{ url('/assets/cbt-malela') }}/plugins/sweetalerts/custom-sweetalert.js"></script>
-    <script src="{{ url('/assets/cbt-malela') }}/bootstrap/js/popper.min.js"></script>
-    <script src="{{ url('/assets/cbt-malela') }}/bootstrap/js/bootstrap.min.js"></script>
-    <script src="{{ url('/assets/cbt-malela') }}/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="{{ url('/assets/cbt-malela') }}/assets/js/app.js"></script>
-    <script src="{{ url('/assets/cbt-malela') }}/plugins/font-icons/feather/feather.min.js"></script>
-    <script>
+
+    <!--Simplebar css-->
+    <link rel="stylesheet" href="{{url('assets')}}/vendor/css/simplebar.min.css">
+
+    <!--Choices css-->
+    <link rel="stylesheet" href="{{url('assets')}}/vendor/css/choices.min.css">
+
+    <!--Date range picker-->
+    <link rel="stylesheet" href="{{url('assets')}}/vendor/css/daterangepicker.css">
+
+    {{-- DataTable CSS --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
+
+    <!--Main style-->
+    <link rel="stylesheet" href="{{url('assets')}}/css/style.min.css" id="switchThemeStyle">
+    <!-- <script>
         $(document).ready(function() {
             App.init();
         });
-    </script>
-    <script src="{{ url('/assets/cbt-malela') }}/assets/js/custom.js"></script>
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
-
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{ url('/assets/cbt-malela') }}/assets/js/scrollspyNav.js"></script>
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-
-    <style>
-        .btn {
-            padding-left: 0.6rem;
-            padding-right: 0.6rem;
-        }
-    </style>
-
-    {{-- Untuk preview --}}
-    <script src="{{ url('/assets/preview-image') }}/js/lc_lightbox.lite.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="{{ url('/assets/preview-image') }}/css/lc_lightbox.css" />
-    <link rel="stylesheet" href="{{ url('/assets/preview-image') }}/skins/minimal.css" />
-    <script src="{{ url('/assets/preview-image') }}/lib/AlloyFinger/alloy_finger.min.js" type="text/javascript"></script>
-    {{-- Untuk preview --}}
+    </script> -->
 
 </head>
 
 <body class="sidebar-noneoverflow">
-    <!-- BEGIN LOADER -->
-    <div id="load_screen">
-        <div class="loader">
-            <div class="loader-content">
-                <div class="spinner-grow align-self-center"></div>
+
+        <!--////////////////// PreLoader Start//////////////////////-->
+      <div class="loader">
+        <!--Placeholder animated layout for preloader-->
+        <div class="d-flex flex-column flex-root">
+          <div class="page d-flex flex-row flex-column-fluid">
+
+            <!--Sidebar start-->
+            <aside class="page-sidebar placeholder-wave">
+              <div class="placeholder col-12 h-100 bg-gray"></div>
+            </aside>
+            <div class="page-content d-flex flex-column flex-row-fluid">
+              <div
+                class="content flex-column p-4 pb-0 d-flex justify-content-center align-items-center flex-column-fluid position-relative">
+                <div class="w-100 h-100 position-relative d-flex align-items-center justify-content-center">
+                  <div class="spinner-border me-3 text-primary" role="status">
+                  </div>
+              
+                  <div>
+                  <span>Loading...</span>
+                </div>
+              </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <!--  END LOADER -->
-    <!--  BEGIN NAVBAR  -->
-    <div class="header-container fixed-top">
-        <header class="header navbar navbar-expand-sm">
-            <ul class="navbar-nav theme-brand flex-row  text-center">
-                <li class="nav-item theme-logo">
-                    <a href="">
-                        <img src="{{ url('/assets/img') }}/cbt-malela.png" class="navbar-logo" alt="logo">
-                    </a>
-                </li>
-                <li class="nav-item theme-text">
-                    <a href="" class="nav-link"> CBT </a>
-                </li>
-                <li class="nav-item toggle-sidebar">
-                    <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-list">
-                            <line x1="8" y1="6" x2="21" y2="6"></line>
-                            <line x1="8" y1="12" x2="21" y2="12"></line>
-                            <line x1="8" y1="18" x2="21" y2="18"></line>
-                            <line x1="3" y1="6" x2="3" y2="6"></line>
-                            <line x1="3" y1="12" x2="3" y2="12"></line>
-                            <line x1="3" y1="18" x2="3" y2="18"></line>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-item flex-row search-ul">
-            </ul>
-            <ul class="navbar-item flex-row navbar-dropdown">
+      </div>
+      <!--////////////////// /.PreLoader END//////////////////////-->
 
-                @if (session()->get('role') === 3)
-                    <li class="nav-item dropdown notification-dropdown">
-                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span data-feather="bell"></span>
-                            @if ($notif_tugas->count() > 0 || $notif_materi->count() > 0 || $notif_ujian->count() > 0)
-                                <span class="badge badge-danger"></span>
-                            @endif
-                        </a>
-                        <div class="dropdown-menu position-absolute animated fadeInUp"
-                            aria-labelledby="notificationDropdown">
-                            <div class="notification-scroll">
-                                @if ($notif_tugas->count() > 0 || $notif_materi->count() > 0 || $notif_ujian->count() > 0)
+      <div class="d-flex flex-column flex-root">
+      <!--Page-->
+      <div class="page d-flex flex-row flex-column-fluid">
 
-                                    @foreach ($notif_materi as $nm)
-                                        <a href="{{ url('/siswa/materi/' . $nm->kode) }}">
-                                            <div class="dropdown-item">
-                                                <div class="media server-log">
-                                                    <span data-feather="book-open"></span>
-                                                    <div class="media-body">
-                                                        <div class="data-info">
-                                                            <h6 class="">{{ $nm->materi->nama_materi }}</h6>
-                                                            {{-- <p class="">{{ $nm->materi->mapel->nama_mapel }}</p> --}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
+        @include('template.navbar.siswa')
+        <!--///////////Page content wrapper///////////////-->
+        <main class="page-content d-flex flex-column flex-row-fluid">
+            @include('template.topbar')
 
-                                    @foreach ($notif_tugas as $nt)
-                                        <a href="{{ url('/siswa/tugas/' . $nt->kode) }}">
-                                            <div class="dropdown-item">
-                                                <div class="media">
-                                                    <span data-feather="file-text"></span>
-                                                    <div class="media-body">
-                                                        <div class="data-info">
-                                                            <h6 class="">{{ $nt->tugas->nama_tugas }}</h6>
-                                                            <p class="">{{ $nt->tugas->mapel->nama_mapel }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
+            <!--//Page Toolbar//-->
+            <div class="toolbar p-4 pb-0">
+                <div class="position-relative container-fluid px-0">
+                <div class="row align-items-center position-relative">
+                    <div class="col-md-5 mb-3 mb-lg-0">
 
-                                    @foreach ($notif_ujian as $nu)
-                                        <a href="{{ url('/siswa/ujian/' . $nu->kode) }}">
-                                            <div class="dropdown-item">
-                                                <div class="media file-upload">
-                                                    <span data-feather="cast"></span>
-                                                    <div class="media-body">
-                                                        <div class="data-info">
-                                                            <h6 class="">{{ $nu->ujian->nama }}</h6>
-                                                            <p class="">{{ $nu->ujian->mapel->nama_mapel }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                @else
-                                    <div class="dropdown-item">
-                                        <div class="media server-log">
-                                            <div class="media-body">
-                                                <div class="data-info">
-                                                    <h6 class="">WOoHOO</h6>
-                                                    <p class="">Belum ada Pemberitahuan</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-
-                            </div>
-                        </div>
-                    </li>
-                @endif
-
-                <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
-                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span data-feather="settings"></span>
-                    </a>
-                    <div class="dropdown-menu position-absolute animated fadeInUp"
-                        aria-labelledby="userProfileDropdown">
-                        <div class="user-profile-section">
-                            <div class="media mx-auto">
-                                @if (session()->get('role') === 1)
-                                    <img src="{{ asset('assets/user-profile/' . $admin->avatar) }}"
-                                        class="img-fluid mr-2 bg-white" alt="avatar">
-                                    <div class="media-body">
-                                        <h5>{{ $admin->nama_admin }}</h5>
-                                        <p>ADMIN</p>
-                                    </div>
-                                    @php
-                                        $link_profile = '/admin/profile';
-                                    @endphp
-                                @endif
-                                @if (session()->get('role') === 2)
-                                    <img src="{{ asset('assets/user-profile/' . $guru->avatar) }}"
-                                        class="img-fluid mr-2 bg-white" alt="avatar">
-                                    <div class="media-body">
-                                        <h5>{{ $guru->nama_guru }}</h5>
-                                        <p>GURU CBT MALELA</p>
-                                    </div>
-                                    @php
-                                        $link_profile = '/guru/profile';
-                                    @endphp
-                                @endif
-                                @if (session()->get('role') === 3)
-                                    <img src="{{ asset('assets/user-profile/' . $siswa->avatar) }}"
-                                        class="img-fluid mr-2 bg-white" alt="avatar">
-                                    <div class="media-body">
-                                        <h5>{{ $siswa->nama_siswa }}</h5>
-                                        <p>SISWA CBT MALELA</p>
-                                    </div>
-                                    @php
-                                        $link_profile = '/siswa/profile';
-                                    @endphp
-                                @endif
-                            </div>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="{{ url("$link_profile") }}">
-                                <span data-feather="user"></span> <span>My Profile</span>
-                            </a>
-                        </div>
-                        <div class="dropdown-item">
-                            <a href="{{ url('/logout') }}" class="logout">
-                                <span data-feather="log-out"></span> <span>Log Out</span>
-                            </a>
-                        </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#!" class="">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Default</li>
+                        </ol>
+                    </nav>
                     </div>
-                </li>
-            </ul>
-        </header>
+                    <div class="col-md-7 text-md-end">
+                    <!-- <div class="d-flex justify-content-md-end align-items-center">
+                        <div id="reportrange" class="bg-body-secondary rounded px-3 py-1">
+                        <i class="bi bi-calendar me-1 pe-none"></i>
+                        <span class="small d-inline-block ms-1"></span>
+                        </div>
+                    </div> -->
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--//Page Toolbar End//-->
+
+          <!--//Page content//-->
+          <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+            @yield("content")
+          </div>
+          <!--//Page content End//-->
+
+        </main>
+        <!--///////////Page content wrapper End///////////////-->
+      </div>
     </div>
-    <!--  END NAVBAR  -->
 
-    <!--  BEGIN MAIN CONTAINER  -->
-    <div class="main-container" id="container">
+        <!--////////////Theme Core scripts Start/////////////////-->
 
-        <div class="overlay"></div>
-        <div class="search-overlay"></div>
+        <script src="{{url('assets')}}/js/theme.bundle.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-        <!-- Content -->
-        @yield('content');
+    <!--////////////Theme Core scripts End/////////////////-->
 
-    </div>
-    <!-- END MAIN CONTAINER -->
+
+    <!--Charts-->
+    <script src="{{url('assets')}}/vendor/apexcharts.min.js"></script>
+    <!--Dashboard duration calendar-->
+    <script src="{{url('assets')}}/vendor/moment.min.js"></script>
+    <script src="{{url('assets')}}/vendor/daterangepicker.js"></script>
+    <script src="{{url('assets')}}/summernote/summernote.js"></script>
+
+    <!--Datatables-->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Datatables Responsive
+        $("#datatableId").DataTable({
+          "filter":false,
+                  "length":false
+        });
+      });
+    </script>
+
     <script>
         $(".logout").on("click",function(t){t.preventDefault();var n=$(this).attr("href");swal({title:"yakin logout?",text:"anda harus login ulang untuk masuk ke aplikasi!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, logout",padding:"2em"}).then(function(t){t.value&&(document.location.href=n)}),$("#swal2-container").css("z-index","9999")}),feather.replace();
     </script>

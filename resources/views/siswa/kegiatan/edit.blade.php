@@ -1,32 +1,18 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.siswa')
 
-    <style>
-        .custom-file-label::after{
-            background-color: rgba(27, 85, 226, 0.23921568627450981);
-            color: #1b55e2;
-        }
-        .progress{
-            display: none;
-        }
-    </style>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-8 layout-spacing">
-                    <div class="widget shadow p-3">
-                        <div class="widget-heading">
-                            <h5 class="">Edit kegiatan</h5>
-                            <a href="{{ url("/siswa/kegiatan") }}" class="btn btn-danger btn-sm mt-3"><span data-feather="arrow-left-circle"></span> Kembali</a>
-                        </div>
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
                         <form action="{{ url('siswa/kegiatan/update') }}" method="POST" enctype="multipart/form-data" class="mt-3">
                             @csrf
                             @method('POST')
                             <input type="hidden" name="kode_kegiatan" value="{{$kegiatan->kode}}">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="">Judul Kegiatan</label>
                                         <input type="text" name="judul" class="form-control" value="{{ old('judul', $kegiatan->judul) }}" required>
@@ -36,7 +22,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <label for="">Text</label>
                                 @error('teks')
                                     <div class="text-danger">{{ $message }}</div>
@@ -45,6 +31,7 @@
                                    {!! old('teks', $kegiatan->keterangan) !!}
                                 </textarea>
                             </div>
+                            <br>
                             @if ($files)
                             <p>File Sebelumnya</p>
                             <div class="row">
@@ -97,32 +84,20 @@
                             </div>
                             <hr>
                         @endif
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="custom-file-container" data-upload-id="fileMateri">
-                                        <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-                                        <small>Upload file berukuran dibawah 500mb</small>
-                                        <label class="custom-file-container__custom-file file_materi">
-                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_materi[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
-                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
-                                        </label>
-                                        <div class="custom-file-container__image-preview"></div>
-                                    </div>
-                                </div>
+                            <div class="form-group mt-3">
+                                <label for="">File</label>
+                                <input type="file" name="file_materi[]" multiple class="form-control">
                             </div>
+                            <br>
                             <button type="submit" class="btn btn-primary btn-sm"><span data-feather="save"></span> Simpan</button>
-                        </form>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
-
-    <script>
-        $(document).ready(function(){$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,t=this){var a;e=e[0],a=t,(t=new FormData).append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:t,type:"post",success:function(e){$(a).summernote("insertImage",e)},error:function(e){console.log(e)}})},onMediaDelete:function(e){e=e[0].src,$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}}});new FileUploadWithPreview("fileMateri");$(".hapus-file").on("click",function(){const t=$(this);var a=$(this).data("src");swal({title:"yakin di hapus?",text:"file tidak bisa dikembalikan!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, hapus",padding:"2em"}).then(function(e){e.value&&$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:a},type:"post",url:"{{ url('/summernote/delete_file') }}",cache:!1,success:function(e){t.remove(),swal({title:"Berhasil!",text:"file berhasil di hapus!",type:"success",padding:"2em"})}})})})});
-    </script>
-
-    {!! session('pesan') !!}
+</div>
 @endsection
+<script>
+    $(document).ready(function(){$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,t=this){var a;e=e[0],a=t,(t=new FormData).append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:t,type:"post",success:function(e){$(a).summernote("insertImage",e)},error:function(e){console.log(e)}})},onMediaDelete:function(e){e=e[0].src,$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}}});new FileUploadWithPreview("fileMateri");$(".hapus-file").on("click",function(){const t=$(this);var a=$(this).data("src");swal({title:"yakin di hapus?",text:"file tidak bisa dikembalikan!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, hapus",padding:"2em"}).then(function(e){e.value&&$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:a},type:"post",url:"{{ url('/summernote/delete_file') }}",cache:!1,success:function(e){t.remove(),swal({title:"Berhasil!",text:"file berhasil di hapus!",type:"success",padding:"2em"})}})})})});
+</script>
