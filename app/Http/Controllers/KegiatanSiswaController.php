@@ -31,9 +31,9 @@ class KegiatanSiswaController extends Controller
         return view('siswa.kegiatan.index', [
             'title' => 'Data Kegiatan',
             'plugin' => '
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
-                <script src="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
                 <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
             ',
             'menu' => [
@@ -66,11 +66,11 @@ class KegiatanSiswaController extends Controller
         return view('siswa.kegiatan.create', [
             'title' => 'Tambah Kegiatan',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-                <script src="' . url("/assets/cbt-malela") . '/plugins/resumable.js"></script>
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/resumable.js"></script>
             ',
             'menu' => [
                 'menu' => 'kegiatan',
@@ -111,7 +111,7 @@ class KegiatanSiswaController extends Controller
             foreach ($request->file('file_materi') as $file) {
                 array_push($files, [
                     'kode' => $kode,
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'nama' => Str::replace('_assets/files/', '', $file->store('_assets/files'))
                 ]);
             }
             FileModel::insert($files);
@@ -156,10 +156,10 @@ class KegiatanSiswaController extends Controller
         return view('siswa.kegiatan.show', [
             'title' => 'Lihat Kegiatan',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
             ',
             'menu' => [
                 'menu' => 'kegiatan',
@@ -193,9 +193,9 @@ class KegiatanSiswaController extends Controller
         return view('siswa.kegiatan.edit', [
             'title' => 'Ubah Kegiatan',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',
@@ -235,7 +235,7 @@ class KegiatanSiswaController extends Controller
             foreach ($request->file('file_materi') as $file) {
                 array_push($files, [
                     'kode' => $kode,
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'nama' => Str::replace('_assets/files/', '', $file->store('assets/files'))
                 ]);
             }
             FileModel::insert($files);
@@ -268,7 +268,7 @@ class KegiatanSiswaController extends Controller
         $files = FileModel::where('kode', $kegiatan->kode)->get();
         if ($files) {
             foreach ($files as $file) {
-                Storage::delete('assets/files/' . $file->nama);
+                Storage::delete('_assets/files/' . $file->nama);
             }
 
             FileModel::where('kode', $kegiatan->kode)

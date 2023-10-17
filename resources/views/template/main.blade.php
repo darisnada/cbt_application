@@ -29,11 +29,22 @@
 
     <!--Main style-->
     <link rel="stylesheet" href="{{url('assets')}}/css/style.min.css" id="switchThemeStyle">
-    <!-- <script>
-        $(document).ready(function() {
-            App.init();
-        });
-    </script> -->
+
+    <script src="{{asset('_assets/ew/js/jquery.js')}}"></script>
+        <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+        <script src="{{ url('/_assets/cbt-malela') }}/plugins/sweetalerts/sweetalert2.min.js"></script>
+        <script src="{{ url('/_assets/cbt-malela') }}/plugins/sweetalerts/custom-sweetalert.js"></script>
+        <script src="{{ url('/_assets/cbt-malela') }}/bootstrap/js/popper.min.js"></script>
+        <script src="{{ url('/_assets/cbt-malela') }}/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ url('/_assets/cbt-malela') }}/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="{{ url('/_assets/cbt-malela') }}/assets/js/app.js"></script>
+        <script src="{{ url('/_assets/cbt-malela') }}/plugins/font-icons/feather/feather.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                App.init();
+            });
+        </script>
+        <script src="{{ url('/_assets/cbt-malela') }}/assets/js/custom.js"></script>
 
 </head>
 
@@ -82,13 +93,13 @@
                 <div class="row align-items-center position-relative">
                     <div class="col-md-5 mb-3 mb-lg-0">
 
-                    <nav aria-label="breadcrumb">
+                    {{-- <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#!" class="">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                         <li class="breadcrumb-item active">Default</li>
                         </ol>
-                    </nav>
+                    </nav> --}}
                     </div>
                     <div class="col-md-7 text-md-end">
                     <!-- <div class="d-flex justify-content-md-end align-items-center">

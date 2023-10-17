@@ -1,86 +1,78 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.siswa')
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3" style="min-height: 450px;">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="widget-heading">
-                                    <h5 class="">Materi</h5>
-                                </div>
-                                <div class="table-responsive" style="overflow-x: scroll;">
-                                    <table id="datatable-table" class="table  text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>KOMPETENSI</th>
-                                                <th>SUB KOMPETENSI</th>
-                                                <th>MATERI PEMBELAJARAN</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($kategories as $k)
-                                                    @php
-                                                        $subkategories = App\Models\subkategori::where('kategori_id', $k->id)->get()
+    
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="">Materi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" style="overflow-x: scroll;">
+                        <table id="datatable-table" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>KOMPETENSI</th>
+                                    <th>SUB KOMPETENSI</th>
+                                    <th>MATERI PEMBELAJARAN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($kategories as $k)
+                                        @php
+                                            $subkategories = App\Models\subkategori::where('kategori_id', $k->id)->get()
+                                        @endphp
+                                    <tr>
+                                        <td class="bg-primary" style="color:white"><strong> {{ $k->nama }} </strong></td>
+                                        <td>
+                                            <ol>
+                                                @foreach ($subkategories as $item)
+                                                @php
+                                                    $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
+                                                @endphp
+                                                <li style="margin-left:-20px; padding-bottom:15px">{{ $item->nama }}</li>
+                                                    @foreach ($materies as $materie)
+                                                        @if ($materie)
+                                                        <p style="margin-left:-20px; padding-top:-10px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}"></a> </p>
+                                                        @else
+                                                        <br>
+                                                        <br>
+                                                        @endif
+                                                      @endforeach
+                                                @endforeach
+                                            </ol>
+                                        </td>
+                                        <td>
+                                            @foreach ($subkategories as $item)
+                                            <p class="{{$item->id}}"></p>
+                                            <ol>
+                                                @php
+                                                    $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
                                                     @endphp
-                                                <tr>
-                                                    <td class="bg-primary" style="color:white"><strong> {{ $k->nama }} </strong></td>
-                                                    <td>
-                                                        <ol>
-                                                            @foreach ($subkategories as $item)
-                                                            @php
-                                                                $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
-                                                            @endphp
-                                                            <li style="margin-left:-20px; padding-bottom:15px">{{ $item->nama }}</li>
-                                                                @foreach ($materies as $materie)
-                                                                    @if ($materie)
-                                                                    <p style="margin-left:-20px; padding-top:-10px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}"></a> </p>
-                                                                    @else
-                                                                    <br>
-                                                                    <br>
-                                                                    @endif
-                                                                  @endforeach
-                                                            @endforeach
-                                                        </ol>
-                                                    </td>
-                                                    <td>
-                                                        @foreach ($subkategories as $item)
-                                                        <p class="{{$item->id}}"></p>
-                                                        <ol>
-                                                            @php
-                                                                $materies = App\Models\Materi::where('kelas_id', $siswa->kelas_id)->where('subkategori_id', $item->id)->get()
-                                                                @endphp
-                                                                  @foreach ($materies as $materie)
-                                                                    @if ($materie)
-                                                                    <li style="margin-left:-20px; padding-top:-10px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}">{{ $materie->nama_materi }}</a></li>
-                                                                    @else
-                                                                    <br>
-                                                                    <br>
-                                                                    @endif
-                                                                  @endforeach
-                                                        </ol>
-                                                        @endforeach
-                                                    </td>
-                                                </tr>
+                                                      @foreach ($materies as $materie)
+                                                        @if ($materie)
+                                                        <li style="margin-left:-20px; padding-top:-10px; padding-bottom:15px"><a class="text-primary font-weight-bolder" href="{{ url('siswa/materi/'.$materie->kode) }}">{{ $materie->nama_materi }}</a></li>
+                                                        @else
+                                                        <br>
+                                                        <br>
+                                                        @endif
+                                                      @endforeach
+                                            </ol>
                                             @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 d-flex">
-                                <img src="{{ url('assets/img') }}/materi.svg" class="align-middle" alt="" style="width: 100%;">
-                            </div>
-                        </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
+</div>
     <!--  END CONTENT AREA  -->
 
     <script>

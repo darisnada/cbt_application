@@ -19,7 +19,7 @@ class ChatController extends Controller
                     echo '
                         <div class="media">
                             <div class="avatar avatar-sm avatar-indicators avatar-online mr-0">
-                                <img alt="avatar" src="' . asset('assets/user-profile/' . $chat->guru->avatar) . '" class="rounded-circle" />
+                                <img alt="avatar" src="' . asset('_assets/user-profile/' . $chat->guru->avatar) . '" class="rounded-circle" />
                             </div>
                             <div class="media-body">
                                 <h5 class="media-heading"><span class="media-title"> ' . $chat->guru->nama_guru . ' <span class="badge badge-primary">You</span> <small>' . $chat->created_at->diffForHumans() . '</small></h5>
@@ -34,7 +34,7 @@ class ChatController extends Controller
                     echo '
                         <div class="media">
                             <div class="avatar avatar-sm avatar-indicators avatar-online mr-0">
-                                <img alt="avatar" src="' . asset('assets/user-profile/' . $chat->guru->avatar) . '" class="rounded-circle" />
+                                <img alt="avatar" src="' . asset('_assets/user-profile/' . $chat->guru->avatar) . '" class="rounded-circle" />
                             </div>
                             <div class="media-body">
                                 <h5 class="media-heading"><span class="media-title"> ' . $chat->guru->nama_guru . ' <small>' . $chat->created_at->diffForHumans() . '</small></h5>
@@ -52,7 +52,7 @@ class ChatController extends Controller
                     echo '
                         <div class="media">
                             <div class="avatar avatar-sm avatar-indicators avatar-online mr-0">
-                                <img alt="avatar" src="' . asset('assets/user-profile/' . $chat->siswa->avatar) . '" class="rounded-circle" />
+                                <img alt="avatar" src="' . asset('_assets/user-profile/' . $chat->siswa->avatar) . '" class="rounded-circle" />
                             </div>
                             <div class="media-body">
                                 <h5 class="media-heading"><span class="media-title"> ' . $chat->siswa->nama_siswa . ' <span class="badge badge-primary">You</span> <small>' . $chat->created_at->diffForHumans() . '</small></h5>
@@ -67,7 +67,7 @@ class ChatController extends Controller
                     echo '
                         <div class="media">
                             <div class="avatar avatar-sm avatar-indicators avatar-online mr-0">
-                                <img alt="avatar" src="' . asset('assets/user-profile/' . $chat->siswa->avatar) . '" class="rounded-circle" />
+                                <img alt="avatar" src="' . asset('_assets/user-profile/' . $chat->siswa->avatar) . '" class="rounded-circle" />
                             </div>
                             <div class="media-body">
                                 <h5 class="media-heading"><span class="media-title"> ' . $chat->siswa->nama_siswa . ' <small>' . $chat->created_at->diffForHumans() . '</small></h5>
