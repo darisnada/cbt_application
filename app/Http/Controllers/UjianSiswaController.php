@@ -38,9 +38,9 @@ class UjianSiswaController extends Controller
         return view('siswa.ujian.index', [
             'title' => 'Data Ujian',
             'plugin' => '
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
-                <script src="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
                 <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
             ',
             'menu' => [
@@ -165,8 +165,8 @@ class UjianSiswaController extends Controller
         return view('siswa.ujian.show', [
             'title' => 'Ujian Pilihan Ganda',
             'plugin' => '
-                <link href="' . url("/assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets") . '/ew/js/examwizard.js"></script>
+                <link href="' . url("/_assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets") . '/ew/js/examwizard.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
             ',
             'menu' => [
@@ -228,8 +228,8 @@ class UjianSiswaController extends Controller
         return view('siswa.ujian.show-essay', [
             'title' => 'Ujian Essay',
             'plugin' => '
-                <link href="' . url("/assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets") . '/ew/js/examwizard.js"></script>
+                <link href="' . url("/_assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets") . '/ew/js/examwizard.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
             ',
             'menu' => [

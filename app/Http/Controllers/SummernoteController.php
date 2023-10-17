@@ -11,8 +11,8 @@ class SummernoteController extends Controller
 {
     public function upload(Request $request)
     {
-        $nama_file = Str::replace('assets/files/', '', $request->file('image')->store('assets/files'));
-        echo asset('assets/files/' . $nama_file);
+        $nama_file = Str::replace('_assets/files/', '', $request->file('image')->store('_assets/files'));
+        echo asset('_assets/files/' . $nama_file);
     }
 
     public function delete(Request $request)
@@ -20,7 +20,7 @@ class SummernoteController extends Controller
         $array = explode('/', $request->src);
         $nama_file = $array[count($array) - 1];
 
-        Storage::delete('assets/files/' . $nama_file);
+        Storage::delete('_assets/files/' . $nama_file);
         echo "berhasil di hapus";
     }
 
@@ -28,11 +28,11 @@ class SummernoteController extends Controller
     {
         FileModel::where('nama', $request->src)
             ->delete();
-        Storage::delete('assets/files/' . $request->src);
+        Storage::delete('_assets/files/' . $request->src);
     }
 
     public function unduh($file)
     {
-        return Storage::download('assets/files/' . $file);
+        return Storage::download('_assets/files/' . $file);
     }
 }

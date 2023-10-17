@@ -18,9 +18,9 @@ class SliderController extends Controller
         return view('admin.sliders.index', [
             'title' => 'Data Kategori',
             'plugin' => '
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
-                <script src="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
                 <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
             ',
             'menu' => [
@@ -49,7 +49,7 @@ class SliderController extends Controller
                 //     'kode' => $validateSlider['kode'],
                 //     'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
                 // ]);
-                $validateSlider['img'] = $file->store('assets/files');
+                $validateSlider['img'] = $file->store('_assets/files');
             }
         }
         Slider::create($validateSlider);
@@ -69,11 +69,11 @@ class SliderController extends Controller
         return view('admin.sliders.create', [
             'title' => 'Tambah Materi',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-                <script src="' . url("/assets/cbt-malela") . '/plugins/resumable.js"></script>
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/resumable.js"></script>
             ',
             'menu' => [
                 'menu' => 'materi',
@@ -92,11 +92,11 @@ class SliderController extends Controller
         return view('admin.sliders.edit', [
             'title' => 'Tambah Materi',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-                <script src="' . url("/assets/cbt-malela") . '/plugins/resumable.js"></script>
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/resumable.js"></script>
             ',
             'menu' => [
                 'menu' => 'materi',
@@ -124,7 +124,7 @@ class SliderController extends Controller
             foreach ($request->file('file_materi') as $file) {
                 array_push($files, [
                     'kode' => $slider->kode,
-                    'nama' => Str::replace('assets/files/', '', $file->store('assets/files'))
+                    'nama' => Str::replace('_assets/files/', '', $file->store('_assets/files'))
                 ]);
             }
             FileModel::insert($files);

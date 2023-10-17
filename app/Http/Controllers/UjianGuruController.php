@@ -35,9 +35,9 @@ class UjianGuruController extends Controller
         return view('guru.ujian.index', [
             'title' => 'Data Ujian',
             'plugin' => '
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
-                <script src="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
                 <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
             ',
             'menu' => [
@@ -59,8 +59,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.create', [
             'title' => 'Tambah Ujian Pilihan Ganda',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',
@@ -78,8 +78,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.create-essay', [
             'title' => 'Tambah Ujian Essay',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',
@@ -349,8 +349,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.show', [
             'title' => 'Detail Ujian Pilihan Ganda',
             'plugin' => '
-                <link href="' . url("/assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets") . '/ew/js/examwizard.js"></script>
+                <link href="' . url("/_assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets") . '/ew/js/examwizard.js"></script>
             ',
             'menu' => [
                 'menu' => 'ujian',
@@ -368,8 +368,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.show-siswa', [
             'title' => 'Detail Ujian Siswa',
             'plugin' => '
-                <link href="' . url("/assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets") . '/ew/js/examwizard.js"></script>
+                <link href="' . url("/_assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets") . '/ew/js/examwizard.js"></script>
             ',
             'menu' => [
                 'menu' => 'ujian',
@@ -387,8 +387,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.show-essay', [
             'title' => 'Detail Ujian Essay',
             'plugin' => '
-                <link href="' . url("/assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets") . '/ew/js/examwizard.js"></script>
+                <link href="' . url("/_assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets") . '/ew/js/examwizard.js"></script>
             ',
             'menu' => [
                 'menu' => 'ujian',
@@ -406,8 +406,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.show-essay-siswa', [
             'title' => 'Detail Ujian Essay Siswa',
             'plugin' => '
-                <link href="' . url("/assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets") . '/ew/js/examwizard.js"></script>
+                <link href="' . url("/_assets") . '/ew/css/style.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets") . '/ew/js/examwizard.js"></script>
             ',
             'menu' => [
                 'menu' => 'ujian',
@@ -520,8 +520,8 @@ class UjianGuruController extends Controller
         return view('guru.ujian.create', [
             'title' => 'Tambah Ujian Pilihan Ganda',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',

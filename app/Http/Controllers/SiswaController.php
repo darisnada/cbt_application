@@ -29,10 +29,10 @@ class SiswaController extends Controller
         return view('siswa.dashboard', [
             'title' => 'Dashboard Siswa',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/elements/infobox.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/assets/js/dashboard/dash_1.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/elements/infobox.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/assets/js/dashboard/dash_1.js"></script>
             ',
             'menu' => [
                 'menu' => 'dashboard',
@@ -61,7 +61,7 @@ class SiswaController extends Controller
         return view('siswa.profile', [
             'title' => 'My Profile',
             'plugin' => '
-                <link href="' . url("assets/cbt-malela") . '/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("_assets/cbt-malela") . '/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
             ',
             'menu' => [
                 'menu' => 'profile',
@@ -88,7 +88,7 @@ class SiswaController extends Controller
                     Storage::delete('assetsuser-profile/' . $request->gambar_lama);
                 }
             }
-            $validatedData['avatar'] = str_replace('assets/user-profile/', '', $request->file('avatar')->store('assets/user-profile'));
+            $validatedData['avatar'] = str_replace('_assets/user-profile/', '', $request->file('avatar')->store('_assets/user-profile'));
         }
         Siswa::where('id', $siswa->id)
             ->update($validatedData);

@@ -30,9 +30,9 @@ class TugasGuruController extends Controller
         return view('guru.tugas.index', [
             'title' => 'Data Tugas',
             'plugin' => '
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
-                <link rel="stylesheet" type="text/css" href="' . url("/assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
-                <script src="' . url("/assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
                 <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
             ',
             'menu' => [
@@ -54,8 +54,8 @@ class TugasGuruController extends Controller
         return view('guru.tugas.create', [
             'title' => 'Tambah Tugas',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',
@@ -142,7 +142,7 @@ class TugasGuruController extends Controller
                 $namaFileBaru = "$namaMateri-{$no}.{$ext}";
         
                 // Simpan file dengan nama baru
-                $file->storeAs('assets/files', $namaFileBaru);
+                $file->storeAs('_assets/files', $namaFileBaru);
         
                 array_push($files, [
                     'kode' => $validateTugas['kode'],
@@ -182,8 +182,8 @@ class TugasGuruController extends Controller
         return view('guru.tugas.show', [
             'title' => 'Lihat Tugas',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
             ',
             'menu' => [
                 'menu' => 'tugas',
@@ -207,9 +207,9 @@ class TugasGuruController extends Controller
         return view('guru.tugas.edit', [
             'title' => 'Edit Tugas',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-                <script src="' . url("/assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',
@@ -255,7 +255,7 @@ class TugasGuruController extends Controller
                 $namaFileBaru = "$namaMateri-{$no}.{$ext}";
         
                 // Simpan file dengan nama baru
-                $file->storeAs('assets/files', $namaFileBaru);
+                $file->storeAs('_assets/files', $namaFileBaru);
         
                 array_push($files, [
                     'kode' => $tuga->kode,
@@ -295,7 +295,7 @@ class TugasGuruController extends Controller
         $files = FileModel::where('kode', $tuga->kode)->get();
         if ($files) {
             foreach ($files as $file) {
-                Storage::delete('assets/files/' . $file->nama);
+                Storage::delete('_assets/files/' . $file->nama);
             }
 
             FileModel::where('kode', $tuga->kode)
@@ -327,8 +327,8 @@ class TugasGuruController extends Controller
         return view('guru.tugas.tugas-siswa', [
             'title' => 'Lihat Tugas',
             'plugin' => '
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
-                <link href="' . url("/assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-list-group.css" rel="stylesheet" type="text/css" />
+                <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
             ',
             'menu' => [
                 'menu' => 'tugas',
