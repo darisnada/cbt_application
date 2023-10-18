@@ -71,7 +71,6 @@
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
     <!--  END CONTENT AREA  -->
 
