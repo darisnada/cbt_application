@@ -113,33 +113,38 @@ class AuthController extends Controller
         $siswa = Siswa::firstWhere('email', $request->input('email'));
         if ($siswa) {
 
-            if ($siswa->is_active == 0) {
-                return redirect('/')->with('pesan', "
-                    <script>
-                        swal({
-                            title: 'Login Failed!',
-                            text: 'akun tidak aktif',
-                            type: 'error',
-                            padding: '2em'
-                        })
-                    </script>
-                ");
-            }
-
             if (Hash::check($request->input('password'), $siswa->password)) {
-                $request->session()->put('id', $siswa->id);
-                $request->session()->put('email', $siswa->email);
-                $request->session()->put('role', 3);
-                return redirect()->intended('/siswa')->with('pesan', "
-                    <script>
-                        swal({
-                            title: 'Berhasil!',
-                            text: 'login berhasil',
-                            type: 'success',
-                            padding: '2em'
-                        })
-                    </script>
-                ");
+                if ($siswa->is_active == 0) {
+                    $request->session()->put('id', $siswa->id);
+                    $request->session()->put('email', $siswa->email);
+                    $request->session()->put('role', 3);
+                    $request->session()->put('is_active', $siswa->is_active);
+                    return redirect('/no_payment_siswa')->with('pesan', "
+                        <script>
+                            swal({
+                                title: 'Login Failed!',
+                                text: 'akun tidak aktif',
+                                type: 'error',
+                                padding: '2em'
+                            })
+                        </script>
+                    ");
+                }else{
+                    $request->session()->put('id', $siswa->id);
+                    $request->session()->put('email', $siswa->email);
+                    $request->session()->put('role', 3);
+                    $request->session()->put('is_active', $siswa->is_active);
+                    return redirect()->intended('/siswa')->with('pesan', "
+                        <script>
+                            swal({
+                                title: 'Berhasil!',
+                                text: 'login berhasil',
+                                type: 'success',
+                                padding: '2em'
+                            })
+                        </script>
+                    ");
+                }
             } else {
                 return redirect('/')->with('pesan', "
                     <script>

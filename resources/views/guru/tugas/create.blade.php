@@ -1,16 +1,6 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
 
-    <style>
-        .custom-file-label::after{
-            background-color: rgba(27, 85, 226, 0.23921568627450981);
-            color: #1b55e2;
-        }
-        .progress{
-            display: none;
-        }
-    </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
@@ -78,11 +68,8 @@
                                         <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                         <small>Upload file berukuran dibawah 500mb</small>
                                         <label class="custom-file-container__custom-file file_tugas">
-                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_tugas[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
-                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                            <input type="file" class="form-control" name="file_tugas[]" multiple>
                                         </label>
-                                        <div class="custom-file-container__image-preview"></div>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +79,6 @@
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
 
     <script>

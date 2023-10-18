@@ -4,57 +4,68 @@
 
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
             <div class="row layout-top-spacing">
                 <div class="col-lg-12 layout-spacing">
                     <div class="widget shadow p-3">
                         <div class="row">
-                            <div class="col-lg-7">
-                                <div class="widget-heading">
-                                    <h5 class="">Subs Kategori</h5>
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal"
-                                        data-target="#tambah_kelas"><span data-feather="folder"></span> Tambah</a>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="">
+                                            <h5 class="">Subs Kategori</h5>
+                                            <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal"
+                                                data-target="#tambah_kelas"><span data-feather="folder"></span> Tambah</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="table-responsive mt-3">
-                                    <table id="datatable-table"
-                                        class="table table-bordered table-striped text-center text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>ID SUBSKATEGORI</th>
-                                                <th>Nama SUBSKATEGORI</th>
-                                                <th>Nama Kategori</th>
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($subskategories as $s)
-                                                <tr>
-                                                    <td><?= $s->id ?></td>
-                                                    <td><?= $s->nama ?></td>
-                                                    <td><?= $s->kategori->nama ?></td>
-                                                    <td>
-                                                        <a href="javascript:void(0)" data-toggle="modal"
-                                                            data-target="#edit_kategori" data-id="{{ $s->id }}"
-                                                            data-name="{{ $s->nama }}" data-kategori-id={{ $s->kategori->id }}
-                                                            class="btn btn-primary btn-sm edit-kategori">
-                                                            <i data-feather="edit"></i>
-                                                        </a>
-                                                        <a href="{{ url('/admin/kategori/subs/delete') }}/{{ $s->id }}"
-                                                            class="btn btn-danger btn-sm btn-hapus">
-                                                            <i data-feather="trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive mt-3">
+                                                <table id="datatable-table"
+                                                    class="table table-bordered table-striped text-center text-nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID SUBSKATEGORI</th>
+                                                            <th>Nama SUBSKATEGORI</th>
+                                                            <th>Nama Kategori</th>
+                                                            <th>Opsi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($subskategories as $s)
+                                                            <tr>
+                                                                <td><?= $s->id ?></td>
+                                                                <td><?= $s->nama ?></td>
+                                                                <td><?= $s->kategori->nama ?></td>
+                                                                <td>
+                                                                    <a href="javascript:void(0)" data-toggle="modal"
+                                                                        data-target="#edit_kategori" data-id="{{ $s->id }}"
+                                                                        data-name="{{ $s->nama }}" data-kategori-id={{ $s->kategori->id }}
+                                                                        class="btn btn-primary btn-sm edit-kategori">
+                                                                        <i data-feather="edit"></i>
+                                                                    </a>
+                                                                    <a href="{{ url('/admin/kategori/subs/delete') }}/{{ $s->id }}"
+                                                                        class="btn btn-danger btn-sm btn-hapus">
+                                                                        <i data-feather="trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-5 d-flex">
-                                <img src="{{ url('assets/img') }}/kelas.svg" class="align-middle" alt=""
+                                {{-- <img src="{{ url('assets/img') }}/kelas.svg" class="align-middle" alt=""
                                     style="width: 100%;">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

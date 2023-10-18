@@ -1,73 +1,72 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
+    {{-- @include('template.navbar.guru') --}}
 
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3" style="min-height: 500px;">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="widget-heading">
-                                    <h5 class="">Materi</h5>
-                                    <a href="{{ url('/guru/materi/create') }}" class="btn btn-primary btn-sm mt-3"><span
-                                            data-feather="book-open"></span> Tambah Materi</a>
-                                </div>
-                                <div class="table-responsive mt-3">
-                                    <table id="datatable-table" class="table text-center text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Kompetensi</th>
-                                                <th>Sub Kompetensi</th>
-                                                <th>Materi</th>
-                                                {{-- <th>Mapel</th>
-                                                <th>Kelas</th> --}}
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($materi as $m)
+
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="">
+                                        <h5 class="">Materi</h5>
+                                        <a href="{{ url('/guru/materi/create') }}" class="btn btn-primary btn-sm mt-3"><span
+                                                data-feather="book-open"></span> Tambah Materi</a>
+                                    </div>
+                                    <div class="table-responsive mt-3">
+                                        <table id="datatable-table" class="table text-center text-nowrap">
+                                            <thead>
                                                 <tr>
-                                                    <td>{{ $m->subkategori->kategori->nama }}</td>
-                                                    <td>{{ $m->subkategori->nama }}</td>
-                                                    <td>{{ $m->nama_materi }}</td>
-                                                    {{-- <td>{{ $m->mapel->nama_mapel }}</td>
-                                                    <td>{{ $m->kelas->nama_kelas }}</td> --}}
-                                                    <td>
-                                                        <a href="{{ url('/guru/materi/' . $m->kode) }}"
-                                                            class="btn btn-primary btn-sm"><span
-                                                                data-feather="eye"></span></a>
-                                                        <a href="{{ url('/guru/materi/' . $m->kode . '/edit') }}"
-                                                            class="btn btn-success btn-sm"><span
-                                                                data-feather="edit"></span></a>
-                                                        <form action="{{ url('/guru/materi/' . $m->kode) }}" method="post"
-                                                            class="d-inline" id="formHapus">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a class="btn btn-danger btn-sm btn-hapus"
-                                                                href="javascript:void(0);"><span
-                                                                    data-feather="trash"></span></a>
-                                                        </form>
-                                                    </td>
+                                                    <th>Kompetensi</th>
+                                                    <th>Sub Kompetensi</th>
+                                                    <th>Materi</th>
+                                                    {{-- <th>Mapel</th>
+                                                    <th>Kelas</th> --}}
+                                                    <th>Opsi</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($materi as $m)
+                                                    <tr>
+                                                        <td>{{ $m->subkategori->kategori->nama }}</td>
+                                                        <td>{{ $m->subkategori->nama }}</td>
+                                                        <td>{{ $m->nama_materi }}</td>
+                                                        {{-- <td>{{ $m->mapel->nama_mapel }}</td>
+                                                        <td>{{ $m->kelas->nama_kelas }}</td> --}}
+                                                        <td>
+                                                            <a href="{{ url('/guru/materi/' . $m->kode) }}"
+                                                                class="btn btn-primary btn-sm"><span
+                                                                    data-feather="eye"></span></a>
+                                                            <a href="{{ url('/guru/materi/' . $m->kode . '/edit') }}"
+                                                                class="btn btn-success btn-sm"><span
+                                                                    data-feather="edit"></span></a>
+                                                            <form action="{{ url('/guru/materi/' . $m->kode) }}" method="post"
+                                                                class="d-inline" id="formHapus">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <a class="btn btn-danger btn-sm btn-hapus"
+                                                                    href="javascript:void(0);"><span
+                                                                        data-feather="trash"></span></a>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 d-flex">
-                                <img src="{{ url('assets/img') }}/materi.svg" class="align-middle" alt=""
-                                    style="width: 100%;">
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
     <!--  END CONTENT AREA  -->
 

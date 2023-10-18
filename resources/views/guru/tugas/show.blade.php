@@ -10,122 +10,123 @@
     <!--  BEGIN CONTENT AREA  -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div id="content" class="main-content">
-    <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-            <div class="col-lg-12 layout-spacing">
-                <div class="widget shadow">
-                    <div class="widget-content-area">
-                        <h5 class="">{{ $tugas->nama_tugas }}</h5>
-                        <table class="mt-3">
-                            <tr>
-                                <th>Guru</th>
-                                <th> : {{ $tugas->guru->nama_guru }}</th>
-                            </tr>
-                            <tr>
-                                <th>Kelas</th>
-                                <th> : {{  $tugas->kelas->nama_kelas  }}</th>
-                            </tr>
-                            <tr>
-                                <th>mapel</th>
-                                <th> : {{  $tugas->mapel->nama_mapel  }}</th>
-                            </tr>
-                            <tr>
-                                <th>Due date</th>
-                                <th> : {{ $tugas->due_date }}</th>
-                            </tr>
-                        </table>
-                        <hr>
-                        <div style="overflow-wrap: break-word;">
-                            {!! $tugas->teks !!}
-                        </div>
-
-                        <hr>
-                        @if ($files)
-                            <div class="row">
-                                @foreach ($files as $file)
-                                {{-- getfilepath --}}
-                                @php
-                                    $file_info = pathinfo(asset('assets/files/' . $file->nama));
-                                    $ekstensi = $file_info['extension'];
-                                @endphp
-                                    <div class="col-lg-4 mt-2">
-                                        <ul class="list-group list-group-media">
-                                            <li class="list-group-item list-group-item-action" style="padding: 0px 10px;">
-                                                <div class="media lihat-file" data-toggle="modal" data-target="#fileModal" data-source="{{ $file->nama }}" data-extension="{{ $ekstensi }}" style="cursor: pointer; margin-top: 5px; margin-bottom: 5px;">
-                                                    <div class="mr-1">
-                                                        @if ($ekstensi == 'mp4' || $ekstensi == 'mkv' || $ekstensi == 'ogg')
-                                                            <img alt="avatar" src="{{ url("/assets/img/docs/mp4.svg") }}" class="img-fluid">
-                                                        
-                                                            @elseif ($ekstensi == 'mp3' || $ekstensi == 'mpeg' || $ekstensi == 'm4a')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/mp3.svg") }}" class="img-fluid">
-                                                            
-                                                            @elseif ($ekstensi == 'jpg' || $ekstensi == 'png' || $ekstensi == 'jpeg' || $ekstensi == 'svg' || $ekstensi == 'gif')
-                                                                <img alt="avatar" src="{{ asset('assets/files/' . $file->nama) }}" class="img-fluid">
-                                                            
-                                                            @elseif ($ekstensi == 'xls' || $ekstensi == 'xlsx' || $ekstensi == 'csv')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/xls.svg") }}" class="img-fluid">
-                                                            
-                                                            @elseif ($ekstensi == 'doc' || $ekstensi == 'docx')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/doc.svg") }}" class="img-fluid">
-                                                            
-                                                            @elseif ($ekstensi == 'pdf')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/pdf.svg") }}" class="img-fluid">
-                                                            
-                                                            @elseif ($ekstensi == 'ppt' || $ekstensi == 'pptx')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/ppt.svg") }}" class="img-fluid">
-                                                            @else
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/file.png") }}" class="img-fluid">
-                                                        @endif
-
-
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h6 class="tx-inverse">{{ $file->nama }}</h6>
-                                                        <p class="mg-b-0">klik untuk lihat/download</p>
-                                                    </div>
+    <div class="container-fluid" style="margin-top:20px !important">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <div class=">
+                                <h5 class="">{{ $tugas->nama_tugas }}</h5>
+                                <table class="mt-3">
+                                    <tr>
+                                        <th>Guru</th>
+                                        <th> : {{ $tugas->guru->nama_guru }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Kelas</th>
+                                        <th> : {{  $tugas->kelas->nama_kelas  }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>mapel</th>
+                                        <th> : {{  $tugas->mapel->nama_mapel  }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Due date</th>
+                                        <th> : {{ $tugas->due_date }}</th>
+                                    </tr>
+                                </table>
+                                <hr>
+                                <div style="overflow-wrap: break-word;">
+                                    {!! $tugas->teks !!}
+                                </div>
+        
+                                <hr>
+                                @if ($files)
+                                    <div class="row">
+                                        @foreach ($files as $file)
+                                        {{-- getfilepath --}}
+                                        @php
+                                            $file_info = pathinfo(asset('_assets/files/' . $file->nama));
+                                            $ekstensi = $file_info['extension'];
+                                        @endphp
+                                            <div class="col-lg-4 mt-2">
+                                                <ul class="list-group list-group-media">
+                                                    <li class="list-group-item list-group-item-action" style="padding: 0px 10px;">
+                                                        <div class="media lihat-file" data-toggle="modal" data-target="#fileModal" data-source="{{ $file->nama }}" data-extension="{{ $ekstensi }}" style="cursor: pointer; margin-top: 5px; margin-bottom: 5px;">
+                                                            <div class="mr-1">
+                                                                @if ($ekstensi == 'mp4' || $ekstensi == 'mkv' || $ekstensi == 'ogg')
+                                                                    <img alt="avatar" src="{{ url("/_assets/img/docs/mp4.svg") }}" class="img-fluid">
+                                                                
+                                                                    @elseif ($ekstensi == 'mp3' || $ekstensi == 'mpeg' || $ekstensi == 'm4a')
+                                                                        <img alt="avatar" src="{{ url("/_assets/img/docs/mp3.svg") }}" class="img-fluid">
+                                                                    
+                                                                    @elseif ($ekstensi == 'jpg' || $ekstensi == 'png' || $ekstensi == 'jpeg' || $ekstensi == 'svg' || $ekstensi == 'gif')
+                                                                        <img alt="avatar" src="{{ asset('_assets/files/' . $file->nama) }}" class="img-fluid">
+                                                                    
+                                                                    @elseif ($ekstensi == 'xls' || $ekstensi == 'xlsx' || $ekstensi == 'csv')
+                                                                        <img alt="avatar" src="{{ url("/_assets/img/docs/xls.svg") }}" class="img-fluid">
+                                                                    
+                                                                    @elseif ($ekstensi == 'doc' || $ekstensi == 'docx')
+                                                                        <img alt="avatar" src="{{ url("/_assets/img/docs/doc.svg") }}" class="img-fluid">
+                                                                    
+                                                                    @elseif ($ekstensi == 'pdf')
+                                                                        <img alt="avatar" src="{{ url("/_assets/img/docs/pdf.svg") }}" class="img-fluid">
+                                                                    
+                                                                    @elseif ($ekstensi == 'ppt' || $ekstensi == 'pptx')
+                                                                        <img alt="avatar" src="{{ url("/_assets/img/docs/ppt.svg") }}" class="img-fluid">
+                                                                    @else
+                                                                        <img alt="avatar" src="{{ url("/_assets/img/docs/file.png") }}" class="img-fluid">
+                                                                @endif
+        
+        
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="tx-inverse">{{ $file->nama }}</h6>
+                                                                <p class="mg-b-0">klik untuk lihat/download</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <hr>
+                                @endif
+        
+                                <div id="toggleAccordion">
+                                    <div class="card">
+                                        <div class="card-header" id="...">
+                                            <section class="mb-0 mt-0">
+                                                <div role="menu" class="collapsed" data-toggle="collapse" data-target="#defaultAccordionOne" aria-expanded="true" aria-controls="defaultAccordionOne" style="cursor: pointer">
+                                                    Live Chat (Klik untuk lihat & tutup)
                                                 </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <hr>
-                        @endif
-
-                        <div id="toggleAccordion">
-                            <div class="card">
-                                <div class="card-header" id="...">
-                                    <section class="mb-0 mt-0">
-                                        <div role="menu" class="collapsed" data-toggle="collapse" data-target="#defaultAccordionOne" aria-expanded="true" aria-controls="defaultAccordionOne" style="cursor: pointer">
-                                            Live Chat (Klik untuk lihat & tutup)
+                                            </section>
                                         </div>
-                                    </section>
-                                </div>
-
-                                <div id="defaultAccordionOne" class="collapse" aria-labelledby="..." data-parent="#toggleAccordion">
-                                    <div class="card-body" style="height: 250px; overflow-y: scroll;">
-                                        <div class="inner-chat-tugas">
-                                            <button class="btn btn-primary btn-block" type="button" disabled>
-                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                                Loading...
-                                            </button>
+        
+                                        <div id="defaultAccordionOne" class="collapse" aria-labelledby="..." data-parent="#toggleAccordion">
+                                            <div class="card-body" style="height: 250px; overflow-y: scroll;">
+                                                <div class="inner-chat-tugas">
+                                                    <button class="btn btn-primary btn-block" type="button" disabled>
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Loading...
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer" style="background: #fff;">
+                                            <input type="hidden" name="kode" value="{{ $tugas->kode }}">
+                                            <textarea class="form-control komentar" name="chat" placeholder="Tulis komentar / chat" aria-label="Tulis komentar / chat" rows="1" wrap="hard"></textarea>
+                                            <button id="chat_tugas" class="btn btn-primary mt-2 d-flex ml-auto" type="button">Kirim</button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer" style="background: #fff;">
-                                    <input type="hidden" name="kode" value="{{ $tugas->kode }}">
-                                    <textarea class="form-control komentar" name="chat" placeholder="Tulis komentar / chat" aria-label="Tulis komentar / chat" rows="1" wrap="hard"></textarea>
-                                    <button id="chat_tugas" class="btn btn-primary mt-2 d-flex ml-auto" type="button">Kirim</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5 mt-3">
                 <div id="tugasAccordion" class="shadow">
                     <div class="card">
                         <div class="card-header bg-white" id="...">
@@ -182,13 +183,8 @@
                 </div>
             </div>
         </div>
-
-        <a href="{{ url("/guru/tugas") }}" class="btn btn-danger btn-sm mt-3"><span data-feather="arrow-left-circle"></span> Kembali</a>
-
     </div>
-    @include('template.footer')
 </div>
-<!--  END CONTENT AREA  -->
 
 
 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">

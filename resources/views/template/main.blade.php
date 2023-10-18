@@ -27,10 +27,12 @@
     {{-- DataTable CSS --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
 
+    <script src="{{ url('_assets') }}/cbt-malela/assets/js/libs/jquery-3.1.1.min.js"></script>
     <!--Main style-->
     <link rel="stylesheet" href="{{url('assets')}}/css/style.min.css" id="switchThemeStyle">
 
-    <script src="{{asset('_assets/ew/js/jquery.js')}}"></script>
+    {{-- <script src="{{asset('_assets/ew/js/jquery.js')}}"></script> --}}
+    {!! $plugin !!}
         <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
         <script src="{{ url('/_assets/cbt-malela') }}/plugins/sweetalerts/sweetalert2.min.js"></script>
         <script src="{{ url('/_assets/cbt-malela') }}/plugins/sweetalerts/custom-sweetalert.js"></script>
@@ -40,9 +42,9 @@
         <script src="{{ url('/_assets/cbt-malela') }}/assets/js/app.js"></script>
         <script src="{{ url('/_assets/cbt-malela') }}/plugins/font-icons/feather/feather.min.js"></script>
         <script>
-            $(document).ready(function() {
-                App.init();
-            });
+        //     $(document).ready(function() {
+        //         App.init();
+        //     });
         </script>
         <script src="{{ url('/_assets/cbt-malela') }}/assets/js/custom.js"></script>
 
@@ -81,8 +83,20 @@
       <div class="d-flex flex-column flex-root">
       <!--Page-->
       <div class="page d-flex flex-row flex-column-fluid">
-
-        @include('template.navbar.siswa')
+        {{-- {{session()->get('role')}} --}}
+        @if (session()->get('role') == 3)
+          @if (session()->get('is_active') == 0)
+            @include('template.navbar.no_siswa')
+          @else 
+            @include('template.navbar.siswa')
+          @endif
+        @endif
+        @if (session()->get('role') == 2)
+          @include('template.navbar.guru')
+        @endif
+        @if (session()->get('role') == 1)
+          @include('template.navbar.admin')
+        @endif
         <!--///////////Page content wrapper///////////////-->
         <main class="page-content d-flex flex-column flex-row-fluid">
             @include('template.topbar')
@@ -138,7 +152,7 @@
     <!--Dashboard duration calendar-->
     <script src="{{url('assets')}}/vendor/moment.min.js"></script>
     <script src="{{url('assets')}}/vendor/daterangepicker.js"></script>
-    <script src="{{url('assets')}}/summernote/summernote.js"></script>
+    {{-- <script src="{{url('assets')}}/summernote/summernote.js"></script> --}}
 
     <!--Datatables-->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>

@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
+    {{-- @include('template.navbar.guru') --}}
 
     <!--  BEGIN CONTENT AREA  -->
 
@@ -104,10 +104,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <div class="container">
-            @include('template.footer')
         </div>
 
         <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">

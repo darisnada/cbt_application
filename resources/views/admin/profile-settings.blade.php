@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
+
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
             <div class="row layout-spacing">

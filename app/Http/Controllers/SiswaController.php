@@ -17,6 +17,30 @@ use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
+    public function no_payment_siswa()
+    {
+        $notif_tugas = TugasSiswa::where('siswa_id', session()->get('id'))
+            ->where('date_send', null)
+            ->get();
+        $notif_ujian = WaktuUjian::where('siswa_id', session()->get('id'))
+            ->where('selesai', null)
+            ->get();
+
+        return view('siswa.not_payment', [
+            'title' => 'Bukti Bayar',
+            'plugin' => '
+                <link href="' . url("_assets/cbt-malela") . '/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+            ',
+            'menu' => [
+                'menu' => 'Bukti Bayar',
+                'expanded' => 'Bukti Bayar'
+            ],
+            'siswa' => Siswa::firstWhere('id', session()->get('id')),
+            'notif_tugas' => $notif_tugas,
+            'notif_materi' => Notifikasi::where('siswa_id', session()->get('id'))->get(),
+            'notif_ujian' => $notif_ujian
+        ]);
+    }
     public function index()
     {
         $notif_tugas = TugasSiswa::where('siswa_id', session()->get('id'))

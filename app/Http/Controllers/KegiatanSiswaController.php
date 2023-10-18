@@ -160,6 +160,8 @@ class KegiatanSiswaController extends Controller
                 <link href="' . url("/_assets/cbt-malela") . '/assets/css/components/custom-media_object.css" rel="stylesheet" type="text/css" />
                 <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
                 <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
+                <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+                <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             ',
             'menu' => [
                 'menu' => 'kegiatan',

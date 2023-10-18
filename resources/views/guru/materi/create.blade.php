@@ -13,7 +13,7 @@
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div id="content" class="main-content">
-        <div class="layout-px-spacing">
+        <div class="container-fluid" style="margin-top:20px !important">
             <div class="row layout-top-spacing">
                 <div class="col-lg-8 layout-spacing">
                     <div class="widget shadow p-3">
@@ -93,11 +93,11 @@
                                         <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                         <small>Upload file berukuran dibawah 500mb</small>
                                         <label class="custom-file-container__custom-file file_materi">
-                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_materi[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
-                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                            <input type="file" class="form-control" name="file_materi[]" multiple>
+                                            {{-- <input type="hidden" name="MAX_FILE_SIZE" value="500000" /> --}}
+                                            {{-- <span class="custom-file-container__custom-file__custom-file-control"></span> --}}
                                         </label>
-                                        <div class="custom-file-container__image-preview"></div>
+                                        {{-- <div class="custom-file-container__image-preview"></div> --}}
                                     </div>
                                 </div>
                             </div>

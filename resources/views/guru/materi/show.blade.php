@@ -1,20 +1,14 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
 
-<style>
-    iframe{
-        width: 100%;
-    }
-</style>
     <!--  BEGIN CONTENT AREA  -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div id="content" class="main-content">
-    <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-            <div class="col-lg-12 layout-spacing">
-                <div class="widget shadow">
-                    <div class="widget-content-area">
+    <div class="container-fluid" style="margin-top:20px !important">
+        <div class="row ">
+            <div class="col-lg-12 ">
+                <div class="card">
+                    <div class="card-body">
                         <h5 class="">{{ $materi->nama_materi }}</h5>
                         <table class="mt-3">
                             <tr>
@@ -54,37 +48,37 @@
                                 @endphp
                                     <div class="col-lg-4 mt-2">
                                         <ul class="list-group list-group-media">
-                                            <li class="list-group-item list-group-item-action" style="padding: 0px 10px;">
+                                            <li class="list-group-item list-group-item-action" style="padding:10px;">
                                                 <div class="media lihat-file" data-toggle="modal" data-target="#fileModal" data-source="{{ $file->nama }}" data-extension="{{ $ekstensi }}" style="cursor: pointer; margin-top: 5px; margin-bottom: 5px;">
                                                     <div class="mr-1">
                                                         @if ($ekstensi == 'mp4' || $ekstensi == 'mkv' || $ekstensi == 'ogg')
-                                                            <img alt="avatar" src="{{ url("/assets/img/docs/mp4.svg") }}" class="img-fluid">
+                                                            <img alt="avatar" src="{{ url("/_assets/img/docs/mp4.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'mp3' || $ekstensi == 'mpeg' || $ekstensi == 'm4a')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/mp3.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/mp3.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'jpg' || $ekstensi == 'png' || $ekstensi == 'jpeg' || $ekstensi == 'svg' || $ekstensi == 'gif')
                                                                 <img alt="avatar" src="{{ asset('assets/files/' . $file->nama) }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'xls' || $ekstensi == 'xlsx' || $ekstensi == 'csv')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/xls.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/xls.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'doc' || $ekstensi == 'docx')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/doc.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/doc.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'pdf')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/pdf.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/pdf.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'ppt' || $ekstensi == 'pptx')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/ppt.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/ppt.svg") }}" class="img-fluid">
                                                             @else
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/file.png") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/file.png") }}" class="img-fluid">
                                                         @endif
 
 
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="tx-inverse">{{ $file->nama }}</h6>
+                                                        {{-- <h6 class="tx-inverse">{{ $file->nama }}</h6> --}}
                                                         <p class="mg-b-0">klik untuk lihat/download</p>
                                                     </div>
                                                 </div>
@@ -128,7 +122,7 @@
             </div>
         </div>
     </div>
-    @include('template.footer')
+    {{-- @include('template.footer') --}}
 </div>
 <!--  END CONTENT AREA  -->
 
@@ -186,21 +180,21 @@
         }else if(extension == 'xls' || extension == 'xlsx' || extension == 'csv'){
 
             var html = `
-                <img alt="avatar" src="{{ url("/assets/img/docs/xls.svg") }}" style="width: 150px"><br>
+                <img alt="avatar" src="{{ url("/_assets/img/docs/xls.svg") }}" style="width: 150px"><br>
                 <a href="{{ url("/summernote/unduh") }}/`+ source +`" class="btn btn-success btn-sm mt-3">Download File</a>
             `;
 
         }else if(extension == 'doc' || extension == 'docx' || extension == 'csv'){
 
             var html = `
-                <img alt="avatar" src="{{ url("/assets/img/docs/doc.svg") }}" style="width: 150px"><br>
+                <img alt="avatar" src="{{ url("/_assets/img/docs/doc.svg") }}" style="width: 150px"><br>
                 <a href="{{ url("/summernote/unduh") }}/`+ source +`" class="btn btn-success btn-sm mt-3">Download File</a>
             `;
 
         }else if(extension == 'ppt' || extension == 'pptx'){
 
             var html = `
-                <img alt="avatar" src="{{ url("/assets/img/docs/ppt.svg") }}" style="width: 150px"><br>
+                <img alt="avatar" src="{{ url("/_assets/img/docs/ppt.svg") }}" style="width: 150px"><br>
                 <a href="{{ url("/summernote/unduh") }}/`+ source +`" class="btn btn-success btn-sm mt-3">Download File</a>
             `;
 
@@ -217,7 +211,7 @@
         }else{
 
             var html = `
-                <img alt="avatar" src="{{ url("/assets/img/docs/file.png") }}" style="width: 150px"><br>
+                <img alt="avatar" src="{{ url("/_assets/img/docs/file.png") }}" style="width: 150px"><br>
                 <a href="{{ url("/summernote/unduh") }}/`+ source +`" class="btn btn-success btn-sm mt-3">Download File</a>
             `;
 

@@ -1,98 +1,102 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
 
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-spacing">
-                <!-- Content -->
-                <div class="col-xl-4 col-lg-6 col-md-5 col-sm-12 layout-top-spacing">
-                    <div class="user-profile layout-spacing">
-                        <div class="widget-content widget-content-area">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="">My Profile</h3>
-                                <a href="javascript:void(0);" class="mt-2 edit-profile">
-                                    <span data-feather="edit-3"></span>
-                                </a>
-                            </div>
-                            <div class="text-center user-info">
-                                <img src="{{ asset('assets/user-profile/' . $guru->avatar) }}" class="img-user" alt="avatar" style="width: 125px; height: 125px;">
-                                <p class="">{{ $guru->nama_guru }}</p>
-                            </div>
-                            <div class="user-info-list" style="margin-top: -10px;">
-                                <div class="text-center">
-                                    <p>Mentor CBT-MALELA</p>
-                                    <ul class="contacts-block list-unstyled" style="margin-top: -5px;">
-                                        <li class="contacts-block__item">
-                                            <span data-feather="calendar"></span>
-                                            <br>
-                                            {{ $guru->created_at->diffForHumans() }}
-                                        </li>
-                                        <li class="contacts-block__item">
-                                            <span data-feather="mail"></span>
-                                            <br>
-                                            {{ $guru->email }}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
-
-                    <div class="skills layout-spacing ">
-                        <div class="widget-content widget-content-area">
-                            <h3 class="">Update Profile</h3>
-                            <form action="{{ url("/guru/edit_profile/" . $guru->id) }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="">Nama</label>
-                                    <input type="text" name="nama_guru" id="nama_guru" value="{{ old('nama_guru', $guru->nama_guru) }}" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Email</label>
-                                    <input type="email" name="email" id="email" value="{{ $guru->email }}" class="form-control" required readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Foto</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="avatar" id="customFile" accept=".jpg, .png, .jpeg" onchange="previewImg()">
-                                        <input type="hidden" name="gambar_lama" value="{{ $guru->avatar }}">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-5 col-sm-12 layout-top-spacing">
+                                <div class="user-profile layout-spacing">
+                                    <div class="">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="">My Profile</h3>
+                                            <a href="javascript:void(0);" class="mt-2 edit-profile">
+                                                <span data-feather="edit-3"></span>
+                                            </a>
+                                        </div>
+                                        <div class="text-center user-info">
+                                            <img src="{{ asset('_assets/user-profile/' . $guru->avatar) }}" class="img-user" alt="avatar" style="width: 125px; height: 125px;">
+                                            <p class="">{{ $guru->nama_guru }}</p>
+                                        </div>
+                                        <div class="user-info-list" style="margin-top: -10px;">
+                                            <div class="text-center">
+                                                <p>Mentor CBT-MALELA</p>
+                                                <ul class="contacts-block list-unstyled" style="margin-top: -5px;">
+                                                    <li class="contacts-block__item">
+                                                        <span data-feather="calendar"></span>
+                                                        <br>
+                                                        {{ $guru->created_at->diffForHumans() }}
+                                                    </li>
+                                                    <li class="contacts-block__item">
+                                                        <span data-feather="mail"></span>
+                                                        <br>
+                                                        {{ $guru->email }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3">Save</button>
-                            </form>
+            
+                            </div>
+            
+                            <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
+            
+                                <div class=" ">
+                                    <div class="">
+                                        <h3 class="">Update Profile</h3>
+                                        <form action="{{ url("/guru/edit_profile/" . $guru->id) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="">Nama</label>
+                                                <input type="text" name="nama_guru" id="nama_guru" value="{{ old('nama_guru', $guru->nama_guru) }}" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Email</label>
+                                                <input type="email" name="email" id="email" value="{{ $guru->email }}" class="form-control" required readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Foto</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="avatar" id="customFile" accept=".jpg, .png, .jpeg" onchange="previewImg()">
+                                                    <input type="hidden" name="gambar_lama" value="{{ $guru->avatar }}">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mt-3">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+            
+                                <div class="">
+                                    <div class="">
+                                        <h3 class="">Password</h3>
+                                        <form action="{{ url("/guru/edit_password/" . $guru->id) }}" method="post">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="">Current Password</label>
+                                                <input type="password" name="current_password" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">New Password</label>
+                                                <input type="password" name="password" class="form-control" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+            
+                            </div>
                         </div>
                     </div>
-
-                    <div class="skills layout-spacing">
-                        <div class="widget-content widget-content-area">
-                            <h3 class="">Password</h3>
-                            <form action="{{ url("/guru/edit_password/" . $guru->id) }}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="">Current Password</label>
-                                    <input type="password" name="current_password" class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">New Password</label>
-                                    <input type="password" name="password" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </form>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
         </div>
-        @include('template.footer')
     </div>
+</div>
     <!--  END CONTENT AREA  -->
     {!! session('pesan') !!}
 
