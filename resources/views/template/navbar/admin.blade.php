@@ -243,7 +243,7 @@
                   <span class="sidebar-text">Mentor</span>
                 </a>
                 <ul data-bs-target="#mentor" id="mentor" class="sidebar-dropdown list-unstyled collapse">
-                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/mentor") }}">Mentor</a></li>
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/guru") }}">Mentor</a></li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -276,6 +276,80 @@
                 </ul>
               </li>
 
+              <li class="nav-item">
+                <a href="#kelas" data-bs-toggle="collapse"
+                  class="nav-link d-flex align-items-center text-truncate"
+                  aria-expanded="false">
+                  <span class="sidebar-icon">
+                   <i class="bi bi-journal-text fs-5"></i>
+                  </span>
+                  <!--Sidebar nav text-->
+                  <span class="sidebar-text">Kelas</span>
+                </a>
+                <ul data-bs-target="#kelas" id="kelas" class="sidebar-dropdown list-unstyled collapse">
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/kelas") }}">Kelas</a></li>
+                </ul>
+              </li>
+              
+              <li class="nav-item">
+                <a href="#mapel" data-bs-toggle="collapse"
+                  class="nav-link d-flex align-items-center text-truncate"
+                  aria-expanded="false">
+                  <span class="sidebar-icon">
+                   <i class="bi bi-journal-text fs-5"></i>
+                  </span>
+                  <!--Sidebar nav text-->
+                  <span class="sidebar-text">Mapel</span>
+                </a>
+                <ul data-bs-target="#mapel" id="mapel" class="sidebar-dropdown list-unstyled collapse">
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/mapel") }}">Mapel</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="#slider" data-bs-toggle="collapse"
+                  class="nav-link d-flex align-items-center text-truncate"
+                  aria-expanded="false">
+                  <span class="sidebar-icon">
+                   <i class="bi bi-journal-text fs-5"></i>
+                  </span>
+                  <!--Sidebar nav text-->
+                  <span class="sidebar-text">Slider</span>
+                </a>
+                <ul data-bs-target="#slider" id="slider" class="sidebar-dropdown list-unstyled collapse">
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/slider") }}">Slider</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="#relasi" data-bs-toggle="collapse"
+                  class="nav-link d-flex align-items-center text-truncate"
+                  aria-expanded="false">
+                  <span class="sidebar-icon">
+                   <i class="bi bi-journal-text fs-5"></i>
+                  </span>
+                  <!--Sidebar nav text-->
+                  <span class="sidebar-text">Relasi</span>
+                </a>
+                <ul data-bs-target="#relasi" id="relasi" class="sidebar-dropdown list-unstyled collapse">
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/relasi") }}">Relasi</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <a href="#narasi" data-bs-toggle="collapse"
+                  class="nav-link d-flex align-items-center text-truncate"
+                  aria-expanded="false">
+                  <span class="sidebar-icon">
+                   <i class="bi bi-journal-text fs-5"></i>
+                  </span>
+                  <!--Sidebar nav text-->
+                  <span class="sidebar-text">Narasi</span>
+                </a>
+                <ul data-bs-target="#narasi" id="narasi" class="sidebar-dropdown list-unstyled collapse">
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/narasi") }}">Narasi</a></li>
+                </ul>
+              </li>
 
             <li class="nav-item mt-2 sidebar-title text-truncate small opacity-50">
               <i class="bi bi-three-dots align-middle"></i>

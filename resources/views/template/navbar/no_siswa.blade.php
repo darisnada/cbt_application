@@ -43,10 +43,10 @@
               </ul>
             </li>
 
-            <li class="nav-item mt-2 sidebar-title text-truncate small opacity-50">
+            {{-- <li class="nav-item mt-2 sidebar-title text-truncate small opacity-50">
               <i class="bi bi-three-dots align-middle"></i>
               <span>Menu</span>
-            </li>
+            </li> --}}
 
 
             {{-- <li class="nav-item mt-2 sidebar-title text-truncate small opacity-50">

@@ -187,6 +187,7 @@ Route::post('/chat/simpan/{key}', [ChatController::class, 'simpan']);
 // START::ROUTE SISWA
 
 Route::get('/no_payment_siswa', [SiswaController::class, 'no_payment_siswa']);
+Route::post('/prosesPayment', [SiswaController::class, 'prosesPayment'])->name('proses_payment');
 Route::get('/siswa', [SiswaController::class, 'index'])->middleware('is_siswa');
 Route::get('/siswa/profile', [SiswaController::class, 'profile'])->middleware('is_siswa');
 Route::post('/siswa/edit_profile/{siswa:id}', [SiswaController::class, 'edit_profile'])->middleware('is_siswa');

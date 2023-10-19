@@ -1,72 +1,67 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
 
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3" style="min-height: 500px;">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="widget-heading">
-                                    <h5 class=""> Slider</h5>
-                                    <a href="{{ url('/admin/slider/form/store') }}" class="btn btn-primary btn-sm mt-3"><span
-                                            data-feather="camera"></span> Tambah Slider</a>
-                                </div>
-                                <div class="table-responsive mt-3">
-                                    <table id="datatable-table" class="table text-center text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Title</th>
-                                                <th>Subtitle</th>
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <?php $no = 1; ?>
-                                            @foreach ($sliders as $s)
-                                                <tr>
-                                                    <td>{{ $no }}</td>
-                                                    <td>{{ $s->title }}</td>
-                                                    <td>{{ $s->subtitle }}</td>
-                                                    <td>
-                                                        {{-- <a href="{{ url('/guru/materi/' . $s->kode) }}"
-                                                            class="btn btn-primary btn-sm"><span
-                                                                data-feather="eye"></span></a> --}}
-                                                        <a href="{{ url('/admin/slider/form/update/' . $s->id) }}"
-                                                            class="btn btn-success btn-sm"><span
-                                                                data-feather="edit"></span></a>
-                                                        <form action="{{ url('/admin/slider/' . $s->id) }}" method="post"
-                                                            class="d-inline" id="formHapus">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a class="btn btn-danger btn-sm btn-hapus"
-                                                                href="javascript:void(0);"><span
-                                                                    data-feather="trash"></span></a>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <?php $no++; ?>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="">
+                                <h5 class=""> Slider</h5>
+                                <a href="{{ url('/admin/slider/form/store') }}" class="btn btn-primary btn-sm mt-3"><span
+                                        data-feather="camera"></span> Tambah Slider</a>
                             </div>
-                            <div class="col-lg-12 d-flex">
-                                <img src="{{ url('assets/img') }}/materi.svg" class="align-middle" alt=""
-                                    style="width: 100%;">
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="table-responsive mt-3">
+                                <table id="datatable-table" class="table text-center text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Title</th>
+                                            <th>Subtitle</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                        
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($sliders as $s)
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>{{ $s->title }}</td>
+                                                <td>{{ $s->subtitle }}</td>
+                                                <td>
+                                                    {{-- <a href="{{ url('/guru/materi/' . $s->kode) }}"
+                                                        class="btn btn-primary btn-sm"><span
+                                                            data-feather="eye"></span></a> --}}
+                                                    <a href="{{ url('/admin/slider/form/update/' . $s->id) }}"
+                                                        class="btn btn-success btn-sm"><span
+                                                            data-feather="edit"></span></a>
+                                                    <form action="{{ url('/admin/slider/' . $s->id) }}" method="post"
+                                                        class="d-inline" id="formHapus">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a class="btn btn-danger btn-sm btn-hapus"
+                                                            href="javascript:void(0);"><span
+                                                                data-feather="trash"></span></a>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <?php $no++; ?>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
     <!--  END CONTENT AREA  -->
 

@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
+    {{-- @include('template.navbar.admin') --}}
 
     <style>
         .custom-file-label::after{
@@ -25,7 +25,7 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="">Title</label>
                                         <input type="text" name="title" class="form-control" value="{{ old('title', $slider->title) }}" required>
@@ -51,7 +51,7 @@
                                 @foreach ($files as $file)
                                 {{-- getfilepath --}}
                                 @php
-                                    $file_info = pathinfo(asset('assets/files/' . $file->nama));
+                                    $file_info = pathinfo(asset('_assets/files/' . $file->nama));
                                     $ekstensi = $file_info['extension'];
                                 @endphp
                                     <div class="col-lg-6 mt-2 hapus-file" data-src="{{ $file->nama }}" style="cursor: pointer;">
@@ -60,27 +60,27 @@
                                                 <div class="media lihat-file position-relative" style="margin-top: 5px; margin-bottom: 5px;">
                                                     <div class="mr-3">
                                                         @if ($ekstensi == 'mp4' || $ekstensi == 'mkv' || $ekstensi == 'ogg')
-                                                            <img alt="avatar" src="{{ url("/assets/img/docs/mp4.svg") }}" class="img-fluid">
+                                                            <img alt="avatar" src="{{ url("/_assets/img/docs/mp4.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'mp3' || $ekstensi == 'mpeg' || $ekstensi == 'm4a')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/mp3.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/mp3.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'jpg' || $ekstensi == 'png' || $ekstensi == 'jpeg' || $ekstensi == 'svg' || $ekstensi == 'gif')
-                                                                <img alt="avatar" src="{{ asset('assets/files/' . $file->nama) }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ asset('_assets/files/' . $file->nama) }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'xls' || $ekstensi == 'xlsx' || $ekstensi == 'csv')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/xls.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/xls.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'doc' || $ekstensi == 'docx')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/doc.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/doc.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'pdf')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/pdf.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/pdf.svg") }}" class="img-fluid">
 
                                                             @elseif ($ekstensi == 'ppt' || $ekstensi == 'pptx')
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/ppt.svg") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/ppt.svg") }}" class="img-fluid">
                                                             @else
-                                                                <img alt="avatar" src="{{ url("/assets/img/docs/file.png") }}" class="img-fluid">
+                                                                <img alt="avatar" src="{{ url("/_assets/img/docs/file.png") }}" class="img-fluid">
                                                         @endif
 
 
@@ -103,11 +103,11 @@
                                         <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                         <small>Upload file berukuran dibawah 10mb</small>
                                         <label class="custom-file-container__custom-file file_materi">
-                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_materi[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                            <input type="file" class="form-control" name="file_materi[]" multiple>
+                                            {{-- <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <span class="custom-file-container__custom-file__custom-file-control"></span> --}}
                                         </label>
-                                        <div class="custom-file-container__image-preview"></div>
+                                        {{-- <div class="custom-file-container__image-preview"></div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        @include('template.footer')
+        {{-- @include('template.footer') --}}
     </div>
 
     <script>

@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
+    {{-- @include('template.navbar.admin') --}}
 
     <style>
         .custom-file-label::after{
@@ -24,7 +24,7 @@
                         <form action="{{ url('/admin/slider') }}" method="POST" enctype="multipart/form-data" class="mt-3">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="">Title</label>
                                         <input type="text" name="title" class="form-control" required>
@@ -50,11 +50,11 @@
                                         <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                         <small>Upload file berukuran dibawah 10mb</small>
                                         <label class="custom-file-container__custom-file file_materi">
-                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="file_materi[]" multiple>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                            <input type="file" class=" form-control" name="file_materi[]" multiple>
+                                            {{-- <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <span class="custom-file-container__custom-file__custom-file-control"></span> --}}
                                         </label>
-                                        <div class="custom-file-container__image-preview"></div>
+                                        {{-- <div class="custom-file-container__image-preview"></div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        @include('template.footer')
+        {{-- @include('template.footer') --}}
     </div>
 
     <script>

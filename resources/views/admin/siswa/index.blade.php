@@ -1,67 +1,69 @@
 @extends('template.main')
 @section('content')
-@include('template.navbar.admin')
+{{-- @include('template.navbar.admin') --}}
 
 <!--  BEGIN CONTENT AREA  -->
-<div id="content" class="main-content">
-    <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-            <div class="col-lg-12 layout-spacing">
-                <div class="widget shadow p-3">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="widget-heading">
-                                <h5 class="">Siswa</h5>
-                                <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_siswa">
-                                    <i data-feather="user-plus"></i> Tambah
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-success btn-sm mt-3" data-toggle="modal" data-target="#import_siswa">
-                                    <i data-feather="file-text"></i> Impor Excel
-                                </a>
-                                <a href="{{ url("/admin/ekspor_siswa") }}" class="btn btn-warning btn-sm mt-3" target="_blank">
-                                    <i data-feather="file-text"></i> Ekspor Excel
-                                </a>
-                            </div>
-                            <div class="table-responsive mt-4">
-                                <table id="datatable-table" class="table text-center text-nowrap">
-                                    <thead>
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="">
+                            <h5 class="">Siswa</h5>
+                            <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_siswa">
+                                <i data-feather="user-plus"></i> Tambah
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-sm mt-3" data-toggle="modal" data-target="#import_siswa">
+                                <i data-feather="file-text"></i> Impor Excel
+                            </a>
+                            <a href="{{ url("/admin/ekspor_siswa") }}" class="btn btn-warning btn-sm mt-3" target="_blank">
+                                <i data-feather="file-text"></i> Ekspor Excel
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive mt-4">
+                            <table id="datatable-table" class="table text-center text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>No Induk</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Kelas</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 1; ?>
+                                    @foreach ($siswa as $s)
                                         <tr>
-                                            <th>No Induk</th>
-                                            <th>Nama</th>
-                                            <th>Email</th>
-                                            <th>Kelas</th>
-                                            <th>Opsi</th>
+                                            <td>{{  $s->nis }}</td>
+                                            <td>{{  $s->nama_siswa }}</td>
+                                            <td>{{  $s->email }}</td>
+                                            <td>{{  $s->kelas->nama_kelas }}</td>
+                                            <td>
+                                                <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_siswa" data-siswa="{{ $s->nis }}" class="btn btn-primary btn-sm edit-siswa">
+                                                    <i data-feather="edit"></i>
+                                                </a>
+                                                <a href="{{ url("/admin/hapus_siswa") }}/{{ $s->nis }}" class="btn btn-danger btn-sm btn-hapus">
+                                                    <i data-feather="x-circle"></i>
+                                                </a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $no = 1; ?>
-                                        @foreach ($siswa as $s)
-                                            <tr>
-                                                <td>{{  $s->nis }}</td>
-                                                <td>{{  $s->nama_siswa }}</td>
-                                                <td>{{  $s->email }}</td>
-                                                <td>{{  $s->kelas->nama_kelas }}</td>
-                                                <td>
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_siswa" data-siswa="{{ $s->nis }}" class="btn btn-primary btn-sm edit-siswa">
-                                                        <i data-feather="edit"></i>
-                                                    </a>
-                                                    <a href="{{ url("/admin/hapus_siswa") }}/{{ $s->nis }}" class="btn btn-danger btn-sm btn-hapus">
-                                                        <i data-feather="x-circle"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('template.footer')
 </div>
+
 <!--  END CONTENT AREA  -->
 
 <!-- MODAL -->
@@ -73,9 +75,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambah_siswaLabel">Tambah Siswa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         x
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="modal-body">
                     <a href="javascript:void(0)" class="btn btn-success mb-3 tambah-baris-siswa">tambah baris</a>

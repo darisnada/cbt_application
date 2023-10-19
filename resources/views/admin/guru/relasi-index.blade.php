@@ -1,47 +1,42 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
+    {{-- @include('template.navbar.admin') --}}
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3" style="min-height: 450px;">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="widget-heading text-center">
-                                    <h5 class="text-center">Relasi Guru</h5>
-                                    <table class="table table-bordered mt-2">
-                                        <thead>
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="">
+                                <h5 class="text-center">Relasi Guru</h5>
+                                <table class="table table-bordered mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($guru as $g)
                                             <tr>
-                                                <th>Nama</th>
-                                                <th>Opsi</th>
+                                                <td><?= $g->nama_guru; ?></td>
+                                                <td>
+                                                    <a href="{{ url('/admin/relasi_guru') }}/{{ $g->id }}" class="btn btn-primary btn-sm">
+                                                        <span data-feather="link"></span>
+                                                    </a>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($guru as $g)
-                                                <tr>
-                                                    <td><?= $g->nama_guru; ?></td>
-                                                    <td>
-                                                        <a href="{{ url('/admin/relasi_guru') }}/{{ $g->id }}" class="btn btn-primary btn-sm">
-                                                            <span data-feather="link"></span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 d-flex">
-                                <img src="{{ url('assets/img') }}/relation.svg" class="align-middle" alt="" style="width: 100%;">
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
     <!--  END CONTENT AREA  -->
     {!! session('pesan') !!}

@@ -1,58 +1,52 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
 
 
     <!--  BEGIN CONTENT AREA  -->
-<div id="content" class="main-content">
-    <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-            <div class="col-lg-12 layout-spacing">
-                <div class="widget shadow p-3">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="widget-heading">
-                                <h5 class="">Kelas</h5>
-                                <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_kelas"><span data-feather="home"></span> Tambah</a>
-                            </div>
-                            <div class="table-responsive mt-3">
-                                <table id="datatable-table" class="table table-bordered table-striped text-center text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>ID Kelas</th>
-                                            <th>Kelas</th>
-                                            <th>Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($kelas as $k)
-                                            <tr>
-                                                <td><?= $k->id; ?></td>
-                                                <td><?= $k->nama_kelas; ?></td>
-                                                <td>
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_kelas" data-id_kelas="{{ $k->id }}" data-nama_kelas="{{ $k->nama_kelas }}" class="btn btn-primary btn-sm edit-kelas">
-                                                        <i data-feather="edit"></i>
-                                                    </a>
-                                                    <a href="{{ url('/admin/hapus_kelas') }}/{{ $k->id }}" class="btn btn-danger btn-sm btn-hapus">
-                                                        <i data-feather="x-circle"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 d-flex">
-                            <img src="{{ url('assets/img') }}/kelas.svg" class="align-middle" alt="" style="width: 100%;">
-                        </div>
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <div class="">
+                        <h5 class="">Kelas</h5>
+                        <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_kelas"><span data-feather="home"></span> Tambah</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <table id="datatable-table" class="table table-bordered table-striped text-center text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>ID Kelas</th>
+                                    <th>Kelas</th>
+                                    <th>Opsi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($kelas as $k)
+                                    <tr>
+                                        <td><?= $k->id; ?></td>
+                                        <td><?= $k->nama_kelas; ?></td>
+                                        <td>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_kelas" data-id_kelas="{{ $k->id }}" data-nama_kelas="{{ $k->nama_kelas }}" class="btn btn-primary btn-sm edit-kelas">
+                                                <i data-feather="edit"></i>
+                                            </a>
+                                            <a href="{{ url('/admin/hapus_kelas') }}/{{ $k->id }}" class="btn btn-danger btn-sm btn-hapus">
+                                                <i data-feather="x-circle"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('template.footer')
 </div>
+
 <!--  END CONTENT AREA  -->
 
 <!-- MODAL -->
@@ -64,9 +58,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambah_kelasLabel">Tambah Kelas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         x
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="modal-body">
                     <a href="javascript:void(0)" class="btn btn-success mb-3 tambah-baris-kelas">tambah baris</a>

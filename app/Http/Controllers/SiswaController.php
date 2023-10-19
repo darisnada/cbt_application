@@ -8,6 +8,7 @@ use App\Models\Tugas;
 use App\Models\Materi;
 use App\Models\Narasi;
 use App\Models\Notifikasi;
+use App\Models\Payment;
 use App\Models\Slider;
 use App\Models\TugasSiswa;
 use App\Models\WaktuUjian;
@@ -26,6 +27,8 @@ class SiswaController extends Controller
             ->where('selesai', null)
             ->get();
 
+        $dataPayment = Payment::where('id_siswa', session()->get('id'))->get();
+
         return view('siswa.not_payment', [
             'title' => 'Bukti Bayar',
             'plugin' => '
@@ -38,7 +41,8 @@ class SiswaController extends Controller
             'siswa' => Siswa::firstWhere('id', session()->get('id')),
             'notif_tugas' => $notif_tugas,
             'notif_materi' => Notifikasi::where('siswa_id', session()->get('id'))->get(),
-            'notif_ujian' => $notif_ujian
+            'notif_ujian' => $notif_ujian,
+            'payments' => $dataPayment,
         ]);
     }
     public function index()
@@ -109,7 +113,7 @@ class SiswaController extends Controller
         if ($request->file('avatar')) {
             if ($request->gambar_lama) {
                 if ($request->gambar_lama != 'default.png') {
-                    Storage::delete('assetsuser-profile/' . $request->gambar_lama);
+                    Storage::delete('_assets/user-profile/' . $request->gambar_lama);
                 }
             }
             $validatedData['avatar'] = str_replace('_assets/user-profile/', '', $request->file('avatar')->store('_assets/user-profile'));
@@ -155,6 +159,32 @@ class SiswaController extends Controller
                     title: 'Error!',
                     text: 'current password salah!',
                     type: 'error',
+                    padding: '2em'
+                })
+            </script>
+        ");
+    }
+
+    public function prosesPayment(Request $request){
+
+        $data['tanggal'] = $request->tanggal;
+        $data['keterangan'] = $request->keterangan;
+        $data['id_siswa'] = session()->get('id');
+
+        // dd($data);
+
+        if ($request->file('file')) {
+            $data['file'] = str_replace('_assets/file_payment/', '', $request->file('file')->store('_assets/file_payment'));
+        }
+        
+        Payment::insert($data);
+
+        return redirect('/no_payment_siswa')->with('pesan', "
+            <script>
+                swal({
+                    title: 'Berhasil!',
+                    text: 'Data telah terkirim!',
+                    type: 'success',
                     padding: '2em'
                 })
             </script>

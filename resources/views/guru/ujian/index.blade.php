@@ -1,72 +1,70 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3" style="min-height: 500px;">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="widget-heading">
-                                    <h5 class="">Ujian / Quiz</h5>
-                                    <a href="javascript:void(0)" class="btn btn-primary mt-3" data-toggle="modal"
-                                        data-target="#tambah_ujian">Tambah</a>
-                                </div>
-                                <div class="table-responsive mt-3" style="overflow-x: scroll;">
-                                    <table id="datatable-table" class="table text-center text-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama</th>
-                                                <th>Mapel</th>
-                                                <th>Kelas</th>
-                                                <th>Opsi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($ujian as $u)
-                                                <tr>
-                                                    <td>{{ $u->nama }}</td>
-                                                    <td>{{ $u->mapel->nama_mapel }}</td>
-                                                    <td>{{ $u->kelas->nama_kelas }}</td>
-                                                    <td>
-                                                        @if ($u->jenis == 0)
-                                                            <a href="{{ url('/guru/ujian/' . $u->kode) }}" class="btn btn-primary btn-sm">
-                                                                <span data-feather="eye"></span>
-                                                            </a>
-                                                        @endif
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
 
-                                                        @if ($u->jenis == 1)
-                                                            <a href="{{ url('/guru/ujian_essay/' . $u->kode) }}" class="btn btn-primary btn-sm">
-                                                                <span data-feather="eye"></span>
-                                                            </a>
-                                                        @endif
-                                                        <form action="{{ url('/guru/ujian/' . $u->kode) }}" method="post" class="d-inline" id="formHapus">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm btn-hapus">
-                                                                <span data-feather="trash"></span>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="">
+                                <h5 class="">Ujian / Quiz</h5>
+                                <a href="javascript:void(0)" class="btn btn-primary mt-3" data-toggle="modal"
+                                    data-target="#tambah_ujian">Tambah</a>
                             </div>
-                            <div class="col-lg-5 d-flex">
-                                <img src="{{ url('/assets/img') }}/ujian.svg" style="width: 100%;">
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="table-responsive mt-3" style="overflow-x: scroll;">
+                                <table id="datatable-table" class="table text-center text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Mapel</th>
+                                            <th>Kelas</th>
+                                            <th>Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($ujian as $u)
+                                            <tr>
+                                                <td>{{ $u->nama }}</td>
+                                                <td>{{ $u->mapel->nama_mapel }}</td>
+                                                <td>{{ $u->kelas->nama_kelas }}</td>
+                                                <td>
+                                                    @if ($u->jenis == 0)
+                                                        <a href="{{ url('/guru/ujian/' . $u->kode) }}" class="btn btn-primary btn-sm">
+                                                            <span data-feather="eye"></span>
+                                                        </a>
+                                                    @endif
+                        
+                                                    @if ($u->jenis == 1)
+                                                        <a href="{{ url('/guru/ujian_essay/' . $u->kode) }}" class="btn btn-primary btn-sm">
+                                                            <span data-feather="eye"></span>
+                                                        </a>
+                                                    @endif
+                                                    <form action="{{ url('/guru/ujian/' . $u->kode) }}" method="post" class="d-inline" id="formHapus">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm btn-hapus">
+                                                            <span data-feather="trash"></span>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include('template.footer')
     </div>
+
     <!--  END CONTENT AREA  -->
 
     <!-- MODAL -->
@@ -78,13 +76,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="tambah_ujianLabel">Tambah Tugas</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             x
-                        </button>
+                        </button> --}}
                     </div>
                     <div class="modal-body text-center">
                         <a href="{{ url('/guru/ujian/create') }}" class="btn btn-primary">Pilihan Ganda</a>
-                        <a href="{{ url('/guru/ujian_essay') }}" class="btn btn-primary ml-2">Essay</a>
+                        {{-- <a href="{{ url('/guru/ujian_essay') }}" class="btn btn-primary ml-2">Essay</a> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="reset" value="reset" class="btn" data-dismiss="modal"><i

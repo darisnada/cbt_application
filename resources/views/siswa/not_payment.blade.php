@@ -15,18 +15,19 @@
                             <center><h3>Bukti Pembayaran</h3></center>
                             <div class="row">
                                 <div class="col-lg-3">
-                                    <form action="" method="post">
+                                    <form action="{{url('prosesPayment')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group">
-                                            <label for="">Tanggal</label>
-                                            <input type="date" class="form-control">
+                                            <label for="">Tanggal <span class="text-danger">*</span></label>
+                                            <input type="date" name="tanggal" required class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Keterangan</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" name="keterangan" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="">file</label>
-                                            <input type="file" class="form-control">
+                                            <label for="">file <span class="text-danger">*</span></label>
+                                            <input type="file" name="file" required class="form-control">
                                         </div>
                                         <div class="mt-3">
                                             <button class="btn btn-sm btn-primary">Simpan</button>
@@ -44,14 +45,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($payments as $item)
+                                                
                                             <tr>
-                                                <td>2023-09-08</td>
-                                                <td>Khokihoioi</td>
-                                                <td><img alt="avatar" src="{{ url("/_assets/img/docs/doc.svg") }}" width='50px' class="img-fluid"></td>
+                                                <td>{{$item->tanggal}}</td>
+                                                <td>{{$item->keterangan}}</td>
+                                                <td><img alt="avatar" src="{{ url("/_assets/file_payment/".$item->file) }}" width='50px' class="img-fluid"></td>
                                                 <td>
-                                                    <span class="badge bg-warning text-dark">Proses</span>
+                                                    @if ($item->is_proses == 1)
+                                                        <span class="badge bg-success text-light">Sukses</span>
+                                                    @else 
+                                                        <span class="badge bg-warning text-dark">Proses</span>
+                                                    @endif
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

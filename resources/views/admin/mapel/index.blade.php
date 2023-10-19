@@ -4,55 +4,52 @@
 
 
     <!--  BEGIN CONTENT AREA  -->
-<div id="content" class="main-content">
-    <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-            <div class="col-lg-12 layout-spacing">
-                <div class="widget shadow p-3" style="min-height: 450px;">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="widget-heading">
-                                <h5 class="">Mata Pelajaran</h5>
-                                <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_mapel"><span data-feather="book-open"></span> Tambah</a>
-                            </div>
-                            <div class="table-responsive mt-3">
-                                <table id="datatable-table" class="table table-bordered table-striped text-center text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Mapel</th>
-                                            <th>Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($mapel as $m)
-                                            <tr>
-                                                <td><?= $loop->iteration; ?></td>
-                                                <td><?= $m->nama_mapel; ?></td>
-                                                <td>
-                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_mapel" data-id_mapel="{{ $m->id }}" data-nama_mapel="{{ $m->nama_mapel }}" class="btn btn-primary btn-sm edit-mapel">
-                                                        <i data-feather="edit"></i>
-                                                    </a>
-                                                    <a href="{{ url('/admin/hapus_mapel') }}/{{ $m->id }}" class="btn btn-danger btn-sm btn-hapus">
-                                                        <i data-feather="trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="">
+                            <h5 class="">Mata Pelajaran</h5>
+                            <a href="javascript:void(0)" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#tambah_mapel"><span data-feather="book-open"></span> Tambah</a>
                         </div>
-                        <div class="col-lg-12 d-flex">
-                            <img src="{{ url('assets/img') }}/mapel.svg" class="align-middle" alt="" style="width: 100%;">
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive mt-3">
+                            <table id="datatable-table" class="table table-bordered table-striped text-center text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Mapel</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($mapel as $m)
+                                        <tr>
+                                            <td><?= $loop->iteration; ?></td>
+                                            <td><?= $m->nama_mapel; ?></td>
+                                            <td>
+                                                <a href="javascript:void(0)" data-toggle="modal" data-target="#edit_mapel" data-id_mapel="{{ $m->id }}" data-nama_mapel="{{ $m->nama_mapel }}" class="btn btn-primary btn-sm edit-mapel">
+                                                    <i data-feather="edit"></i>
+                                                </a>
+                                                <a href="{{ url('/admin/hapus_mapel') }}/{{ $m->id }}" class="btn btn-danger btn-sm btn-hapus">
+                                                    <i data-feather="trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('template.footer')
 </div>
+
 <!--  END CONTENT AREA  -->
 
 <!-- MODAL -->
@@ -64,9 +61,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambah_mapelLabel">Tambah Mapel</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         x
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="modal-body">
                     <a href="javascript:void(0)" class="btn btn-success mb-3 tambah-baris-mapel">tambah baris</a>
