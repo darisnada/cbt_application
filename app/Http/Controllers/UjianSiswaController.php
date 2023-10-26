@@ -114,6 +114,7 @@ class UjianSiswaController extends Controller
      */
     public function show(Ujian $ujian)
     {
+        date_default_timezone_set('Asia/Jakarta');
         // dd($ujian);
         $notif_tugas = TugasSiswa::where('siswa_id', session()->get('id'))
             ->where('date_send', null)
@@ -143,8 +144,9 @@ class UjianSiswaController extends Controller
             }
 
 
-            $timestamp = strtotime(date('Y-m-d H:i', time()));
-            $waktu_berakhir =  date('Y-m-d H:i', strtotime("+$ujian->jam hour +$ujian->menit minute", $timestamp));
+            $timestamp = time(); // Mengambil timestamp waktu saat ini
+            $waktu_berakhir = date('Y-m-d H:i', strtotime("+" . $ujian->jam . " hour " . $ujian->menit . " minute", $timestamp));
+
 
             $data_waktu_ujian = [
                 'waktu_berakhir' => $waktu_berakhir

@@ -163,8 +163,8 @@
     <script src="{{url('assets')}}/datatable/datatable.bootstrap5.min.js"></script>
     <script src="{{url('assets')}}/vendor/quill.min.js"></script>
     {{-- <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script> --}}
-    <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-    {{-- <script src="{{ asset('/assets') }}/ckeditor/ckeditor.js"></script> --}}
+    {{-- <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script> --}}
+    <script src="{{ asset('/assets') }}/ckeditor/ckeditor.js"></script>
     <script>
       $(document).ready(function (){
         var initQuill = document.querySelectorAll("[data-quill]");

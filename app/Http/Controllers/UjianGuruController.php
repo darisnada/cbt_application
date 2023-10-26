@@ -135,7 +135,7 @@ class UjianGuruController extends Controller
 
         foreach ($nama_soal as $soal) {
             $files_ = null;
-            if($request->hasFile('file')){
+            if($request->hasFile('file') && isset($request->file('file')[$index])){
                 // $this->validate($request, [
                 //     'file' => 'nullable|mimes: mp3'
                 // ]);

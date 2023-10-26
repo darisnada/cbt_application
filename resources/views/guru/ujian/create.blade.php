@@ -90,14 +90,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-2">
+                                                {{-- <div class="row mt-2">
                                                     <div class="col-lg-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input" id="customCheck1" name="acak" value="1">
                                                             <label class="custom-control-label" for="customCheck1">Acak Soal Siswa</label>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
