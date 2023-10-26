@@ -54,15 +54,16 @@ class UjianGuruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('guru.ujian.create', [
+
+        return view($request->get('typeTes') == 'listening' ? 'guru.ujian.createlistening' : 'guru.ujian.create', [
             'title' => 'Tambah Ujian Pilihan Ganda',
             'plugin' => '
                 <link href="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
                 <script src="' . url("/_assets/cbt-malela") . '/plugins/file-upload/file-upload-with-preview.min.js"></script>
-                <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-                <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+                <link href="' . url("/assets") . '/wysiwyg/bootstrap-wysiwyg.min.css">
+                <script src="' . url("/assets") . '/wysiwyg/bootstrap-wysiwyg.min.js"></script>
             ',
             'menu' => [
                 'menu' => 'ujian',
@@ -103,7 +104,7 @@ class UjianGuruController extends Controller
     {
         $siswa = Siswa::where('kelas_id', $request->kelas)->get();
         if ($siswa->count() == 0) {
-            return redirect('/guru/ujian/create')->with('pesan', "
+            return redirect('/guru/ujian')->with('pesan', "
                 <script>
                     swal({
                         title: 'Error!',
@@ -131,7 +132,32 @@ class UjianGuruController extends Controller
         $detail_ujian = [];
         $index = 0;
         $nama_soal =  $request->soal;
+
         foreach ($nama_soal as $soal) {
+            $files_ = null;
+            if($request->hasFile('file')){
+                // $this->validate($request, [
+                //     'file' => 'nullable|mimes: mp3'
+                // ]);
+                $filenameWithExt = $request->file('file')[$index]->getClientOriginalName();
+                $extension = $request->file('file')[$index]->getClientOriginalExtension();
+                if($extension != 'mp3'){
+                    return redirect('/guru/ujian/create'.'?typeTes=listening')->with('pesan', "
+                        <script>
+                            swal({
+                                title: 'Error!',
+                                text: 'Format file yang anda upload tidak didukung!',
+                                type: 'error',
+                                padding: '2em'
+                            })
+                        </script>
+                    ")->withInput();
+                }
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $files_ = $filename.'_'.time().'.'.$extension;
+                $path = $request->file('file')[$index]->storeAs('public/_assets/file-ujian/', $files_);
+            }
+
             array_push($detail_ujian, [
                 'kode' => $kode,
                 'soal' => $soal,
@@ -140,7 +166,8 @@ class UjianGuruController extends Controller
                 'pg_3' => 'C. ' . $request->pg_3[$index],
                 'pg_4' => 'D. ' . $request->pg_4[$index],
                 'pg_5' => 'E. ' . $request->pg_5[$index],
-                'jawaban' => $request->jawaban[$index]
+                'jawaban' => $request->jawaban[$index],
+                'file' => $files_,
             ]);
 
             $index++;
@@ -160,16 +187,16 @@ class UjianGuruController extends Controller
         $email_siswa = Str::replaceLast(',', '', $email_siswa);
         $email_siswa = explode(',', $email_siswa);
 
-        $email_settings = EmailSettings::first();
-        if ($email_settings->notif_ujian == '1') {
-            $details = [
-                'nama_guru' => session()->get('nama_guru'),
-                'nama_ujian' => $request->nama,
-                'jam' => $request->jam,
-                'menit' => $request->menit,
-            ];
-            Mail::to($email_siswa)->send(new NotifUjian($details));
-        }
+        // $email_settings = EmailSettings::first();
+        // if ($email_settings->notif_ujian == '1') {
+        //     $details = [
+        //         'nama_guru' => session()->get('nama_guru'),
+        //         'nama_ujian' => $request->nama,
+        //         'jam' => $request->jam,
+        //         'menit' => $request->menit,
+        //     ];
+        //     Mail::to($email_siswa)->send(new NotifUjian($details));
+        // }
 
 
         Ujian::insert($ujian);

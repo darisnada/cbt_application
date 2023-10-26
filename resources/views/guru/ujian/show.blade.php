@@ -1,15 +1,16 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-            <div class="row layout-top-spacing">
-                <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3">
-                        <div class="widget-heading">
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card shadow p-3">
+                        <div class="card-header">
                             <h5 class="">{{ $ujian->nama }}</h5>
+                        </div>
+                        <div class="card-body">
                             <table class="mt-2">
                                 <tr>
                                     <th>Kelas</th>
@@ -33,7 +34,7 @@
                 </div>
             </div>
             {{-- soal ujian & jawaban --}}
-            <div id="toggleAccordion" class="shadow">
+            {{-- <div id="toggleAccordion" class="shadow"> --}}
                 <div class="card">
                     <div class="card-header bg-white" id="...">
                         <section class="mb-0 mt-0">
@@ -43,13 +44,13 @@
                         </section>
                     </div>
 
-                    <div id="defaultAccordionOne" class="collapse show" aria-labelledby="..." data-parent="#toggleAccordion">
-                        <div class="card-body">
+                    {{-- <div id="defaultAccordionOne" class="collapse show" aria-labelledby="..." data-parent="#toggleAccordion"> --}}
+                    <div class="card-body">
                         
                             <div class="row">
-                                <div class="col-lg-9">
+                                <div class="col-lg-8">
                                     <form id="examwizard-question" action="#" method="POST">
-                                        <div class="widget shadow p-2">
+                                        <div class="">
                                             <div>
                                                 @php
                                                     $no = 1;
@@ -71,6 +72,14 @@
                                                                 <h6 class="question-title color-green" style="word-wrap: break-word">
                                                                     {!! $soal->soal !!}
                                                                 </h6>
+                                                                @if ($soal->file != null)
+                                                                    
+                                                                <hr>
+                                                                <audio controls>
+                                                                    <source src="{{url('public/_assets/file-ujian/')}}/{{ $soal->file}}"/>
+                                                                    browsermu tidak support audio
+                                                                </audio>
+                                                                @endif
                                                             </div>
                                                             <div class="widget-content mt-3">
                                                                 <div class="alert alert-danger hidden"></div>
@@ -136,9 +145,9 @@
 
                                 </div>
 
-                                <div class="col-lg-3" id="quick-access-section" class="table-responsive">
-                                    <div class="widget shadow p-3">
-                                        <div class="widget-content">
+                                <div class="col-lg-4" id="quick-access-section" class="table-responsive">
+                                    <div class="">
+                                        <div class="">
                                             <table class="table text-center table-hover">
                                                 <thead class="question-response-header">
                                                     <tr>
@@ -204,10 +213,10 @@
 
                             </div>
 
-                        </div>
                     </div>
+                    {{-- </div> --}}
                 </div>
-            </div>
+            {{-- </div> --}}
 
 
             {{-- Ujian siswa & nilai --}}
@@ -307,7 +316,7 @@
 
             <a href="{{ url('/guru/ujian') }}" class="btn btn-danger btn-sm mt-3"><span data-feather="arrow-left-circle"></span> kembali</a>
         </div>
-        @include('template.footer')
+        
     </div>
     <!--  END CONTENT AREA  -->
     {!! session('pesan') !!}

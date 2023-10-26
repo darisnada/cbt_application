@@ -22,12 +22,14 @@ use App\Models\EssaySiswa;
 use App\Models\FileModel;
 use App\Models\Materi;
 use App\Models\Notifikasi;
+use App\Models\Payment;
 use App\Models\PgSiswa;
 use App\Models\Tugas;
 use App\Models\TugasSiswa;
 use App\Models\Ujian;
 use App\Models\Userchat;
 use App\Models\WaktuUjian;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -166,6 +168,70 @@ class AdminController extends Controller
     }
 
     // START==SIWA
+    public function siswa_bayar()
+    {
+        return view('admin.siswa.payment', [
+            'title' => 'Data Bukti Pembayaran',
+            'plugin' => '
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.css">
+                <link rel="stylesheet" type="text/css" href="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/dt-global_style.css">
+                <script src="' . url("/_assets/cbt-malela") . '/plugins/table/datatable/datatables.js"></script>
+                <script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
+            ',
+            'menu' => [
+                'menu' => 'master',
+                'expanded' => 'master',
+                'collapse' => 'siswa',
+                'sub' => 'Bukti Pembayaran',
+            ],
+            'admin' => Admin::firstWhere('id', session()->get('id')),
+            'siswa' => Siswa::all(),
+            'kelas' => Kelas::all(),
+            'payment' => Payment::all(),
+        ]);
+    }
+
+    public function activeSiswa($id){
+        try{
+
+            
+            $pay = Payment::where('id', $id)->first();
+
+            Payment::where('id', $id)->update([
+                'is_proses' => 1,
+            ]);
+    
+            Siswa::where('id', $pay->id_siswa)->update([
+                'is_active' => 1
+            ]);
+    
+            return redirect('/admin/siswa/payment')->with('pesan', "
+                    <script>
+                        swal({
+                            title: 'Berhasil!',
+                            text: 'Proses telah berhasil!',
+                            type: 'success',
+                            padding: '2em'
+                        })
+                    </script>
+                ");
+        }catch(Exception $e){
+
+            return redirect('/admin/siswa/payment')->with('pesan', "
+                    <script>
+                        swal({
+                            title: 'Error!',
+                            text: 'Proses yang dilakukan gagal!',
+                            type: 'error',
+                            padding: '2em'
+                        })
+                    </script>
+                ");
+
+        }
+
+    }
+
     public function siswa()
     {
         return view('admin.siswa.index', [

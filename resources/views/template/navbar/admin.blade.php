@@ -230,6 +230,7 @@
                 </a>
                 <ul data-bs-target="#siswa" id="siswa" class="sidebar-dropdown list-unstyled collapse">
                   <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/siswa") }}">Siswa</a></li>
+                  <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/admin/siswa/payment") }}">Bukti Bayar</a></li>
                 </ul>
               </li>
               <li class="nav-item">

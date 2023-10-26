@@ -60,6 +60,8 @@ Route::post('/admin/edit_password/{admin:id}', [AdminController::class, 'edit_pa
 Route::post('/admin/smtp_email/{id}', [AdminController::class, 'smtp_email'])->middleware('is_admin');
 // =============SISWA
 // ==>View
+Route::get('/admin/siswa/payment', [AdminController::class, 'siswa_bayar'])->middleware('is_admin');
+Route::get('/admin/siswa/payment/active/{id}', [AdminController::class, 'activeSiswa'])->middleware('is_admin');
 Route::get('/admin/siswa', [AdminController::class, 'siswa'])->middleware('is_admin');
 Route::get('/admin/edit_siswa', [AdminController::class, 'edit_siswa'])->name('ajaxsiswa')->middleware('is_admin');
 Route::get('/admin/impor_siswa', [AdminController::class, 'impor_siswa'])->middleware('is_admin');

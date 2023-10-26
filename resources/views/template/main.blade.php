@@ -25,9 +25,9 @@
     <link rel="stylesheet" href="{{url('assets')}}/vendor/css/daterangepicker.css">
 
     {{-- DataTable CSS --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
-
     <script src="{{ url('_assets') }}/cbt-malela/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="{{url('assets')}}/datatable.bootstrap5.min.css">
+
     <!--Main style-->
     <link rel="stylesheet" href="{{url('assets')}}/css/style.min.css" id="switchThemeStyle">
 
@@ -41,12 +41,16 @@
         <script src="{{ url('/_assets/cbt-malela') }}/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="{{ url('/_assets/cbt-malela') }}/assets/js/app.js"></script>
         <script src="{{ url('/_assets/cbt-malela') }}/plugins/font-icons/feather/feather.min.js"></script>
+        <!-- Core Css Quill editor -->
+        <link href="{{ url('/assets') }}/vendor/css/quill.snow.css" rel="stylesheet">
         <script>
         //     $(document).ready(function() {
         //         App.init();
         //     });
         </script>
         <script src="{{ url('/_assets/cbt-malela') }}/assets/js/custom.js"></script>
+
+        
 
 </head>
 
@@ -155,8 +159,37 @@
     {{-- <script src="{{url('assets')}}/summernote/summernote.js"></script> --}}
 
     <!--Datatables-->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{url('assets')}}/datatable/jquery.datatable.min.js"></script>
+    <script src="{{url('assets')}}/datatable/datatable.bootstrap5.min.js"></script>
+    <script src="{{url('assets')}}/vendor/quill.min.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script> --}}
+    <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    {{-- <script src="{{ asset('/assets') }}/ckeditor/ckeditor.js"></script> --}}
+    <script>
+      $(document).ready(function (){
+        var initQuill = document.querySelectorAll("[data-quill]");
+        initQuill.forEach((qe) => {
+            const qt = {
+                ...(qe.dataset.quill ? JSON.parse(qe.dataset.quill) : {}),
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, false] }],
+                        ["bold", "underline"],
+                        ["link", "blockquote", "code", "image"],
+                        [{ list: "ordered" }, { list: "bullet" }]
+                    ]
+                },
+                theme: "snow"
+            };
+            new Quill(qe, qt);
+        });
+      })
+      CKEDITOR.replace('editor');
+      function editorck(a) {
+        CKEDITOR.replace('ckeditor'+a);
+        
+      }
+  </script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         // Datatables Responsive

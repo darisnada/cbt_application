@@ -90,6 +90,20 @@
                       <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/siswa/tugas") }}">Tugas</a></li>
                     </ul>
                   </li>
+                  <li class="nav-item">
+                    <a href="#ujian" data-bs-toggle="collapse"
+                      class="nav-link d-flex align-items-center text-truncate"
+                      aria-expanded="false">
+                      <span class="sidebar-icon">
+                       <i class="bi bi-journal-check fs-5"></i>
+                      </span>
+                      <!--Sidebar nav text-->
+                      <span class="sidebar-text">Ujian</span>
+                    </a>
+                    <ul data-bs-target="#ujian" id="ujian" class="sidebar-dropdown list-unstyled collapse">
+                      <li class="sidebar-item"><a class="sidebar-link" href="{{ url("/siswa/ujian") }}">Ujian</a></li>
+                    </ul>
+                  </li>
 
                   <li class="nav-item mt-2 sidebar-title text-truncate small opacity-50">
                     <i class="bi bi-three-dots align-middle"></i>

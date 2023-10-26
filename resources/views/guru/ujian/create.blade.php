@@ -1,12 +1,34 @@
 @extends('template.main')
 @section('content')
 
+<script>
+    tinymce.init({
+    selector: 'textarea#editor-text',
+    plugins: 'lists, link, image, media',
+    toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+    menubar: false,
+    setup: (editor) => {
+        // Apply the focus effect
+        editor.on("init", () => {
+        editor.getContainer().style.transition = "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
+          });
+        editor.on("focus", () => { (editor.getContainer().style.boxShadow = "0 0 0 .2rem rgba(0, 123, 255, .25)"),
+        (editor.getContainer().style.borderColor = "#80bdff");
+          });
+        editor.on("blur", () => {
+        (editor.getContainer().style.boxShadow = ""),
+        (editor.getContainer().style.borderColor = "");
+        });
+      },
+    });
+  </script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--  BEGIN CONTENT AREA  -->
-    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
-        <div class="container-fluid px-0">
+    <div id="content" class="main-content">
+        <div class="container-fluid" style="margin-top:20px !important">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <a href="javascript:void(0);" class="btn btn-primary tambah-pg"
@@ -16,12 +38,12 @@
                             <form action="{{ url('/guru/ujian') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="">
                                             <div class="">
                                                 <h5 class="">Ujian Pilihan Ganda</h5>
-                                                <a href="javascript:void(0);" class="btn btn-primary my-2" data-toggle="modal"
-                                                    data-target="#excel_ujian">Import Excel</a>
+                                                {{-- <a href="javascript:void(0);" class="btn btn-primary my-2" data-toggle="modal"
+                                                    data-target="#excel_ujian">Import Excel</a> --}}
                                                 <div class="row ">
                                                     <div class="col-lg-4">
                                                         <div class="form-group">
@@ -79,9 +101,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
+                                {{-- </div>
+                                <div class="row"> --}}
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="">
                                             <div class="">
                                                 <h5 class="">Soal Ujian</h5>
@@ -90,7 +112,11 @@
                                                 <div class="isi_soal">
                                                     <div class="form-group">
                                                         <label for="">Soal No. 1</label>
-                                                        <textarea name="soal[]" cols="30" rows="2" class="summernote" wrap="hard" required></textarea>
+                                                        {{-- <div data-quill='{"placeholder": "Quill WYSIWYG", "name": "soal[]"}'>
+                                                            <p class="fs-1"><br><br></p>
+                                                        </div> --}}
+
+                                                        <textarea name="soal[]" cols="30" rows="2" class="editor" id="editor" wrap="hard" required></textarea>
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-lg-4">
@@ -281,7 +307,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            function uploadImage(e,o){var a=new FormData;a.append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:a,type:"post",success:function(e){$(o).summernote("insertImage",e)},error:function(e){console.log(e)}})}function deleteImage(e){$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}setInterval(()=>{$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,o=this){uploadImage(e[0],o)},onMediaDelete:function(e){deleteImage(e[0].src)}}})},1e3);
+            // function uploadImage(e,o){var a=new FormData;a.append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:a,type:"post",success:function(e){$(o).summernote("insertImage",e)},error:function(e){console.log(e)}})}function deleteImage(e){$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}setInterval(()=>{$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,o=this){uploadImage(e[0],o)},onMediaDelete:function(e){deleteImage(e[0].src)}}})},1e3);
             var no_soal = 2;
             $('.tambah-pg').click(function() {
                 const pg = `
@@ -289,7 +315,7 @@
                     <hr>
                         <div class="form-group">
                             <label for="">Soal No . ` + no_soal + `</label>
-                            <textarea name="soal[]" cols="30" rows="2" class="summernote" wrap="hard" required></textarea>
+                            <textarea name="soal[]" cols="30" rows="2" class="ckeditor${no_soal}" id="ckeditor${no_soal}" wrap="hard" required></textarea>
                         </div>
                         <div class="row mt-2">
                             <div class="col-lg-4">
@@ -368,11 +394,17 @@
                 `;
 
                 $('#soal_pg').append(pg);
+
+                editorck(no_soal)
+
                 no_soal++;
             });
+
             $("#soal_pg").on("click",".isi_soal a",function(){$(this).parents(".isi_soal").remove(),--no_soal});
         })
+
     </script>
+    <div id="scripted"></div>
 
     {!! session('pesan') !!}
 @endsection

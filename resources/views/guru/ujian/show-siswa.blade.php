@@ -1,18 +1,17 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.guru')
 
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
             <div class="row layout-top-spacing">
                 <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3">
-                        <div class="widget-heading">
+                    <div class="card shadow p-3">
+                        <div class="card-header">
                             <h6 class="text-center">{{ $ujian->nama }}</h6>
                             Nama Siswa : {{ $siswa->nama_siswa }}
                         </div>
-                        <div class="widget-content">
+                        <div class="card-body">
                             <div class="table-responsive mt-2">
                                 <table class="table table-bordered text-nowrap">
                                     <thead>
@@ -50,10 +49,10 @@
                 </div>
             </div>
 
-            <a href="{{ url('/guru/ujian/' . $ujian->kode) }}" class="btn btn-danger btn-sm"><span data-feather="arrow-left-circle"></span> kembali</a>
+            <a href="{{ url('/guru/ujian/' . $ujian->kode) }}" class="btn btn-danger btn-sm mt-3"><span data-feather="arrow-left-circle"></span> kembali</a>
 
         </div>
-        @include('template.footer')
+    
     </div>
     <!--  END CONTENT AREA  -->
     {!! session('pesan') !!}

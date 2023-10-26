@@ -23,6 +23,7 @@ class CreateDetailUjiansTable extends Migration
             $table->string('pg_4');
             $table->string('pg_5');
             $table->string('jawaban');
+            $table->text('file')->nullable;
             $table->timestamps();
         });
     }

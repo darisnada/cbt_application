@@ -7,7 +7,26 @@
 
         <div id="content" class="main-content">
             <div class="container-fluid" style="margin-top:20px !important">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach ($sliders as $item)
+                        <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }}">
+                          <img src="{{ asset($item->img) }}" class="d-block w-100" alt="...">
+                        </div>
+                        @endforeach
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+
+                {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -15,7 +34,7 @@
                     </ol>
                     <div class="carousel-inner">
                         @foreach ($sliders as $item)
-                            <div class="carousel-item {{ $loop->iteration == 1 ? 'active' : '' }} ">
+                            <div class="carousel-item  ">
                                 <img class="d-block w-100" src="{{ asset($item->img) }}" alt="" style="border-radius: 30px">
                             </div>
                         @endforeach
@@ -28,10 +47,10 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-                </div>
+                </div> --}}
             </div>
             <div class="row mt-3">
-                <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="col-md-6 col-sm-12 col-lg-6 mt-3">
                     <div class="card">
                         <div class="card-body">
                             <center><h4>{{$narasi->judul}}</h4></center>
@@ -41,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="col-md-6 col-sm-12 col-lg-6 mt-3">
                     <div class="card">
                         <div class="card-body">
                             <center><h4>Kegiatan</h4></center>
@@ -53,7 +72,7 @@
                                     $siswa = \App\Models\Siswa::where('id', $i->id_siswa)->first();
                                 @endphp
                                     <div class="col-4">
-                                        <a href="{{ asset('assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa}}" data-lcl-thumb="{{ asset('assets/files/' . ($file->nama)) }}">
+                                        <a href="{{ asset('assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa ?? ''}}" data-lcl-thumb="{{ asset('assets/files/' . ($file->nama)) }}">
                                             <img src="{{ asset('assets/files/' . ($file->nama??'')) }}" alt="" onclick="lookImage('{{$i->judul}}', '{{$i->keterangan}}', '{{$file->nama}}')" width="150px">
                                         </a>
                                     </div>
@@ -63,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row layout-top-spacing">
+            <div class="row layout-top-spacing mt-3">
                 <div class="container-fluid">
                     <div class="col-lg-6">
                         <div class="infobox-3 bg-white" style="width: 100%;">

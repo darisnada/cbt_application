@@ -1,25 +1,16 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.siswa')
-    <style>
-        .btn-white{
-            background: #cacaca;
-            color: #fff;
-        }
-        
-        .hidden{
-            display: none;
-        }
-    </style>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!--  BEGIN CONTENT AREA  -->
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
+    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+        <div class="container-fluid px-0">
             <div class="row layout-top-spacing">
                 <div class="col-lg-12 layout-spacing">
-                    <div class="widget shadow p-3">
-                        <div class="widget-heading">
+                    <div class="card">
+                        <div class="card-header">
                             <h5 class="">{{ $ujian->nama }}</h5>
+                        </div>
+                        <div class='card-body'>
                             <table class="mt-2">
                                 <tr>
                                     <th>Kelas</th>
@@ -44,97 +35,112 @@
             </div>
 
             @if ($waktu_ujian->selesai === null)    
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-9">
-                        <form id="examwizard-question" action="{{ url("/siswa/ujian") }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="kode" value="{{ $ujian->kode }}">
-                            <div class="widget shadow p-2">
-                                <div class="d-flex float-right">
-                                    <div class="badge badge-primary" style="font-size: 18px; font-weight: bold;"><span data-feather="clock"></span> | <span class="jam_skrng">00 : 00 : 00</span></div>
-                                </div>
-                                <div>
-                                    @php
-                                        $no = 1;
-                                        $soal_hidden = '';
-                                    @endphp
-                                    @foreach ($pg_siswa as $soal)
-                                        <div class="question {{ $soal_hidden }} question-{{ $no }}" data-question="{{ $no }}">
-                                            <div class="widget-heading pl-2 pt-2" style="border-bottom: 1px solid #e0e6ed;">
-                                                <div class="">
-                                                    <h6 class="" style="font-weight: bold">Soal No. <span
-                                                            class="badge badge-primary no-soal" style="font-size: 1rem">{{ $no }}</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-
-                                            <div class="widget p-3 mt-3">
-                                                <div class="widget-heading" style="border-bottom: 1px solid #e0e6ed;">
-                                                    <h6 class="question-title color-green" style="word-wrap: break-word">
-                                                        {!! $soal->detailujian->soal !!}
-                                                    </h6>
-                                                </div>
-                                                <div class="widget-content mt-3" style="position: relative;">
-                                                    <div class="alert alert-danger hidden"></div>
-                                                    <div class="timer-check hidden" style="position: absolute; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.5);">
-                                                        <h5 style="display: flex; justify-content: center; align-items: center; margin-top: 60px;">
-                                                            <span class="badge badge-danger">Waktu Habis!</span>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="green-radio color-green">
-                                                        <ol type="A" style="color: #000; margin-left: -20px;">
-                                                            <li class="answer-number">
-                                                                <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_1, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_1, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_1, 0 ,1)) checked @endif/>
-                                                                <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_1, 0, 1) }}" class="answer-text" style="color: #000;">
-                                                                    <span>{{ substr($soal->detailujian->pg_1, 3, strlen($soal->detailujian->pg_1)) }}</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="answer-number">
-                                                                <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_2, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_2, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_2, 0 ,1)) checked @endif/>
-                                                                <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_2, 0, 1) }}" class="answer-text" style="color: #000;">
-                                                                    <span>{{ substr($soal->detailujian->pg_2, 3, strlen($soal->detailujian->pg_2)) }}</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="answer-number">
-                                                                <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_3, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_3, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_3, 0 ,1)) checked @endif/>
-                                                                <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_3, 0, 1) }}" class="answer-text" style="color: #000;">
-                                                                    <span>{{ substr($soal->detailujian->pg_3, 3, strlen($soal->detailujian->pg_3)) }}</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="answer-number">
-                                                                <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_4, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_4, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_4, 0 ,1)) checked @endif/>
-                                                                <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_4, 0, 1) }}" class="answer-text" style="color: #000;">
-                                                                    <span>{{ substr($soal->detailujian->pg_4, 3, strlen($soal->detailujian->pg_4)) }}</span>
-                                                                </label>
-                                                            </li>
-                                                            <li class="answer-number">
-                                                                <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_5, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_5, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_5, 0 ,1)) checked @endif/>
-                                                                <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_5, 0, 1) }}" class="answer-text" style="color: #000;">
-                                                                    <span>{{ substr($soal->detailujian->pg_5, 3, strlen($soal->detailujian->pg_5)) }}</span>
-                                                                </label>
-                                                            </li>
-                                                        </ol>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="examwizard-question" action="{{ url("/siswa/ujian") }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="kode" value="{{ $ujian->kode }}">
+                                    <div class="">
+                                        <div class="d-flex float-right">
+                                            <div class="" style="font-size: 18px; font-weight: bold;"><span data-feather="clock"></span> | <span class="jam_skrng text-dark">00 : 00 : 00</span></div>
                                         </div>
-
-                                        @php
-                                            $soal_hidden = 'hidden';
-                                            $no++;
-                                        @endphp
-                                    @endforeach
-                                </div>
-                                <!-- SOAL -->
-
-                                <input type="hidden" value="1" id="currentQuestionNumber" name="currentQuestionNumber" />
-                                <input type="hidden" value="{{ $ujian->detailujian->count() }}" id="totalOfQuestion"
-                                    name="totalOfQuestion" />
-                                <input type="hidden" value="[]" id="markedQuestion" name="markedQuestions" />
-                                <!-- END SOAL -->
+                                        <div>
+                                            @php
+                                                $no = 1;
+                                                $soal_hidden = '';
+                                            @endphp
+                                            @foreach ($pg_siswa as $soal)
+                                                <div class="question {{ $soal_hidden }} question-{{ $no }}" data-question="{{ $no }}">
+                                                    <div class=" pl-2 pt-2" style="border-bottom: 1px solid #e0e6ed;">
+                                                        <div class="">
+                                                            <h6 class="" style="font-weight: bold">Soal No. <span
+                                                                    class=" no-soal" style="font-size: 1rem">{{ $no }}</span>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+        
+                                                    <div class=" p-3 mt-3">
+                                                        <div class="" style="border-bottom: 1px solid #e0e6ed;">
+                                                            <h6 class="question-title color-green" style="word-wrap: break-word">
+                                                                {!! $soal->detailujian->soal !!}
+                                                                {{-- @php
+                                                                    echo ($soal->detailujian->file);
+                                                                @endphp --}}
+                                                                @if ($soal->detailujian->file != null)
+                                                                    
+                                                                <hr>
+                                                                <audio controls>
+                                                                    <source src="{{url('public/_assets/file-ujian/')}}/{{ $soal->detailujian->file}}"/>
+                                                                    browsermu tidak support audio
+                                                                </audio>
+                                                                @endif
+                                                            </h6>
+                                                        </div>
+                                                        <div class=" mt-3" style="position: relative;">
+                                                            <div class="alert alert-danger hidden"></div>
+                                                            <div class="timer-check hidden" style="position: absolute; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.5);">
+                                                                <h5 style="display: flex; justify-content: center; align-items: center; margin-top: 60px;">
+                                                                    <span class="badge badge-danger text-dark">Waktu Habis!</span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="green-radio color-green">
+                                                                <ol type="A" style="color: #000; margin-left: -20px;">
+                                                                    <li class="answer-number">
+                                                                        <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_1, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_1, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_1, 0 ,1)) checked @endif/>
+                                                                        <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_1, 0, 1) }}" class="answer-text" style="color: #000;">
+                                                                            <span>{{ substr($soal->detailujian->pg_1, 3, strlen($soal->detailujian->pg_1)) }}</span>
+                                                                        </label>
+                                                                    </li>
+                                                                    <li class="answer-number">
+                                                                        <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_2, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_2, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_2, 0 ,1)) checked @endif/>
+                                                                        <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_2, 0, 1) }}" class="answer-text" style="color: #000;">
+                                                                            <span>{{ substr($soal->detailujian->pg_2, 3, strlen($soal->detailujian->pg_2)) }}</span>
+                                                                        </label>
+                                                                    </li>
+                                                                    <li class="answer-number">
+                                                                        <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_3, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_3, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_3, 0 ,1)) checked @endif/>
+                                                                        <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_3, 0, 1) }}" class="answer-text" style="color: #000;">
+                                                                            <span>{{ substr($soal->detailujian->pg_3, 3, strlen($soal->detailujian->pg_3)) }}</span>
+                                                                        </label>
+                                                                    </li>
+                                                                    <li class="answer-number">
+                                                                        <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_4, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_4, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_4, 0 ,1)) checked @endif/>
+                                                                        <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_4, 0, 1) }}" class="answer-text" style="color: #000;">
+                                                                            <span>{{ substr($soal->detailujian->pg_4, 3, strlen($soal->detailujian->pg_4)) }}</span>
+                                                                        </label>
+                                                                    </li>
+                                                                    <li class="answer-number">
+                                                                        <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_5, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_5, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_5, 0 ,1)) checked @endif/>
+                                                                        <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_5, 0, 1) }}" class="answer-text" style="color: #000;">
+                                                                            <span>{{ substr($soal->detailujian->pg_5, 3, strlen($soal->detailujian->pg_5)) }}</span>
+                                                                        </label>
+                                                                    </li>
+                                                                </ol>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+        
+                                                </div>
+        
+                                                @php
+                                                    $soal_hidden = 'hidden';
+                                                    $no++;
+                                                @endphp
+                                            @endforeach
+                                        </div>
+                                        <!-- SOAL -->
+        
+                                        <input type="hidden" value="1" id="currentQuestionNumber" name="currentQuestionNumber" />
+                                        <input type="hidden" value="{{ $ujian->detailujian->count() }}" id="totalOfQuestion"
+                                            name="totalOfQuestion" />
+                                        <input type="hidden" value="[]" id="markedQuestion" name="markedQuestions" />
+                                        <!-- END SOAL -->
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
 
                         <!-- Exmas Footer - Multi Step Pages Footer -->
                         <div class="row">
@@ -188,11 +194,11 @@
                     </div>
 
                     <div class="col-lg-3" id="quick-access-section" class="table-responsive">
-                        <div class="widget shadow p-3">
-                            <div class="widget-heading pl-2 pt-2" style="border-bottom: 1px solid #e0e6ed;">
+                        <div class="card">
+                            <div class="card-header pl-2 pt-2" style="border-bottom: 1px solid #e0e6ed;">
                                 <h6 style="font-weight: bold;">Nomor Soal</h6>
                             </div>
-                            <div class="widget-content">
+                            <div class="card-body">
                                 @php
                                     $no = 1;
                                 @endphp
@@ -249,6 +255,13 @@
                                                     <h6 class="question-title color-green" style="word-wrap: break-word">
                                                         {!! $soal->detailujian->soal !!}
                                                     </h6>
+                                                    @if ($soal->detailujian->file != null)        
+                                                        <hr>
+                                                        <audio controls>
+                                                            <source src="{{url('public/_assets/file-ujian/')}}/{{ $soal->detailujian->file}}"/>
+                                                            browsermu tidak support audio
+                                                        </audio>
+                                                    @endif
                                                 </div>
                                                 <div class="widget-content mt-3">
                                                     <div class="alert alert-danger hidden"></div>
@@ -286,9 +299,9 @@
                                                         Jawaban Kamu : 
                                                         @if($soal->jawaban === null) tidak dijawab @endif 
                                                         @if($soal->jawaban !== null) {{ $soal->jawaban }} @endif 
-                                                        @if($soal->benar == '1') <span class="badge badge-success ml-1">benar</span> @endif 
-                                                        @if($soal->benar == '0') <span class="badge badge-danger ml-1">salah</span> @endif
-                                                        @if($soal->ragu == '1') <span class="badge badge-warning">Ragu - Ragu</span> @endif
+                                                        @if($soal->benar == '1') <span class="badge badge-success ml-1 text-dark">benar</span> @endif 
+                                                        @if($soal->benar == '0') <span class="badge badge-danger ml-1 text-dark">salah</span> @endif
+                                                        @if($soal->ragu == '1') <span class="badge badge-warning text-dark">Ragu - Ragu</span> @endif
                                                     </div>
 
                                                 </div>
@@ -334,7 +347,7 @@
                                                 $nilai = ($benar / $total_soal_pg) * 100;
                                             @endphp
                                             <tr>
-                                                <th>Benar : <span class="badge badge-success mr-1 mt-1">{{ $benar }}</span> | Salah : <span class="badge badge-danger mr-1 mt-1">{{ $salah }}</span> | Tidak Dijawab : <span class="badge btn-white mt-1">{{ $tidakDijawab }}</span> | Nilai : <span class="badge badge-primary">{{ round($nilai) }} / 100</span></th>
+                                                <th>Benar : <span class="badge badge-success mr-1 mt-1 text-dark">{{ $benar }}</span> | Salah : <span class="badge badge-danger mr-1 mt-1 text-dark">{{ $salah }}</span> | Tidak Dijawab : <span class="badge btn-white mt-1 text-dark">{{ $tidakDijawab }}</span> | Nilai : <span class="badge badge-primary text-dark">{{ round($nilai) }} / 100</span></th>
                                             </tr>
                                         </table>
                                     </div>
@@ -434,7 +447,7 @@
             @endif
 
         </div>
-        @include('template.footer')
+        {{-- @include('template.footer') --}}
     </div>
     <!--  END CONTENT AREA  -->
     {!! session('pesan') !!}

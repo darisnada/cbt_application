@@ -27,7 +27,7 @@
                                 $siswa = \App\Models\Siswa::where('id', $i->id_siswa)->first();
                             @endphp
                                 <div class="col-lg-4">
-                                    <a href="{{ asset('assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa}}" data-lcl-thumb="{{ asset('assets/files/' . ($file->nama)) }}">
+                                    <a href="{{ asset('assets/files/' . ($file->nama)) }}" title="{{$i->judul}}" class="elem" data-lcl-txt="{{$i->keterangan}}" data-lcl-author="{{$siswa->nama_siswa ?? ''}}" data-lcl-thumb="{{ asset('assets/files/' . ($file->nama)) }}">
                                         <img src="{{ asset('assets/files/' . ($file->nama??'')) }}" alt="" width="150px">
                                     </a>
                                 </div>

@@ -114,6 +114,7 @@ class UjianSiswaController extends Controller
      */
     public function show(Ujian $ujian)
     {
+        // dd($ujian);
         $notif_tugas = TugasSiswa::where('siswa_id', session()->get('id'))
             ->where('date_send', null)
             ->get();

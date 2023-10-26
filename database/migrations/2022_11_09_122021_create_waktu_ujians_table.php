@@ -19,6 +19,7 @@ class CreateWaktuUjiansTable extends Migration
             $table->integer('siswa_id');
             $table->string('waktu_berakhir')->nullable();
             $table->boolean('selesai')->nullable();
+            $table->integer('urutan')->nullable();
         });
     }
 
