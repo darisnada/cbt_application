@@ -31,25 +31,46 @@
 
                     <!--Avatar with status-->
                     <div class="avatar-status status-online me-1 avatar sm">
-                      <img src="{{asset('assets')}}/media/avatars/01.jpg" class="rounded-circle img-fluid" alt="">
+                      @if (session()->get('role') === 3)
+                      <img src="{{ asset('_assets/user-profile/' . $siswa->avatar) }}" class="rounded-circle img-fluid" alt="">
+                      @endif
+                      @if (session()->get('role') === 2)
+                      <img src="{{ asset('_assets/user-profile/' . $guru->avatar) }}" class="rounded-circle img-fluid" alt="">
+                      @endif
+                      @if (session()->get('role') === 1)
+                      <img src="{{ asset('_assets/user-profile/' . $admin->avatar) }}" class="rounded-circle img-fluid" alt="">
+                      @endif
                     </div>
                   </div>
                 </a>
 
                 <div class="dropdown-menu mt-0 p-0 dropdown-menu-end overflow-hidden">
                   <!--User meta-->
-                  <div class="position-relative overflow-hidden p-4 bg-primary-subtle">
+                  {{-- <div class="position-relative overflow-hidden p-4 bg-primary-subtle">
                     <div class="position-relative">
-                      <h5 class="mb-1">Adam Milne</h5>
-                      <p class="text-body-tertiary small mb-0 lh-1">Marketing head</p>
+                      @if (session()->get('role') === 3)
+                      <h5 class="mb-1">{{ $siswa->nama_siswa }}</h5>
+                      <p class="text-body-tertiary small mb-0 lh-1">Siswa</p>
+                      @endif
+
+                      @if (session()->get('role') === 2)
+                      <h5 class="mb-1">{{ $guru->nama_guru }}</h5>
+                      <p class="text-body-tertiary small mb-0 lh-1">Guru</p>
+                      @endif
+                      
+                      @if (session()->get('role') === 3)
+                      <h5 class="mb-1">{{ $admin->nama_admin }}</h5>
+                      <p class="text-body-tertiary small mb-0 lh-1">Admin</p>
+                      @endif
+                      
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="p-2">
-                    <a href="{{ url("/siswa/profile") }}" class="dropdown-item">
-                      <i class="bi bi-person-circle opacity-75 fs-5 align-middle me-2"></i>Profile</a>
+                    {{-- <a href="{{ url("/siswa/profile") }}" class="dropdown-item">
+                      <i class="bi bi-person-circle opacity-75 fs-5 align-middle me-2"></i>Profile</a> --}}
                     {{-- <a href="account-general.html" class="dropdown-item">
                       <i class="bi bi-person-gear fs-5 opacity-75 align-middle me-2"></i>Settings</a> --}}
-                    <hr class="mt-3 mb-1">
+                    {{-- <hr class="mt-3 mb-1"> --}}
                     <a href="{{ url("/logout") }}" class="dropdown-item d-flex align-items-center">
                       <i class="bi bi-box-arrow-in-right opacity-75 fs-5 align-middle me-2"></i>
                       Sign out

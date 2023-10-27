@@ -165,7 +165,47 @@
     </div>
 
     <script>
-        $(document).ready(function(){$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,t=this){var a;e=e[0],a=t,(t=new FormData).append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:t,type:"post",success:function(e){$(a).summernote("insertImage",e)},error:function(e){console.log(e)}})},onMediaDelete:function(e){e=e[0].src,$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}}});new FileUploadWithPreview("fileMateri");$(".hapus-file").on("click",function(){const t=$(this);var a=$(this).data("src");swal({title:"yakin di hapus?",text:"file tidak bisa dikembalikan!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, hapus",padding:"2em"}).then(function(e){e.value&&$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:a},type:"post",url:"{{ url('/summernote/delete_file') }}",cache:!1,success:function(e){t.remove(),swal({title:"Berhasil!",text:"file berhasil di hapus!",type:"success",padding:"2em"})}})})})});
+        $(document).ready(function(){
+            // $(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,t=this){var a;e=e[0],a=t,(t=new FormData).append("image",e),
+            // $.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},
+            // url:"{{ route('summernote_upload') }}",
+            // cache:!1,contentType:!1,processData:!1,data:t,type:"post",
+            // success:function(e){
+            //     $(a).summernote("insertImage",e)},
+            //     error:function(e){console.log(e)}})},
+            //     onMediaDelete:function(e){e=e[0].src,
+            //         $.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},
+            //         data:{src:e},type:"post",
+            //         url:"{{ route('summernote_delete') }}",
+            //         cache:!1,success:function(e){console.log(e)}})}}});
+            //         new FileUploadWithPreview("fileMateri");
+
+
+                    $(".hapus-file").on("click",function(){
+                        const t=$(this);
+                        var a=$(this).data("src");
+                        // alert(t)
+                        // alert(a)
+                        swal({title:"yakin di hapus?",
+                        text:"file tidak bisa dikembalikan!",
+                        type:"warning",
+                        showCancelButton:!0,cancelButtonText:"tidak",
+                        confirmButtonText:"ya, hapus",padding:"2em"}).then(function(e){e.value&&$.ajax({
+                            headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},
+                            data:{src:a},type:"post",url:"{{ url('/summernote/delete_file') }}",cache:!1,
+                            success:function(e){t.remove(),
+                                swal({
+                                    title:"Berhasil!",
+                                    text:"file berhasil di hapus!",
+                                    type:"success",
+                                    padding:"2em"})
+                                }
+                            }
+                            )
+                        }
+                        )
+                    })
+        });
     </script>
     <script>
         function getSubKategori() {

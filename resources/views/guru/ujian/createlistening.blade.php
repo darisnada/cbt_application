@@ -90,14 +90,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-2">
+                                                {{-- <div class="row mt-2">
                                                     <div class="col-lg-12">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input" id="customCheck1" name="acak" value="1">
                                                             <label class="custom-control-label" for="customCheck1">Acak Soal Siswa</label>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -117,6 +117,10 @@
                                                         </div> --}}
 
                                                         <textarea name="soal[]" cols="30" rows="2" class="editor" id="editor" wrap="hard" required></textarea>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <label for="">Gambar</label>
+                                                        <input type="file" name="images[]" class="form-control">
                                                     </div>
                                                     <div class="form-group mt-2">
                                                         <label for="">File</label>
@@ -278,14 +282,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        {{-- <div class="row mt-2">
                             <div class="col-lg-12">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="acak" name="e_acak" value="1">
                                     <label class="custom-control-label" for="acak">Acak Soal Siswa</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row mt-2">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -320,6 +324,10 @@
                         <div class="form-group">
                             <label for="">Soal No . ` + no_soal + `</label>
                             <textarea name="soal[]" cols="30" rows="2" class="ckeditor${no_soal}" id="ckeditor${no_soal}" wrap="hard" required></textarea>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="">Gambar</label>
+                            <input type="file" name="images[]" class="form-control">
                         </div>
                         <div class="form-group mt-2">
                             <label for="">File</label>

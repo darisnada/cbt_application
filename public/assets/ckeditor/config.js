@@ -17,7 +17,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		// { name: 'links' },
-		{ name: 'insert' },
+		// { name: 'insert' },
 		{ name: 'styles' },
 		{ name: 'colors' },
 		{ name: 'tools' },
@@ -31,4 +31,5 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
+	config.extraPlugins = 'cloudservices';
 };

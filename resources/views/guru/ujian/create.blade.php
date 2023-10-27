@@ -116,7 +116,11 @@
                                                             <p class="fs-1"><br><br></p>
                                                         </div> --}}
 
-                                                        <textarea name="soal[]" cols="30" rows="2" class="editor" id="editor" wrap="hard" required></textarea>
+                                                        <textarea name="soal[]" cols="30" rows="2" class="editor1" id="editor1"  required></textarea>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <label for="">Gambar</label>
+                                                        <input type="file" name="images[]" class="form-control">
                                                     </div>
                                                     <div class="row mt-2">
                                                         <div class="col-lg-4">
@@ -306,16 +310,19 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            // function uploadImage(e,o){var a=new FormData;a.append("image",e),$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},url:"{{ route('summernote_upload') }}",cache:!1,contentType:!1,processData:!1,data:a,type:"post",success:function(e){$(o).summernote("insertImage",e)},error:function(e){console.log(e)}})}function deleteImage(e){$.ajax({headers:{"X-CSRF-TOKEN":"{{ csrf_token() }}"},data:{src:e},type:"post",url:"{{ route('summernote_delete') }}",cache:!1,success:function(e){console.log(e)}})}setInterval(()=>{$(".summernote").summernote({placeholder:"Hello stand alone ui",tabsize:2,height:120,toolbar:[["style",["style"]],["font",["bold","underline","clear"]],["color",["color"]],["para",["ul","ol","paragraph"]],["table",["table"]],["insert",["link","picture","video"]],["view",["fullscreen","help"]]],callbacks:{onImageUpload:function(e,o=this){uploadImage(e[0],o)},onMediaDelete:function(e){deleteImage(e[0].src)}}})},1e3);
+        $(document).ready(function() {            
             var no_soal = 2;
             $('.tambah-pg').click(function() {
                 const pg = `
-                    <div class="isi_soal">
+                    <div class="isi_soal${no_soal}">
                     <hr>
                         <div class="form-group">
                             <label for="">Soal No . ` + no_soal + `</label>
                             <textarea name="soal[]" cols="30" rows="2" class="ckeditor${no_soal}" id="ckeditor${no_soal}" wrap="hard" required></textarea>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="">Gambar</label>
+                            <input type="file" name="images[]" class="form-control">
                         </div>
                         <div class="row mt-2">
                             <div class="col-lg-4">
@@ -389,7 +396,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="btn btn-danger hapus-pg">Hapus</a>
+                        <a href="javascript:void(0);" class="btn btn-danger hapus-pg" onclick="klikHapusSoal('${'isi_soal'+no_soal}')">Hapus</a>
                     </div>
                 `;
 
@@ -400,8 +407,12 @@
                 no_soal++;
             });
 
-            $("#soal_pg").on("click",".isi_soal a",function(){$(this).parents(".isi_soal").remove(),--no_soal});
+            // $("#soal_pg").on("click",".isi_soal a",function(){$(this).parents(".isi_soal").remove(),--no_soal});
         })
+
+        function klikHapusSoal(a){
+            $('.'+a).remove()
+        }
 
     </script>
     <div id="scripted"></div>

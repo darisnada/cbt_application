@@ -67,8 +67,8 @@ class AdminController extends Controller
         return view('admin.profile-settings', [
             'title' => 'Profile and Settings',
             'plugin' => '
-                <link href="' . url("assets/cbt-malela") . '/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
-                <link rel="stylesheet" type="text/css" href="' . url("assets/cbt-malela") . '/assets/css/forms/theme-checkbox-radio.css">
+                <link href="' . url("_assets/cbt-malela") . '/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+                <link rel="stylesheet" type="text/css" href="' . url("_assets/cbt-malela") . '/assets/css/forms/theme-checkbox-radio.css">
             ',
             'menu' => [
                 'menu' => 'profile',
@@ -92,10 +92,10 @@ class AdminController extends Controller
         if ($request->file('avatar')) {
             if ($request->gambar_lama) {
                 if ($request->gambar_lama != 'default.png') {
-                    Storage::delete('assets/user-profile/' . $request->gambar_lama);
+                    Storage::delete('_assets/user-profile/' . $request->gambar_lama);
                 }
             }
-            $validatedData['avatar'] = str_replace('assets/user-profile/', '', $request->file('avatar')->store('assets/user-profile'));
+            $validatedData['avatar'] = str_replace('_assets/user-profile/', '', $request->file('avatar')->store('_assets/user-profile'));
         }
         Admin::where('id', $admin->id)
             ->update($validatedData);
@@ -310,7 +310,7 @@ class AdminController extends Controller
         try {
             Siswa::insert($siswa);
 
-            if ($email_settings->notif_akun == '1') {
+            if (isset($email_settings->notif_akun) && $email_settings->notif_akun == '1') {
                 foreach ($siswa as $s) {
                     $details = [
                         'nama' => $s['nama_siswa'],
@@ -332,12 +332,12 @@ class AdminController extends Controller
                 </script>
             ");
         } catch (\Exception $exceptions) {
-            $pesan_error = str_replace('\'', '\`', $exceptions->errorInfo[2]);
+            $pesan_error = str_replace('\'', '\`', $exceptions->getMessage());
             return redirect('/admin/siswa')->with('pesan', "
                 <script>
                     swal({
                         title: 'Error!',
-                        text: '$pesan_error',
+                        text: '".$pesan_error."',
                         type: 'error',
                         padding: '2em'
                     })

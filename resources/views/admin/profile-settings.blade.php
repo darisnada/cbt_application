@@ -1,8 +1,8 @@
 @extends('template.main')
 @section('content')
 
-<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
-    <div class="container-fluid px-0">
+<div id="content" class="main-content">
+    <div class="container-fluid" style="margin-top:20px !important">
         <div class="card">
             <div class="card-body">
                 <div class="">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
         
-                            <div class="">
+                            {{-- <div class="">
                                 <div class="">
                                     <h3 class="">Notif Email Settings</h3>
                                     <form action="{{ url('/admin/smtp_email/' . (isset($email_settings->notif_akun) && $email_settings->notif_akun == '1') ? $email_settings->id : '') }}" method="post">
@@ -108,7 +108,7 @@
                                         <button type="submit" class="btn btn-primary">Save</button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
         
                         </div>
         
@@ -137,10 +137,10 @@
                                         <div class="form-group">
                                             <label for="">Foto</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="avatar" id="customFile"
+                                                <input type="file" class="custom-file-input form-control" name="avatar" id="customFile"
                                                     accept=".jpg, .png, .jpeg" onchange="previewImg()">
                                                 <input type="hidden" name="gambar_lama" value="{{ $admin->avatar }}">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                {{-- <label class="custom-file-label" for="customFile">Choose file</label> --}}
                                             </div>
                                             @error('avatar')
                                                 <div class="text-danger">
@@ -154,7 +154,7 @@
                             </div>
         
                             <div class="skills layout-spacing">
-                                <div class="widget-content widget-content-area">
+                                <div class="">
                                     <h3 class="">Password</h3>
                                     <form action="{{ url('/admin/edit_password/' . $admin->id) }}" method="post">
                                         @csrf
@@ -166,7 +166,7 @@
                                             <label for="">New Password</label>
                                             <input type="password" name="password" class="form-control" required>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary mt-3">Save</button>
                                     </form>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
 
             </div>
         </div>
-        @include('template.footer')
+        {{-- @include('template.footer') --}}
     </div>
     <!--  END CONTENT AREA  -->
     <script>

@@ -12,7 +12,10 @@ class SummernoteController extends Controller
     public function upload(Request $request)
     {
         $nama_file = Str::replace('_assets/files/', '', $request->file('image')->store('_assets/files'));
-        echo asset('_assets/files/' . $nama_file);
+        return response()->json([
+            'url' => asset('_assets/files/' . $nama_file),
+        ]);
+        // echo asset('_assets/files/' . $nama_file);
     }
 
     public function delete(Request $request)

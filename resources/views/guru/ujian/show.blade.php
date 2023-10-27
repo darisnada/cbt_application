@@ -69,6 +69,7 @@
 
                                                         <div class="widget p-3 mt-3">
                                                             <div class="widget-heading" style="border-bottom: 1px solid #e0e6ed;">
+                                                                <img src="{{url('public/_assets/file-ujian/')}}/{{ $soal->gambar}}" width="200px" class="mb-3" alt="">
                                                                 <h6 class="question-title color-green" style="word-wrap: break-word">
                                                                     {!! $soal->soal !!}
                                                                 </h6>

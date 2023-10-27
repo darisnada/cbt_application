@@ -237,7 +237,7 @@ class KegiatanSiswaController extends Controller
             foreach ($request->file('file_materi') as $file) {
                 array_push($files, [
                     'kode' => $kode,
-                    'nama' => Str::replace('_assets/files/', '', $file->store('assets/files'))
+                    'nama' => Str::replace('_assets/files/', '', $file->store('_assets/files'))
                 ]);
             }
             FileModel::insert($files);

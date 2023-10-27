@@ -33,7 +33,7 @@
                                     @error('teks')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <textarea class="form-control " name="subtitle" id="teks" cols="30" rows="5" wrap="hard">{{$narasi->isi ?? ''}}
+                                    <textarea class="form-control ckeditor" name="subtitle" id="teks" cols="30" rows="5" wrap="hard">{{$narasi->isi ?? ''}}
                                        {!! old('subtitle') !!}
                                     </textarea>
                                 </div>

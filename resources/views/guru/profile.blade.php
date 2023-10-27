@@ -61,9 +61,9 @@
                                             <div class="form-group">
                                                 <label for="">Foto</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="avatar" id="customFile" accept=".jpg, .png, .jpeg" onchange="previewImg()">
+                                                    <input type="file" class="form-control" name="avatar" id="customFile" accept=".jpg, .png, .jpeg" onchange="previewImg()">
                                                     <input type="hidden" name="gambar_lama" value="{{ $guru->avatar }}">
-                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    {{-- <label class="custom-file-label" for="customFile">Choose file</label> --}}
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary mt-3">Save</button>

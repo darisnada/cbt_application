@@ -64,6 +64,9 @@
                                                     <div class=" p-3 mt-3">
                                                         <div class="" style="border-bottom: 1px solid #e0e6ed;">
                                                             <h6 class="question-title color-green" style="word-wrap: break-word">
+                                                                @if ($soal->detailujian->gambar != null)
+                                                                <img src="{{url('public/_assets/file-ujian/')}}/{{ $soal->detailujian->gambar}}" width="200px" class="mb-3" alt="">
+                                                                @endif
                                                                 {!! $soal->detailujian->soal !!}
                                                                 {{-- @php
                                                                     echo ($soal->detailujian->file);
@@ -233,7 +236,7 @@
                         <form id="examwizard-question" action="#" method="POST">
                             <div class="widget shadow p-2">
                                 <div class="d-flex float-right">
-                                    <div class="badge badge-success" style="font-size: 14px; font-weight: bold;">ujian selesai</div>
+                                    <div class="" style="font-size: 14px; font-weight: bold;">ujian selesai</div>
                                 </div>
                                 <div>
                                     @php
@@ -245,7 +248,7 @@
                                             <div class="widget-heading pl-2 pt-2" style="border-bottom: 1px solid #e0e6ed;">
                                                 <div class="">
                                                     <h6 class="" style="font-weight: bold">Soal No. <span
-                                                            class="badge badge-primary no-soal" style="font-size: 1rem">{{ $no }}</span>
+                                                            class=" no-soal" style="font-size: 1rem">{{ $no }}</span>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -253,6 +256,9 @@
                                             <div class="widget p-3 mt-3">
                                                 <div class="widget-heading" style="border-bottom: 1px solid #e0e6ed;">
                                                     <h6 class="question-title color-green" style="word-wrap: break-word">
+                                                        @if ($soal->detailujian->gambar != null)
+                                                        <img src="{{url('public/_assets/file-ujian/')}}/{{ $soal->detailujian->gambar}}" width="200px" class="mb-3" alt="">
+                                                        @endif
                                                         {!! $soal->detailujian->soal !!}
                                                     </h6>
                                                     @if ($soal->detailujian->file != null)        

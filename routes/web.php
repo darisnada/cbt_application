@@ -144,11 +144,6 @@ Route::prefix('admin')->group(function () {
 // END::ROUTE ADMIN
 
 
-// SUMMERNOTE
-Route::post('/summernote/upload', [SummernoteController::class, 'upload'])->name('summernote_upload');
-Route::post('/summernote/delete', [SummernoteController::class, 'delete'])->name('summernote_delete');
-Route::get('/summernote/unduh/{file}', [SummernoteController::class, 'unduh']);
-Route::post('/summernote/delete_file', [SummernoteController::class, 'delete_file']);
 
 // START::ROUTE GURU
 Route::get('/guru', [GuruController::class, 'index'])->middleware('is_guru');
@@ -217,3 +212,9 @@ Route::post('/siswa/ragu_essay', [UjianSiswaController::class, 'ragu_essay'])->m
 
 Route::get('/siswa/ujian_essay/{ujian:kode}', [UjianSiswaController::class, 'essay'])->middleware('is_siswa');
 Route::post('/siswa/ujian_essay', [UjianSiswaController::class, 'store_essay'])->middleware('is_siswa');
+
+// SUMMERNOTE
+Route::post('/summernote/upload', [SummernoteController::class, 'upload'])->name('summernote_upload');
+Route::post('/summernote/delete', [SummernoteController::class, 'delete'])->name('summernote_delete');
+Route::get('/summernote/unduh/{file}', [SummernoteController::class, 'unduh']);
+Route::post('/summernote/delete_file', [SummernoteController::class, 'delete_file']);

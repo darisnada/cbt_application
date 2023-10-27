@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBT - {{$title}}</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ url('/_assets/img') }}/icon-web.png" />
     <!--Font awesome icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!--Google web fonts-->
@@ -186,9 +187,24 @@
       })
       CKEDITOR.replace('editor');
       function editorck(a) {
-        CKEDITOR.replace('ckeditor'+a);
-        
+        CKEDITOR.replace('ckeditor'+a, {
+            extraPlugins: 'easyimage',
+            // easyimage_imageUploadUrl: '{{ route("summernote_upload") }}?_token=' + '{{ csrf_token() }}',
+            cloudServices_tokenUrl: '{{ csrf_token() }}',
+            cloudServices_uploadUrl: '{{ route("summernote_upload") }}',
+            // filebrowserUploadMethod: 'form',
+            // filebrowserUploadUrl: '{{ route("summernote_upload") }}?_token=' + '{{ csrf_token() }}',
+        });
       }
+
+      CKEDITOR.replace('editor1', {
+          // extraPlugins: 'easyimage',
+          // cloudServices_tokenUrl: '{{ url("?_token=".csrf_token()) }}',
+          // cloudServices_uploadUrl: '{{ url("summernote/upload"."?_token=".csrf_token()) }}',
+          // easyimage_imageUploadUrl: '{{route("summernote_upload")}}',
+          // filebrowserUploadMethod: 'form',
+          // filebrowserUploadUrl: '{{ route("summernote_upload") }}?_token=' + '{{ csrf_token() }}',
+      });
   </script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {

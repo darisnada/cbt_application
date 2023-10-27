@@ -1,9 +1,9 @@
 @extends('template.main')
 @section('content')
-    @include('template.navbar.admin')
+    {{-- @include('template.navbar.admin') --}}
     {!! session('pesan') !!}
     <div id="content" class="main-content">
-        <div class="layout-px-spacing">
+        <div class="container-fluid" style="margin-top:20px !important">
             <div class="row layout-top-spacing">
                 <div class="col-lg-4 layout-spacing">
                     <div class="widget widget-five infobox-3" style="width: 100%; padding: 10px;">
@@ -95,8 +95,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row layout-top-spacing">
                 <div class="col-lg-4 layout-spacing">
                     <div class="widget widget-five infobox-3" style="width: 100%; padding: 10px;">
                         <div class="info-icon">
@@ -118,7 +116,9 @@
                     </div>
                 </div>
             </div>
+            <div class="row layout-top-spacing">
+            </div>
         </div>
-        @include('template.footer')
+        {{-- @include('template.footer') --}}
     </div>
 @endsection

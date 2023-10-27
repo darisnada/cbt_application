@@ -126,7 +126,7 @@ class UjianGuruController extends Controller
             'mapel_id' => $request->mapel,
             'jam' => $request->jam,
             'menit' => $request->menit,
-            'acak' => $request->acak,
+            'acak' => $request->acak ?? 1,
         ];
 
         $detail_ujian = [];
@@ -135,6 +135,17 @@ class UjianGuruController extends Controller
 
         foreach ($nama_soal as $soal) {
             $files_ = null;
+            $images_ = null;
+            if($request->hasFile('images') && isset($request->file('images')[$index])){
+                // $this->validate($request, [
+                //     'file' => 'nullable|mimes: jpg|png|jpeg'
+                // ]);
+                $filenameWithExtImages = $request->file('images')[$index]->getClientOriginalName();
+                $extensionImages = $request->file('images')[$index]->getClientOriginalExtension();
+                $filenameImage = pathinfo($filenameWithExtImages, PATHINFO_FILENAME);
+                $images_ = $filenameImage.'_'.time().'.'.$extensionImages;
+                $pathImage = $request->file('images')[$index]->storeAs('public/_assets/file-ujian/', $images_);
+            }
             if($request->hasFile('file') && isset($request->file('file')[$index])){
                 // $this->validate($request, [
                 //     'file' => 'nullable|mimes: mp3'
@@ -168,6 +179,7 @@ class UjianGuruController extends Controller
                 'pg_5' => 'E. ' . $request->pg_5[$index],
                 'jawaban' => $request->jawaban[$index],
                 'file' => $files_,
+                'gambar' => $images_,
             ]);
 
             $index++;

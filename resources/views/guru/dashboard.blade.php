@@ -5,8 +5,8 @@
     <!--  BEGIN CONTENT AREA  -->
 
 
-        <div id="content" class="main-content">
-            <div class="container-fluid" style="margin-top:20px !important">
+    <div id="content" class="main-content">
+        <div class="container-fluid" style="margin-top:20px !important">
 
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">

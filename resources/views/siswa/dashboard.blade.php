@@ -1,8 +1,8 @@
 @extends('template.main')
 @section('content')
 
-<div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
-    <div class="container-fluid px-0">
+<div id="content" class="main-content">
+    <div class="container-fluid" style="margin-top:20px !important">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-lg-12">
             </div>
