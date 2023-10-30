@@ -121,7 +121,7 @@ class TugasGuruController extends Controller
         $email_siswa = Str::replaceLast(',', '', $email_siswa);
         $email_siswa = explode(',', $email_siswa);
 
-        if ($email_settings->notif_tugas == '1') {
+        if (isset($email_settings->notif_tugas) && $email_settings->notif_tugas == '1') {
             $details = [
                 'nama_guru' => session()->get('nama_guru'),
                 'nama_tugas' => $request->nama_tugas,

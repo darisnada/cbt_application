@@ -89,12 +89,12 @@
           <div class="d-flex align-items-center flex-no-wrap text-truncate">
             <!--Sidebar-icon-->
             <span class="sidebar-icon fs-5 lh-1 text-white rounded-circle bg-primary">
-              <img src="{{ asset('_assets/user-profile/' . $guru->avatar) }}" width="100%" alt="">
+              <img src="{{ url('/_assets/img') }}/icon-web.jpeg" width="100%" alt="">
             </span>
             <span class="sidebar-text">
               <!--Sidebar-text-->
               <span class="sidebar-text text-truncate fs-4 text-uppercase fw-bolder">
-                CBT <sub class="fs-6 opacity-50"></sub>
+                LEARN <sub class="fs-6 opacity-50"></sub>
               </span>
             </span>
           </div>

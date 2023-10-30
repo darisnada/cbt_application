@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <center><h4>{{$narasi->judul}}</h4></center>
                         <hr>
-                        <p>{{$narasi->isi}}</p>
+                        <p>{!! $narasi->isi !!}</p>
                     </div>
                 </div>
             </div>

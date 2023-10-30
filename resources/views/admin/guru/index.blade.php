@@ -3,10 +3,10 @@
 
 
     <!--  BEGIN CONTENT AREA  -->
-    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
+    <div class="content p-4 pb-0 d-flex flex-column-fluid">
         <div class="container-fluid px-0">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="">

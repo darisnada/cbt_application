@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 mt-3">
+            <div class="col-lg-8 mt-3">
                 <div id="tugasAccordion" class="shadow">
                     <div class="card">
                         <div class="card-header bg-white" id="...">

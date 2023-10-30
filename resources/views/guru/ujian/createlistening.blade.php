@@ -319,7 +319,7 @@
             var no_soal = 2;
             $('.tambah-pg').click(function() {
                 const pg = `
-                    <div class="isi_soal">
+                    <div class="isi_soal${no_soal}">
                     <hr>
                         <div class="form-group">
                             <label for="">Soal No . ` + no_soal + `</label>
@@ -405,7 +405,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" class="btn btn-danger hapus-pg">Hapus</a>
+                        <a href="javascript:void(0);" class="btn btn-danger hapus-pg" onclick="klikHapusSoal('${'isi_soal'+no_soal}')">Hapus</a>
                     </div>
                 `;
 
@@ -416,8 +416,12 @@
                 no_soal++;
             });
 
-            $("#soal_pg").on("click",".isi_soal a",function(){$(this).parents(".isi_soal").remove(),--no_soal});
+            // $("#soal_pg").on("click",".isi_soal a",function(){$(this).parents(".isi_soal").remove(),--no_soal});
         })
+
+        function klikHapusSoal(a){
+            $('.'+a).remove()
+        }
 
     </script>
 

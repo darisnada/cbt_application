@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBT - {{$title}}</title>
 
-    <link rel="icon" type="image/x-icon" href="{{ url('/_assets/img') }}/icon-web.png" />
+    <link rel="icon" type="image/x-icon" href="{{ url('/_assets/img') }}/icon-web.jpeg" />
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <!--Font awesome icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!--Google web fonts-->
@@ -50,6 +54,17 @@
         //     });
         </script>
         <script src="{{ url('/_assets/cbt-malela') }}/assets/js/custom.js"></script>
+
+        <style>
+          .watermark-100-image {
+              opacity: 0.19;
+              color: BLACK;
+              position: absolute; 
+              bottom: 10px; 
+              right: 10px; 
+              
+          }
+        </style>
 
         
 
@@ -134,8 +149,16 @@
             <!--//Page Toolbar End//-->
 
           <!--//Page content//-->
-          <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
-            @yield("content")
+          <div class="content p-4 pb-0 d-flex flex-column-fluid">
+            <div class="container">
+              @yield("content")
+            </div>
+            
+            <div class="watermark-100-image">
+              {{-- <center> --}}
+                <img src="{{ url('/_assets/img') }}/icon-web.jpeg" width="200px" class="imagenya" alt="">
+              {{-- </center> --}}
+            </div>
           </div>
           <!--//Page content End//-->
 
@@ -144,9 +167,9 @@
       </div>
     </div>
 
-        <!--////////////Theme Core scripts Start/////////////////-->
+    <!--////////////Theme Core scripts Start/////////////////-->
 
-        <script src="{{url('assets')}}/js/theme.bundle.js"></script>
+    <script src="{{url('assets')}}/js/theme.bundle.js"></script>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <!--////////////Theme Core scripts End/////////////////-->
@@ -218,6 +241,15 @@
 
     <script>
         $(".logout").on("click",function(t){t.preventDefault();var n=$(this).attr("href");swal({title:"yakin logout?",text:"anda harus login ulang untuk masuk ke aplikasi!",type:"warning",showCancelButton:!0,cancelButtonText:"tidak",confirmButtonText:"ya, logout",padding:"2em"}).then(function(t){t.value&&(document.location.href=n)}),$("#swal2-container").css("z-index","9999")}),feather.replace();
+    </script>
+
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function (reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
     </script>
 </body>
 

@@ -299,7 +299,7 @@ class AdminController extends Controller
                 'password' => bcrypt($nis),
                 'avatar' => 'default.png',
                 'role' => 3,
-                'is_active' => 1,
+                'is_active' => 0,
                 'created_at' => date('Y-m-d H:i:s', time())
             ]);
             $nis_sebelumnya = $nis;
@@ -539,7 +539,7 @@ class AdminController extends Controller
         try {
             Guru::insert($guru);
 
-            if ($email_settings->notif_akun == '1') {
+            if (isset($email_settings->notif_akun) && $email_settings->notif_akun == '1') {
                 foreach ($guru as $s) {
                     // Kirim Email ke Guru
                     $details = [
@@ -562,12 +562,12 @@ class AdminController extends Controller
                 </script>
             ");
         } catch (\Exception $exceptions) {
-            $pesan_error = str_replace('\'', '\`', $exceptions->errorInfo[2]);
+            // $pesan_error = str_replace('\'', '\`', );
             return redirect('/admin/guru')->with('pesan', "
                 <script>
                     swal({
                         title: 'Error!',
-                        text: '$pesan_error',
+                        text: '".$exceptions->getMessage()."',
                         type: 'error',
                         padding: '2em'
                     })
