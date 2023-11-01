@@ -32,13 +32,13 @@
                     <!--Avatar with status-->
                     <div class="avatar-status status-online me-1 avatar sm">
                       @if (session()->get('role') === 3)
-                      <img src="{{ asset('_assets/user-profile/' . $siswa->avatar) }}" class="rounded-circle img-fluid" alt="">
+                      <img src="{{ asset('_assets/user-profile').'/'.($siswa->avatar ?? 'default.png') }}" class="rounded-circle img-fluid" alt="">
                       @endif
                       @if (session()->get('role') === 2)
-                      <img src="{{ asset('_assets/user-profile/' . $guru->avatar) }}" class="rounded-circle img-fluid" alt="">
+                      <img src="{{ asset('_assets/user-profile/').'/'. ($guru->avatar ?? 'default.png') }}" class="rounded-circle img-fluid" alt="">
                       @endif
                       @if (session()->get('role') === 1)
-                      <img src="{{ asset('_assets/user-profile/' . $admin->avatar) }}" class="rounded-circle img-fluid" alt="">
+                      <img src="{{ asset('_assets/user-profile/').'/' . ($admin->avatar ?? 'default.png') }}" class="rounded-circle img-fluid" alt="">
                       @endif
                     </div>
                   </div>
