@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Panel-Admin</title>
+        <title>Login</title>
         <link rel="icon" type="image/x-icon" href="{{ url('/_assets/img') }}/icon-web.jpeg" />
 
         <!-- PWA  -->
@@ -137,7 +137,7 @@
                                             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
                                             <hr class="mt-4 mb-3">
                                             <p class="text-muted text-center">
-                                                Don’t have an account yet? <a href="page-auth-signup.html"
+                                                Don’t have an account yet? <a href="{{url('/register')}}"
                                                     class="ms-1">Sign Up</a>
 
                                             </p>

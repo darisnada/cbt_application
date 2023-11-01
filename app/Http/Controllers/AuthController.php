@@ -227,13 +227,13 @@ class AuthController extends Controller
     }
     public function register_(Request $request)
     {
-        if ($request->input('saya_siswa')) {
-            $validate = $request->validate([
-                'email' => 'unique:admins'
-            ]);
-            $validate = $request->validate([
-                'email' => 'unique:guru'
-            ]);
+        // if ($request->input('saya_siswa')) {
+            // $validate = $request->validate([
+            //     'email' => 'unique:admins'
+            // ]);
+            // $validate = $request->validate([
+            //     'email' => 'unique:guru'
+            // ]);
 
             $validate = $request->validate([
                 'nis' => 'required|unique:siswa',
@@ -253,13 +253,13 @@ class AuthController extends Controller
                 'key' => 'aktivasi',
                 'role' => 3,
             ];
-            $details = [
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'password' => $request->password,
-                'token' => $tokens['token']
-            ];
-            Mail::to("$request->email")->send(new VerifikasiAkun($details));
+            // $details = [
+            //     'nama' => $request->nama,
+            //     'email' => $request->email,
+            //     'password' => $request->password,
+            //     'token' => $tokens['token']
+            // ];
+            // Mail::to("$request->email")->send(new VerifikasiAkun($details));
             Siswa::create($validate);
             Token::create($tokens);
 
@@ -267,59 +267,13 @@ class AuthController extends Controller
                 <script>
                     swal({
                         title: 'Berhasil!',
-                        text: 'silahkan buka email untuk aktivasi akunmu',
+                        text: 'silahkan Login',
                         type: 'success',
                         padding: '2em'
                     })
                 </script>
             ");
-        }
-
-        if ($request->input('saya_siswa') == null) {
-            $validate = $request->validate([
-                'email' => 'unique:admins'
-            ]);
-            $validate = $request->validate([
-                'email' => 'unique:siswa'
-            ]);
-            $validate = $request->validate([
-                'nama' => 'required',
-                'gender' => 'required',
-                'email' => 'required|email:dns|unique:guru',
-                'password' => 'required',
-            ]);
-
-            $validate['nama_guru'] = $validate['nama'];
-            $validate['password'] = Hash::make($validate['password']);
-
-
-            $tokens = [
-                'token' => Str::random(40),
-                'email' => $validate['email'],
-                'key' => 'aktivasi',
-                'role' => 2,
-            ];
-
-            $details = [
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'password' => $request->password,
-                'token' => $tokens['token']
-            ];
-            Mail::to("$request->email")->send(new VerifikasiAkun($details));
-            Guru::create($validate);
-            Token::create($tokens);
-            return redirect('/')->with('pesan', "
-                <script>
-                    swal({
-                        title: 'Berhasil!',
-                        text: 'silahkan buka email untuk aktivasi akunmu',
-                        type: 'success',
-                        padding: '2em'
-                    })
-                </script>
-            ");
-        }
+        // }
     }
     public function aktivasi(Token $token)
     {
