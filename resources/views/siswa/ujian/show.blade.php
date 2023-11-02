@@ -90,13 +90,32 @@
                                                             </div>
                                                             <div class="green-radio color-green">
                                                                 <ol type="A" style="color: #000; margin-left: -20px;">
+                                                                    @php
+                                                                        $urutanJawaban = [
+                                                                            'pg_1' => $soal->detailujian->pg_1,
+                                                                            'pg_2' => $soal->detailujian->pg_2,
+                                                                            'pg_3' => $soal->detailujian->pg_3,
+                                                                            'pg_4' => $soal->detailujian->pg_4,
+                                                                            'pg_5' => $soal->detailujian->pg_5,
+                                                                        ];
+                                                                        $dataUrutanJwb = collect($urutanJawaban)->shuffle();
+                                                                    @endphp
+                                                                    @foreach ($dataUrutanJwb as $jwb)
+                                                                    
                                                                     <li class="answer-number">
+                                                                        <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($jwb, 0, 1) }}" id="soal{{ $no }}-{{ substr($jwb, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($jwb, 0 ,1)) checked @endif/>
+                                                                        <label for="soal{{ $no }}-{{ substr($jwb, 0, 1) }}" class="answer-text" style="color: #000;">
+                                                                            <span>{{ substr($jwb, 3, strlen($jwb)) }}</span>
+                                                                        </label>
+                                                                    </li>
+                                                                    @endforeach
+                                                                    {{-- <li class="answer-number">
                                                                         <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_1, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_1, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_1, 0 ,1)) checked @endif/>
                                                                         <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_1, 0, 1) }}" class="answer-text" style="color: #000;">
                                                                             <span>{{ substr($soal->detailujian->pg_1, 3, strlen($soal->detailujian->pg_1)) }}</span>
                                                                         </label>
-                                                                    </li>
-                                                                    <li class="answer-number">
+                                                                    </li> --}}
+                                                                    {{-- <li class="answer-number">
                                                                         <input type="radio" data-alternatetype="radio" name="{{ $soal->detailujian->id }}" value="{{ substr($soal->detailujian->pg_2, 0, 1) }}" id="soal{{ $no }}-{{ substr($soal->detailujian->pg_2, 0 ,1) }}" data-pg_siswa="{{ $soal->id }}" data-noSoal="{{ $no }}" @if($soal->jawaban == substr($soal->detailujian->pg_2, 0 ,1)) checked @endif/>
                                                                         <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_2, 0, 1) }}" class="answer-text" style="color: #000;">
                                                                             <span>{{ substr($soal->detailujian->pg_2, 3, strlen($soal->detailujian->pg_2)) }}</span>
@@ -119,7 +138,7 @@
                                                                         <label for="soal{{ $no }}-{{ substr($soal->detailujian->pg_5, 0, 1) }}" class="answer-text" style="color: #000;">
                                                                             <span>{{ substr($soal->detailujian->pg_5, 3, strlen($soal->detailujian->pg_5)) }}</span>
                                                                         </label>
-                                                                    </li>
+                                                                    </li> --}}
                                                                 </ol>
                                                             </div>
                                                         </div>
