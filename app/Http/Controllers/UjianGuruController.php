@@ -127,6 +127,7 @@ class UjianGuruController extends Controller
             'jam' => $request->jam,
             'menit' => $request->menit,
             'acak' => $request->acak ?? 1,
+            'link_video' => $request->link_video,
         ];
 
         $detail_ujian = [];

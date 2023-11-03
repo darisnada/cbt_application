@@ -75,17 +75,24 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-4">
                                                         <div class="form-group">
                                                             <label for="">Waktu Jam</label>
                                                             <input type="number" name="jam" class="form-control" value="0"
                                                                 required>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-4">
                                                         <div class="form-group">
                                                             <label for="">Waktu Menit</label>
                                                             <input type="number" name="menit" class="form-control" value="0"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="">Link Video</label>
+                                                            <input type="text" name="link_video" class="form-control" value=""
                                                                 required>
                                                         </div>
                                                     </div>

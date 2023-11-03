@@ -220,6 +220,18 @@
             {{-- </div> --}}
 
 
+            {{-- video --}}
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h3>Video</h3>
+                </div>
+                <div class="card-body">
+                    <iframe width="560" height="315" src="{{$ujian->link_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            {{-- end video --}}
+
+
             {{-- Ujian siswa & nilai --}}
             <div id="iconsAccordion" class="accordion-icons shadow mt-3">
                 <div class="card">

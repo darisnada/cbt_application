@@ -24,6 +24,7 @@ class CreateUjiansTable extends Migration
             $table->integer('jam');
             $table->integer('menit');
             $table->integer('acak')->default(0);
+            $table->text('link_video')->nullable();
             $table->timestamps();
         });
     }
