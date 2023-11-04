@@ -5,8 +5,22 @@
     <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
         <div class="container-fluid px-0">
             <div class="row layout-top-spacing">
-                <div class="col-lg-6 layout-spacing">
-                    <div class="card">
+                <div class="col-lg-12 layout-spacing">
+                    {{-- video --}}
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5>Video</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="ratio ratio-21x9">
+                                <iframe src="{{$ujian->link_video}}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end video --}}
+                </div>
+                <div class="col-lg-12 layout-spacing">
+                    <div class="card mb-3">
                         <div class="card-header">
                             <h5 class="">{{ $ujian->nama }}</h5>
                         </div>
@@ -31,18 +45,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 layout-spacing">
-                    {{-- video --}}
-                    <div class="card ">
-                        <div class="card-header">
-                            <h5>Video</h5>
-                        </div>
-                        <div class="card-body">
-                            <iframe src="{{$ujian->link_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    {{-- end video --}}
                 </div>
             </div>
 

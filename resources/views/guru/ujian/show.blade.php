@@ -2,11 +2,27 @@
 @section('content')
 
     <!--  BEGIN CONTENT AREA  -->
-    <div class="content p-4 pb-0 d-flex flex-column-fluid position-relative">
-        <div class="container-fluid px-0">
+    <div id="content" class="main-content">
+        <div class="container-fluid" style="margin-top:20px !important">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card shadow p-3">
+                    {{-- video --}}
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5>Video</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <!-- 16:9 aspect ratio -->
+                            <div class="ratio ratio-21x9">
+                                <iframe src="{{$ujian->link_video}}"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end video --}}
+                </div>
+                <div class="col-lg-12">
+                    <div class="card shadow p-3 mb-3">
                         <div class="card-header">
                             <h5 class="">{{ $ujian->nama }}</h5>
                         </div>
@@ -219,17 +235,6 @@
                 </div>
             {{-- </div> --}}
 
-
-            {{-- video --}}
-            <div class="card mt-3">
-                <div class="card-header">
-                    <h3>Video</h3>
-                </div>
-                <div class="card-body">
-                    <iframe width="560" height="315" src="{{$ujian->link_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-            </div>
-            {{-- end video --}}
 
 
             {{-- Ujian siswa & nilai --}}

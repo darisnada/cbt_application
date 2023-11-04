@@ -154,11 +154,11 @@
               @yield("content")
             </div>
             
-            <div class="watermark-100-image">
+            {{-- <div class="watermark-100-image"> --}}
               {{-- <center> --}}
-                <img src="{{ url('/_assets/img') }}/icon-web.jpeg" width="200px" class="imagenya" alt="">
+                {{-- <img src="{{ url('/_assets/img') }}/icon-web.jpeg" width="200px" class="imagenya" alt=""> --}}
               {{-- </center> --}}
-            </div>
+            {{-- </div> --}}
           </div>
           <!--//Page content End//-->
 
